@@ -40,20 +40,23 @@ if(isset($_GET['keyword'])) {
     // Display search results
     if (mysqli_num_rows($result) > 0) {
         while($row = mysqli_fetch_assoc($result)) {
-            echo "pet_id: " . $row["pet_id"]. "<br>";
-            echo "pet_name: " . $row["pet_name"]. "<br>";
-            echo "pet_age: " . $row["pet_age"]. "<br>";
-            echo "pet_character: " . $row["pet_character"]. "<br>";
-            echo "pet_medical: " . $row["pet_medical"]. "<br>";
-            echo "pet_type: " . $row["pet_type"]. "<br>";
-            echo "pet_variety: " . $row["pet_variety"]. "<br>";
-            echo "pet_color: " . $row["pet_color"]. "<br>";
-            echo "pet_gender: " . $row["pet_gender"]. "<br>";
-            echo "pet_size: " . $row["pet_size"]. "<br>";
-            echo "pet_address: " . $row["pet_address"]. "<br>";
-            echo "pet_publish: " . $row["pet_publish"]. "<br>";
-            echo "pet_explain: " . $row["pet_explain"]. "<br>";
-            echo "account_id: " . $row["account_id"]. "<br>";
+            echo "寵物編號： " . $row["pet_id"]. "<br>";
+            echo "寵物名字： " . $row["pet_name"]. "<br>";
+            echo "年齡： " . $row["pet_age"]. "<br>";
+            echo "個性： " . $row["pet_character"]. "<br>";
+            echo "病史： " . $row["pet_medical"]. "<br>";
+            echo "種類： " . $row["pet_type"]. "<br>";
+            echo "品種： " . $row["pet_variety"]. "<br>";
+            echo "毛色： " . $row["pet_color"]. "<br>";
+            echo "性別： " . $row["pet_gender"]. "<br>";
+            echo "體型： " . $row["pet_size"]. "<br>";
+            echo "縣市： " . $row["pet_address"]. "<br>";
+            echo "刊登日期： " . $row["pet_publish"]. "<br>";
+            echo "與小孩是否相處融洽： " . $row["pet_withkid"]. "<br>";
+            echo "與其他寵物是否相處融洽： " . $row["pet_withpet"]. "<br>";
+            echo "寵物照片：<img src="data:image/jpeg;base64,".base64_encode($row["pet_photo"])."<br>" />";
+            echo "寵物說明欄： " . $row["pet_explain"]. "<br>";
+            echo "使用者帳號： " . $row["account_id"]. "<br>";
 
             echo "<hr>";
         }
