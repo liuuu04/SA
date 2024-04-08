@@ -54,7 +54,7 @@ if(isset($_GET['keyword'])) {
             echo "刊登日期： " . $row["pet_publish"]. "<br>";
             echo "與小孩是否相處融洽： " . $row["pet_withkid"]. "<br>";
             echo "與其他寵物是否相處融洽： " . $row["pet_withpet"]. "<br>";
-            echo "寵物照片：<img src="data:image/jpeg;base64,".base64_encode($row["pet_photo"])."<br>" />";
+            echo "寵物照片：<img src='data:image/jpeg;base64,'.base64_encode($row['pet_photo']).'<br>' />";
             echo "寵物說明欄： " . $row["pet_explain"]. "<br>";
             echo "使用者帳號： " . $row["account_id"]. "<br>";
 
