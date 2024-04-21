@@ -112,7 +112,7 @@
 		</form>
 	</section> -->
 
- 
+    <div class="contain">
     <?php
       $link=mysqli_connect('localhost','root','han20000914','sa');
       $sql = "SELECT pet_id, pet_name, pet_age, pet_type, pet_variety , pet_gender, pet_address, pet_publish, pet_explain FROM pet ORDER BY pet_id";
@@ -144,6 +144,7 @@
     }
 }
 ?>
+    </div>
 
 
 
