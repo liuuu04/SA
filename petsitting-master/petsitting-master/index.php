@@ -113,6 +113,7 @@
 		</form>
 	</section> -->
 
+<<<<<<< HEAD
   
     <div class="chat-icon" onclick="toggleContactsList()">💬</div>
 
@@ -148,6 +149,9 @@
     </div>
 
  
+=======
+    <div class="contain">
+>>>>>>> 1c8f67bd6456c28c6e8a79b3123da7bc9951a41f
     <?php
       $link=mysqli_connect('localhost','root','12345678','sa');
       $sql = "SELECT pet_id, pet_name, pet_age, pet_type, pet_variety , pet_gender, pet_address, pet_publish, pet_explain FROM pet ORDER BY pet_id";
@@ -180,6 +184,24 @@
     
 }
 ?>
+<<<<<<< HEAD
+=======
+    </div>
+
+
+
+    
+
+    
+
+    
+
+    
+		
+    
+    
+
+>>>>>>> 1c8f67bd6456c28c6e8a79b3123da7bc9951a41f
     <footer class="footer">
 			<div class="container">
 				<div class="row">
