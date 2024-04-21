@@ -21,7 +21,7 @@
 
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/newcss.css">
+    <link rel="stylesheet" href="newcss.css">
 	<!-- <link rel="icon" href="images/" -->
   </head>
   <body>
