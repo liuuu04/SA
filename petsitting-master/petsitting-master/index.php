@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="newcss.css">
+    <link rel="stylesheet" href="chat.css">
 	<!-- <link rel="icon" href="images/" -->
   </head>
   <body>
@@ -112,9 +113,43 @@
 		</form>
 	</section> -->
 
+  
+    <div class="chat-icon" onclick="toggleContactsList()">💬</div>
+
+    <div id="chatPopup" class="chat-popup">
+      <div class="chat-header">
+        <div class="back-btn" onclick="hideChatPopup()">←</div> 
+        <div class="user-name" id="chatUserName"></div> 
+        <div class="close-btn" onclick="toggleChat()">×</div>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <!-- 聊天訊息 -->
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <input type="text" id="chatInput" class="chat-input" placeholder="寫下你想說的話...">
+        </div>
+      </div>
+      
+      <button class="icon-button" onclick="handleImageButtonClick()">
+        <i class="material-icons">&#xe413;</i>
+      </button>
+      
+      <button onclick="sendMessage()" class="send-btn"><i class="fa fa-send-o" style="font-size:18px"></i></button> 
+    </div>
+
+    <div id="contactsList" class="contacts-list">
+    <div class="contacts-header">聯絡人</div>
+      <div class="close-btn" onclick="hideContactsList()">×</div>
+      <!-- 動態生成聯絡人列表 -->
+      <?php
+      //這裡等一下
+      ?>
+    </div>
+
  
     <?php
-      $link=mysqli_connect('localhost','root','han20000914','sa');
+      $link=mysqli_connect('localhost','root','12345678','sa');
       $sql = "SELECT pet_id, pet_name, pet_age, pet_type, pet_variety , pet_gender, pet_address, pet_publish, pet_explain FROM pet ORDER BY pet_id";
       $result=mysqli_query($link,$sql);
       if (mysqli_num_rows($result) > 0) {
@@ -142,22 +177,9 @@
 
     <?php
     }
+    
 }
 ?>
-
-
-
-    
-
-    
-
-    
-
-    
-		
-    
-    
-
     <footer class="footer">
 			<div class="container">
 				<div class="row">
@@ -251,6 +273,7 @@
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
   <script src="js/myscript.js"></script>
+  <script src="js/chat.js"></script>
 
 
     
