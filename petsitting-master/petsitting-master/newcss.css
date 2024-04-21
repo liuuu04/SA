@@ -1,0 +1,146 @@
+  body{
+    background-color: #f8f9fd;
+  }
+  
+  .petframe {
+    width: 350px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    
+    margin: 20px;
+    
+  }
+
+.petphoto{
+    width: 350px;
+    height: 220px;
+    background-color: beige;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.petphoto img{
+    margin-top: 10px;
+    margin-left: 310px;
+    width: 30px;
+    height: auto;
+}
+
+.petintro{
+    width: 350px;
+    padding: 25px;
+    height: auto;
+    background-color: #fff;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    overflow-wrap: break-word;
+    
+}
+
+.petintro span{
+    font-size: 22px;
+    font-weight: 800;
+    color: black;
+    border-radius: 5px;
+    margin-left: 13px;
+
+}
+
+.petintro img{
+    width: 16px;
+    height: auto;
+
+}
+
+.petintro p{
+    font-size: 16px;
+    margin-left: 13px;
+    
+
+}
+.petintro k{
+    font-size: 15px;
+    color: aliceblue;
+}
+
+.petintro a{
+    font-size: 17px;
+    font-weight: 600;
+    margin-left: 23px;
+    color: #070504;
+    padding: 6px 10px 6px 10px;
+    background-color: beige;
+    border-radius: 10px;
+}
+
+.petintro a:hover{
+    color: black;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.filter{
+    padding: 20px 200px 20px 200px;
+}
+
+
+
+.chatuser{
+    width: 1100px;
+    height: auto;
+    background-color: #fff;
+    padding: 50px;
+    box-shadow: 0px 24px 48px -13px rgba(0, 0, 0, 0.1);
+    
+
+}
+
+.chatuser span{
+    font-size: 20px;
+    font-weight: 600;
+    color: #070504;
+    padding: 12px 20px 12px 20px;
+    background-color: beige;
+    border-radius: 10px;
+    
+}
+
+.chatuser img{
+    width: 40px;
+    height: auto;
+    padding: 5px;
+    background-color: beige;
+    border-radius: 5px;
+
+}
+
+.chatuser p{
+    font-size: 20px;
+    display: inline;
+    margin-right: 100px;
+    color: #070504;
+}
+
+.chatuser a{
+    font-weight: 700;
+    color: #5579c6;
+}
+
+.intromy{
+    border-radius: 30px;
+    padding: 13px 25px 13px 25px;
+    background-color: #f8f9fd;
+    margin-right: 20px;
+    border: #fff;
+}
+
+.intromy img{
+    width: 25px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.intromy span{
+    font-size: 15px;
+    font-weight: 600;
+    color: black;
+}
