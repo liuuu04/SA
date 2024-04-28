@@ -5,7 +5,7 @@ body {
   
   #form {
     background-color: rgba(255, 253, 208,0.9);
-    width: 60%; /* Adjusted width */
+    width: 50%; /* Adjusted width */
     border-radius: 8px;
     margin: 80px auto; 
     padding: 40px; 
@@ -49,25 +49,30 @@ body {
   }
 
   #form input[type="text"],
+  #form textarea{
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 1.5px solid;
+  }
+  #form select{
+    width: 35%;
+    padding: 5px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    border: 1.5px solid;
+  }
 
-#form textarea,
-#form select {
-  width: 75%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 6px;
-  border: 1.5px solid;
-}
-
-#form input[type="date"],
-#form input[type="email"] 
-#form input[type="tel"]{
-  width: 75%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 6px;
-  border: 1.5px solid;
-}
+  #form input[type="date"],
+  #form input[type="email"] 
+  #form input[type="tel"]{
+    width: 75%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 1.5px solid;
+  }
 
 
 #form input[type="password"] {
@@ -77,3 +82,5 @@ body {
   border-radius: 6px;
   border: 1.5px solid;
 }
+
+
