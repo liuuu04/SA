@@ -49,7 +49,7 @@ body {
   }
 
   #form input[type="text"],
-#form input[type="radio"],
+
 #form textarea,
 #form select {
   width: 75%;
