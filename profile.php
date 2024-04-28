@@ -30,7 +30,7 @@ if (isset($_POST['identify'], $_POST['motivation'], $_POST['job'], $_POST['econo
                              VALUES ('$identify', '$motivation', '$economic', '$job', '$family_kid', '$family_cat', '$family_dog', '$family_other', '$family_roomate', '$experience')";
     $result1 = mysqli_query($conn, $query);
 
-    $query_update_account = "UPDATE `account` SET `identify_level` = 'admin' WHERE `identify` = '$identify'";
+    $query_update_account = "UPDATE `account` SET `identify_level` = 'adopter' WHERE `identify` = '$identify'";
     $result_update_account = mysqli_query($conn, $query_update_account);
 
 
@@ -52,14 +52,14 @@ if (isset($_POST['identify'], $_POST['motivation'], $_POST['job'], $_POST['econo
 <h1 id="heading">使用者個人檔案</h1>
 <form name="form" action="" method="post">
 
-<label>帳戶名稱:</label>
+<label>帳戶名稱:</label><br>
 <input type="text" name="identify" placeholder="請輸入帳戶名稱" required/><br><br>
 
 <label for="message">領養動機:</label><br>
 <textarea type= "message" id="message" name="motivation" rows="4" cols="50"placeholder="請在這裡輸入您的領養動機..." required>
 </textarea><br><br>
 
-<label>使用者職業:</label>
+<label>使用者職業:</label><br>
 <input type="text" name="job" placeholder="使用者職業" required/><br><br>
 
 
@@ -74,7 +74,7 @@ if (isset($_POST['identify'], $_POST['motivation'], $_POST['job'], $_POST['econo
 
 
 
-<label for="family_kid">家庭中的孩子数量：</label>
+<label for="family_kid">家庭中的孩子数量：</label><br>
   <select  id="family_kid" name="family_kid">
     <option value="0"></option>
     <option value="1">1 位</option>
@@ -84,7 +84,7 @@ if (isset($_POST['identify'], $_POST['motivation'], $_POST['job'], $_POST['econo
     <option value="5">5次或更多</option>
     </select> <br> <br>
 
-  <label for="family_roomate">家庭成員-(小孩): </label>
+  <label for="family_roomate">家庭成員-(小孩): </label><br>
   <select id="family_roomate" name="family_roomate">
   <option value="0"></option>
     <option value="1">1 位</option>
@@ -94,7 +94,7 @@ if (isset($_POST['identify'], $_POST['motivation'], $_POST['job'], $_POST['econo
     <option value="5">5次或更多</option>
   </select> <br><br>
 
-  <label for="family_dog">狗的數量： </label>
+  <label for="family_dog">狗的數量： </label><br>
   <select id="family_dog" name="family_dog">
   <option value="0"></option>
     <option value="1">1 隻</option>
@@ -104,7 +104,7 @@ if (isset($_POST['identify'], $_POST['motivation'], $_POST['job'], $_POST['econo
     <option value="5">5次或更多</option>
   </select> <br><br>
 
-  <label for="family_cat">貓的數量：</label>
+  <label for="family_cat">貓的數量：</label><br>
   <select id="family_cat" name="family_cat">
   <option value="0"></option>
     <option value="1">1 隻</option>
@@ -114,7 +114,7 @@ if (isset($_POST['identify'], $_POST['motivation'], $_POST['job'], $_POST['econo
     <option value="5">5次或更多</option>
   </select> <br><br>
 
-  <label for="family_other">其他動物的數量： </label>
+  <label for="family_other">其他動物的數量： </label><br>
   <select id="family_other" name="family_other">
     <option value="0"></option>
     <option value="1">1 隻</option>
@@ -124,7 +124,7 @@ if (isset($_POST['identify'], $_POST['motivation'], $_POST['job'], $_POST['econo
     <option value="5">5次或更多</option>
   </select> <br><br>
 
-  <label for="experience">收養經驗: </label>
+  <label for="experience">收養經驗: </label><br>
   <select id="experience" name="experience">
     <option value="0"></option>
     <option value="1">1次 </option>
