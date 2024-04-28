@@ -233,6 +233,90 @@
 mysqli_close($link);
 ?>
 </div>
+<?php
+session_start(); 
+
+$link = mysqli_connect('localhost', 'root', '12345678', 'sa');
+
+if ($link === false) {
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+
+$current_identify = $_SESSION['identify'];
+
+$sql = "SELECT DISTINCT Account.identify, Account.name AS receiver_name
+        FROM message
+        JOIN Account ON message.receiver_id = Account.identify
+        WHERE message.sender_id = '$current_identify'
+        UNION
+        SELECT DISTINCT Account.identify, Account.name AS receiver_name
+        FROM message
+        JOIN Account ON message.sender_id = Account.identify
+        WHERE message.receiver_id = '$current_identify'";
+
+$result = mysqli_query($link, $sql);
+
+if ($result === false) {
+    die("ERROR: Could not execute query. " . mysqli_error($link));
+}
+
+$contacts = array();
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $contacts[] = $row;
+}
+?>
+
+<div class="chat-icon" onclick="toggleContactsList()">💬</div>
+
+<div id="chatPopup" class="chat-popup">
+  <div class="chat-header">
+    <div class="back-btn" onclick="hideChatPopup()">←</div> 
+    <div class="user-name" id="chatUserName"></div> 
+    <div class="close-btn" onclick="toggleChat()">×</div>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <input type="text" id="chatInput" class="chat-input" placeholder="寫下你想說的話...">
+    </div>
+  </div>
+  
+  <button class="icon-button" onclick="document.getElementById('photoInput').click()">
+    <i class="material-icons">&#xe413;</i>
+  </button>
+  
+  <input type="file" id="photoInput" style="display: none;" accept="image/*" onchange="handlePhotoUpload()">
+
+  <button onclick="sendMessage()" class="send-btn"><i class="fa fa-send-o" style="font-size:18px"></i></button> 
+</div>
+
+<div id="contactsList" class="contacts-list">
+<div class="contacts-header">聯絡人</div>
+  <div class="close-btn" onclick="hideContactsList()">×</div>
+
+  <?php
+  foreach ($contacts as $contact) {
+
+      $identify_photo = ""; 
+      $receiver_identify = $contact['identify'];
+      $query_photo = "SELECT identify_photo FROM account WHERE identify = '$receiver_identify'";
+      $result_photo = mysqli_query($link, $query_photo);
+      if ($result_photo) {
+          $row_photo = mysqli_fetch_assoc($result_photo);
+          $identify_photo = $row_photo['identify_photo'];
+      }
+      
+      echo '<div class="contact" onclick="openChat(\'' . $contact['identify'] . '\', \'' . $contact['receiver_name'] . '\')">';
+      echo '<img src="' . $identify_photo . '" alt="' . $contact['receiver_name'] . '">';
+      echo '<span>' . $contact['receiver_name'] . '</span>';
+      echo '</div>';
+  }
+  ?>
+</div>
+
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
