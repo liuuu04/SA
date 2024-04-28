@@ -55,23 +55,23 @@ else{
 <input type="text" name="identify" placeholder="請輸入帳戶名稱" required/><br><br>
 <label>輸入姓名:</label>
 <input type="text" name="name" placeholder="請輸入姓名" required/><br><br>
-<label>輸入出生日期:</label>
+<label>輸入出生日期:</label><br>
 <input type="date" id="birth" name="birth" required><br><br>
 <label>輸入電子郵件:</label>
 <input type="Email" name="email" placeholder="請輸入電子郵件" required/><br><br>
-<label>輸入電話號碼</label>
+<label>輸入電話號碼:</label>
 <input type="text" name="identify_phone" placeholder="請輸入電話號碼" required/><br><br>
 <label>輸入密碼: </label>
 <input type="password" name="password" placeholder="請輸入密碼" required /><br><br>
 <label>輸入確認密碼:</label>
 <input type="password" id="cpassword" name="cpassword" placeholder="請輸入確認密碼"required><br><br>
 
-<label>輸入性別</label><br><br>
+<label>輸入性別:</label><br><br>
 <input type="radio" id="male" name="gender" value="male" required>
 <label for="male">男</label>
 <input type="radio" id="female" name="gender" value="female" required>
 <label for="female">女 </label><br><br>
-<label>請上傳身分證正面照片**(jpg/jpeg) </label>
+<label>請上傳身分證正面照片**(jpg/jpeg): </label>
 <input type="file" name="identify_photo" id="identify_photo" accept="image/jpeg, image/jpg">
 <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 400px; max-height: 400px;"><br><br>
  
@@ -128,10 +128,9 @@ else{
             return true; // Allow form submission
         }
 
-        // Add event listener to form submission
         document.forms["form"].addEventListener("submit", function(event) {
             if (!validatePassword()) {
-                event.preventDefault(); // Prevent form submission if passwords don't match
+                event.preventDefault(); 
             }
         });
     </script>
@@ -145,11 +144,36 @@ else{
         margin: left;
     }
     .scroll-box {
-        height: 200px; /* Adjust height as needed */
-        overflow-y: scroll;
-        border: 1px solid #ccc;
-        padding: 10px;
+    height: 200px; 
+    overflow-y: scroll;
+    border: 1.5px solid #999;
+    padding: 10px;
+    transition: border-color 0.3s ease; 
+    border-radius: 6px;
+    background-color: white;
     }
+
+.scroll-box:hover {
+    border-color: #000; 
+    }
+
+    #form input[type="date"] {
+  width: 50%;
+  padding: 5px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1.5px solid;
+}
+
+#form input[type="Email"] {
+  width: 70%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1.5px solid;
+}
+
+
 </style>
 
 </html>
