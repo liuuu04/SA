@@ -51,24 +51,24 @@ else{
 <div id="form">
 <h1 id="heading">註冊</h1>
 <form name="form" action="" method="post">
-<label>帳戶名稱:</label>
+<label>帳戶名稱:</label><br>
 <input type="text" name="identify" placeholder="請輸入帳戶名稱" required/><br><br>
-<label>輸入姓名:</label>
+<label>輸入姓名:</label><br>
 <input type="text" name="name" placeholder="請輸入姓名" required/><br><br>
 <label>輸入出生日期:</label><br>
 <input type="date" id="birth" name="birth" required><br><br>
-<label>輸入電子郵件:</label>
+<label>輸入電子郵件:</label><br>
 <input type="Email" name="email" placeholder="請輸入電子郵件" required/><br><br>
-<label>輸入電話號碼:</label>
+<label>輸入電話號碼:</label><br>
 <input type="text" name="identify_phone" placeholder="請輸入電話號碼" required/><br><br>
-<label>輸入密碼: </label>
+<label>輸入密碼: </label><br>
 <input type="password" name="password" placeholder="請輸入密碼" required /><br><br>
-<label>輸入確認密碼:</label>
+<label>輸入確認密碼:</label><br>
 <input type="password" id="cpassword" name="cpassword" placeholder="請輸入確認密碼"required><br><br>
 
 <label>輸入性別:</label><br><br>
 <input type="radio" id="male" name="gender" value="male" required>
-<label for="male">男</label>
+<label for="male">男</label><br>
 <input type="radio" id="female" name="gender" value="female" required>
 <label for="female">女 </label><br><br>
 <label>請上傳身分證正面照片**(jpg/jpeg): </label>
