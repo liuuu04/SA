@@ -48,10 +48,19 @@
       <div class="bells">
       <a href="#"><img src="images/bell.png" style="width: 30px;height: 30px;margin-right:20px;"></a>
       </div>
-      <?php
-        session_start();
-        ?>
-        <button class="intromy"><a href="#"><img src="images/owner.png"><span><?php echo $_SESSION['name'];?></span></a></button>
+       <?php
+      session_start();
+
+      if(isset($_SESSION['name']) && !empty($_SESSION['name'])) {
+    
+    $buttonText = $_SESSION['name'];}
+    
+    else {
+    
+    $buttonText = "登入/註冊";}
+    ?>
+
+<button class="intromy"><a href="#"><img src="images/owner.png"><span><?php echo $buttonText; ?></span></a></button>
     </div>
 		
 	  </nav>
@@ -222,7 +231,7 @@
 			 <p><img src="images/location.png"> <?php echo $row['pet_address'];?></p>
 			 <p><img src="images/comment.png"> <?php echo $row['pet_explain'];?></p>
 			 
-			 <a href="services.php?pet_id=<?php echo $row['pet_id']; ?>"> 詳細資訊</a>
+			 <a href="petcard.php?pet_id=<?php echo $row['pet_id']; ?>"> 詳細資訊</a>
 			 <a href="#">聯絡送養人</a>
 		  </div>
 		</div>

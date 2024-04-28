@@ -18,10 +18,10 @@
         $result = $conn->query($query);
         if($result->num_rows > 0){
             $row = $result->fetch_assoc();
-            $_SESSION['IDENTIFY'] = $row['identify'];
-            $_SESSION['EMAIL'] = $row['email'];
-            $_SESSION['NAME'] = $row['name'];
-            $_SESSION['IDENTIFY_LEVEL'] = $row['identify_level'];
+            $_SESSION['identify'] = $row['identify'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['name'] = $row['name'];
+            $_SESSION['identify_level'] = $row['identify_level'];
             header("Location:index.php");
             exit();                              
         }else{

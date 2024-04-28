@@ -2,6 +2,7 @@
     background-color: #f8f9fd;
   }
   
+
   .contain{
     display: flex;
     flex-wrap: wrap;
@@ -18,8 +19,8 @@
 
 .petphoto{
     width: 350px;
-    height: 220px;
-    background-color: beige;
+    height: 250px;
+    background-color: #fff;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
@@ -34,12 +35,12 @@
 .petintro{
     width: 350px;
     padding: 25px;
-    height: auto;
+    height: 350px;
     background-color: #fff;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     overflow-wrap: break-word;
-    
+   
 }
 
 .petintro span{
@@ -60,7 +61,7 @@
 .petintro p{
     font-size: 16px;
     margin-left: 13px;
-    
+   
 
 }
 .petintro k{
@@ -76,6 +77,7 @@
     padding: 6px 10px 6px 10px;
     background-color: beige;
     border-radius: 10px;
+    
 }
 
 .petintro a:hover{
@@ -149,3 +151,56 @@
     font-weight: 600;
     color: black;
 }
+
+
+
+.search1 {
+    width: 100%;
+}
+
+.search1 form{
+    margin-left: 202px;
+}
+
+#searchinput {
+    padding: 8px;
+    border-radius: 30px;
+    font-size: 16px;
+    background-color: #f5f5dc;
+    border: none;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    padding-right: 57px;
+    padding-left: 10px;
+    font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
+    color: #070504;
+}
+
+#searchinput:focus {
+    outline: none; 
+    border: none;
+}
+
+
+#searchsubmit {
+    padding: 8px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: #f5f5dc;
+    border: none;
+    font-size: 16px;
+    margin-left: -57px;
+}
+
+#searchsubmit:focus {
+    outline: none; 
+    border: none;
+}
+
+
+
+
+
+  
+  
+ 
