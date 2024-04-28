@@ -2,10 +2,12 @@
 <html lang="en">
   <head>
     <title>寵物領養平台-首頁</title>
-    <meta charset="utf-8">
+    <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  
@@ -21,9 +23,10 @@
 
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="newcss.css">
-    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="css/newcss.css">
 	<!-- <link rel="icon" href="images/" -->
+
+ 
   </head>
   <body>
 		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -41,22 +44,110 @@
 	        </ul>
 	      </div>
 	    </div>
-		<button class="intromy"><a href="#"><img src="images/owner.png"><span>User1</span></a></button>
+      <div class="bells">
+      <a href="#"><img src="images/bell.png" style="width: 30px;height: 30px;margin-right:20px;"></a>
+      </div>
+      <?php
+        session_start();
+        ?>
+        <button class="intromy"><a href="#"><img src="images/owner.png"><span><?php echo $_SESSION['name'];?></span></a></button>
+    </div>
+		
 	  </nav>
     <!-- END nav -->
-    <div class="hero-wrap js-fullheight" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
+    <section class="ftco-section testimony-section" style="background-image: url('images/bg_2.jpg');">
+    	<div class="overlay"></div>
       <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
-          <div class="col-md-11 ftco-animate text-center">
-          	<h1 class="mb-4">主要的推廣活動 </h1>
-            <p><a href="#" class="btn btn-primary mr-md-4 py-3 px-4">了解更多 <span class="ion-ios-arrow-forward"></span></a></p>
+        <div class="row justify-content-center pb-5 mb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h2><span class="flaticon-pawprint-1 mr-2"></span>寵物領養平台-活動公告</h2>
+          </div>
+        </div>
+        <div class="row ftco-animate">
+          <div class="col-md-12">
+            <div class="carousel-testimony owl-carousel ftco-owl">
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img"><img src="images/loudspeaker.png"></div>
+                    	<div class="pl-3">
+		                    <p class="name">2024-04-28</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img"><img src="images/loudspeaker.png"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img"><img src="images/loudspeaker.png"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img"><img src="images/loudspeaker.png"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img"><img src="images/loudspeaker.png"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <section class="ftco-section bg-light ftco-no-pt ftco-intro">
+    <!-- <section class="ftco-section bg-light ftco-no-pt ftco-intro">
     	<div class="container">
     		<div class="row">
           <div class="col-md-4 d-flex align-self-stretch px-4 ftco-animate">
@@ -65,7 +156,7 @@
             		<img src="images/loudspeaker.png">
               </div>
               <div class="media-body">
-                <h3 class="heading">其他小活動1</h3>
+                <h3 class="heading">小活動1</h3>
                 <p>活動公告1</p>
                 <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
               </div>
@@ -77,7 +168,7 @@
 				<img src="images/loudspeaker.png">
               </div>
               <div class="media-body">
-                <h3 class="heading">其他小活動2</h3>
+                <h3 class="heading">小活動2</h3>
                 <p>活動公告2</p>
                 <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
               </div>
@@ -89,7 +180,7 @@
 				<img src="images/loudspeaker.png">
               </div>
               <div class="media-body">
-                <h3 class="heading">其他小活動3</h3>
+                <h3 class="heading">小活動3</h3>
                 <p>活動公告3</p>
                 <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
               </div>
@@ -97,68 +188,25 @@
           </div>
         </div>
     	</div>
-    </section>
-    <!-- <section class="filter">
-		<form>
-			種類:<input type="radio" name="pet_type" value="dog">狗
-			     <input type="radio" name="pet_type" value="cat">貓
-				 <input type="radio" name="pet_type" value="bird">鳥
-				 <input type="radio" name="pet_type" value="other">其他
-				 <br>
-			品種:
-			     <input type="checkbox" name="pet_variety" value="corgi">科基
-				 <input type="checkbox" name="pet_variety" value="shiba">柴犬
-				 <input type="checkbox" name="pet_variety" value="husky">哈士奇
-				 <input type="checkbox" name="pet_variety" value="mixed">米克斯
+    </section> -->
+
+    <div class="search1">
+		<form action="search.php" method="GET">
+			<input type="text" id="searchinput" placeholder="關鍵字搜尋...">
+      <button type="submit" id="searchsubmit"><i class="fas fa-search"></i></button>
 		</form>
-	</section> -->
-
-<<<<<<< HEAD
-  
-    <div class="chat-icon" onclick="toggleContactsList()">💬</div>
-
-    <div id="chatPopup" class="chat-popup">
-      <div class="chat-header">
-        <div class="back-btn" onclick="hideChatPopup()">←</div> 
-        <div class="user-name" id="chatUserName"></div> 
-        <div class="close-btn" onclick="toggleChat()">×</div>
-      </div>
-      <div class="chat-messages" id="chatMessages">
-        <!-- 聊天訊息 -->
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <input type="text" id="chatInput" class="chat-input" placeholder="寫下你想說的話...">
-        </div>
-      </div>
-      
-      <button class="icon-button" onclick="handleImageButtonClick()">
-        <i class="material-icons">&#xe413;</i>
-      </button>
-      
-      <button onclick="sendMessage()" class="send-btn"><i class="fa fa-send-o" style="font-size:18px"></i></button> 
     </div>
 
-    <div id="contactsList" class="contacts-list">
-    <div class="contacts-header">聯絡人</div>
-      <div class="close-btn" onclick="hideContactsList()">×</div>
-      <!-- 動態生成聯絡人列表 -->
-      <?php
-      //這裡等一下
-      ?>
-    </div>
-
- 
-=======
     <div class="contain">
->>>>>>> 1c8f67bd6456c28c6e8a79b3123da7bc9951a41f
     <?php
-      $link=mysqli_connect('localhost','root','12345678','sa');
-      $sql = "SELECT pet_id, pet_name, pet_age, pet_type, pet_variety , pet_gender, pet_address, pet_publish, pet_explain FROM pet ORDER BY pet_id";
+  
+      $link=mysqli_connect('localhost','root','han20000914','sa');
+      mysqli_set_charset($link,"utf8");
+      $sql = "SELECT pet_id, pet_name, pet_type, pet_publish, pet_variety, pet_gender, pet_age, pet_address, pet_explain From pet";
       $result=mysqli_query($link,$sql);
       if (mysqli_num_rows($result) > 0) {
-       
         while ($row = mysqli_fetch_assoc($result)) {
+          
             ?>
     
 		<div class="petframe">
@@ -173,104 +221,19 @@
 			 <p><img src="images/location.png"> <?php echo $row['pet_address'];?></p>
 			 <p><img src="images/comment.png"> <?php echo $row['pet_explain'];?></p>
 			 
-			 <a href="services.php?pet_id=<?php echo $row['pet_id']; ?>"><img src="images/search.png"> 詳細資訊</a>
-			 <a href="#"><img src="images/chat (1).png"> 聯絡送養人</a>
-			 
+			 <a href="services.php?pet_id=<?php echo $row['pet_id']; ?>"> 詳細資訊</a>
+			 <a href="#">聯絡送養人</a>
 		  </div>
 		</div>
 
     <?php
     }
-    
 }
+mysqli_close($link);
 ?>
-<<<<<<< HEAD
-=======
-    </div>
+</div>
 
 
-
-    
-
-    
-
-    
-
-    
-		
-    
-    
-
->>>>>>> 1c8f67bd6456c28c6e8a79b3123da7bc9951a41f
-    <footer class="footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-						<h2 class="footer-heading">Petsitting</h2>
-						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-						<ul class="ftco-footer-social p-0">
-              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li>
-              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
-              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
-            </ul>
-					</div>
-					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-						<h2 class="footer-heading">Latest News</h2>
-						<div class="block-21 mb-4 d-flex">
-              <a class="img mr-4 rounded" style="background-image: url(images/image_1.jpg);"></a>
-              <div class="text">
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> April 7, 2020</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                </div>
-              </div>
-            </div>
-            <div class="block-21 mb-4 d-flex">
-              <a class="img mr-4 rounded" style="background-image: url(images/image_2.jpg);"></a>
-              <div class="text">
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> April 7, 2020</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                </div>
-              </div>
-            </div>
-					</div>
-					<div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
-						<h2 class="footer-heading">Quick Links</h2>
-						<ul class="list-unstyled">
-              <li><a href="#" class="py-2 d-block">Home</a></li>
-              <li><a href="#" class="py-2 d-block">About</a></li>
-              <li><a href="#" class="py-2 d-block">Services</a></li>
-              <li><a href="#" class="py-2 d-block">Works</a></li>
-              <li><a href="#" class="py-2 d-block">Blog</a></li>
-              <li><a href="#" class="py-2 d-block">Contact</a></li>
-            </ul>
-					</div>
-					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-						<h2 class="footer-heading">Have a Questions?</h2>
-						<div class="block-23 mb-3">
-              <ul>
-                <li><span class="icon fa fa-map"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@yourdomain.com</span></a></li>
-              </ul>
-            </div>
-					</div>
-				</div>
-				<div class="row mt-5">
-          <div class="col-md-12 text-center">
-
-            <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-          </div>
-        </div>
-			</div>
-		</footer>
 
     
   
@@ -295,7 +258,6 @@
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
   <script src="js/myscript.js"></script>
-  <script src="js/chat.js"></script>
 
 
     
