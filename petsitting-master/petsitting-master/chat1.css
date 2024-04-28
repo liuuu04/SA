@@ -12,9 +12,10 @@
     color: #fff;
     font-size: 16px;
     cursor: pointer;
-    z-index: 9999; 
+    z-index: 9999; /* 確保圖標顯示在最上層 */
   }
   
+  /* 聊天室窗口的外觀樣式 */
   .chat-popup {
     position: fixed;
     bottom: 20px;
@@ -27,6 +28,7 @@
     display: none;
   }
   
+  /* 聊天室頭部樣式 */
   .chat-header {
     background-color: #eee;
     padding: 10px;
@@ -34,11 +36,13 @@
     position: relative;
   }
   
+  /* 聊天室最上方的back-btn樣式 */
   .back-btn {
     font-size: 20px;
     cursor: pointer;
   }
   
+  /* 聊天室最上方中間的聯絡人名稱樣式 */
   .user-name {
     font-size: 18px;
     position: absolute;
@@ -47,6 +51,7 @@
     transform: translateX(-50%);
   }
   
+  /* 聊天室最上方的close-btn樣式 */
   .close-btn {
     font-size: 20px;
     cursor: pointer;
@@ -55,15 +60,16 @@
     top: 10px;
   }
   
-
+  /* 聊天訊息框樣式 */
   .chat-messages {
     height: calc(100% - 150px); 
-    overflow-y: auto;
+    overflow-y: auto; /* 垂直滾動 */
     padding: 10px;
     display: flex;
     flex-direction: column;
   }
   
+  /* 聊天輸入框樣式 */
   .chat-input {
     width: calc(100% - 60px);
     margin: 0 0 5px ; 
@@ -71,9 +77,9 @@
     padding: 10px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 14px;
-    resize: none; 
+    resize: none; /* 禁止調整大小 */
     position: absolute;
-    bottom: -95px; 
+    bottom: -95px; /* 向下移动 20px */
   }
   
   .send-btn {
@@ -96,27 +102,29 @@
     cursor: pointer;
   }
   
+  /* 移除按鈕的黑色外框 */
   .icon-button:focus,
   .send-btn:focus {
     outline: none;
   }
   
+  /* 聯絡人列表樣式 */
   .contacts-header {
-    background-color: #eee; 
+    background-color: #eee; /* 淺灰色背景 */
     padding: 10px;
     text-align: center;
     font-weight: bold;
   }
   
   .contacts-list {
-    position: fixed; 
+    position: fixed; /* 將聯絡人列表固定在畫面上 */
     bottom: 50px;
     right: 20px;
     width: 200px;
     max-height: calc(100% - 100px);
     background-color: #f7f7f7;
     border: 1px solid #ccc;
-    overflow-y: auto; 
+    overflow-y: auto; /* 垂直滾動 */
     display: none;
   }
   

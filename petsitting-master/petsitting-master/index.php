@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/newcss.css">
-    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/chat1.css">
 	<!-- <link rel="icon" href="images/" -->
 
  
@@ -157,49 +157,7 @@
       </div>
     </section>
 
-    <!-- <section class="ftco-section bg-light ftco-no-pt ftco-intro">
-    	<div class="container">
-    		<div class="row">
-          <div class="col-md-4 d-flex align-self-stretch px-4 ftco-animate">
-            <div class="d-block services  text-center">
-              <div class="icon d-flex align-items-center justify-content-center">
-            		<img src="images/loudspeaker.png">
-              </div>
-              <div class="media-body">
-                <h3 class="heading">小活動1</h3>
-                <p>活動公告1</p>
-                <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
-              </div>
-            </div>      
-          </div>
-          <div class="col-md-4 d-flex align-self-stretch px-4 ftco-animate">
-            <div class="d-block services text-center">
-              <div class="icon d-flex align-items-center justify-content-center">
-				<img src="images/loudspeaker.png">
-              </div>
-              <div class="media-body">
-                <h3 class="heading">小活動2</h3>
-                <p>活動公告2</p>
-                <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
-              </div>
-            </div>    
-          </div>
-          <div class="col-md-4 d-flex align-self-stretch px-4 ftco-animate">
-            <div class="d-block services text-center">
-              <div class="icon d-flex align-items-center justify-content-center">
-				<img src="images/loudspeaker.png">
-              </div>
-              <div class="media-body">
-                <h3 class="heading">小活動3</h3>
-                <p>活動公告3</p>
-                <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
-              </div>
-            </div>      
-          </div>
-        </div>
-    	</div>
-    </section> -->
-
+    
     <div class="search1">
 		<form action="search.php" method="GET">
 			<input type="text" id="searchinput" placeholder="關鍵字搜尋...">
