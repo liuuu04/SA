@@ -50,17 +50,9 @@
       </div>
        <?php
       session_start();
-
-      if(isset($_SESSION['name']) && !empty($_SESSION['name'])) {
-    
-    $buttonText = $_SESSION['name'];}
-    
-    else {
-    
-    $buttonText = "登入/註冊";}
     ?>
 
-<button class="intromy"><a href="#"><img src="images/owner.png"><span><?php echo $buttonText; ?></span></a></button>
+<button class="intromy"><a href="#"><img src="images/owner.png"><span><?php echo $_SESSION['name']; ?></span></a></button>
     </div>
 		
 	  </nav>
