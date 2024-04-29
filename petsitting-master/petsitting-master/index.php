@@ -47,7 +47,8 @@
         <div class="bells">
         <a href="#"><img src="images/bell.png" style="width: 30px;height: 30px;margin-right:20px;"></a>
         </div>
-          <button class="intromy"><a href="#"><img src="images/owner.png"><span><?php  session_start();  echo $_SESSION['name'];?></span></a></button>
+        <?php  session_start(); ?>
+          <button class="intromy"><a href="#"><img src="<?php echo $_SESSION['identify_photo']; ?>" style="border-radius: 50%;"><span><?php echo $_SESSION['name'];?></span></a></button>
       </div>
       
       </nav>

@@ -22,6 +22,7 @@
               $_SESSION['email'] = $row['email'];
               $_SESSION['name'] = $row['name'];
               $_SESSION['identify_level'] = $row['identify_level'];
+              $_SESSION['identify_photo'] = $row['identify_photo'];
               header("Location:index.php");
               exit();                              
           }else{
