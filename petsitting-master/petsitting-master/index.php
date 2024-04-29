@@ -160,7 +160,7 @@
     
     <div class="search1">
 		<form action="search.php" method="GET">
-			<input type="text" id="searchinput" placeholder="關鍵字搜尋...">
+			<input type="text" id="searchinput" placeholder="關鍵字搜尋..." name="keyword">
       <button type="submit" id="searchsubmit"><i class="fas fa-search"></i></button>
 		</form>
     </div>
