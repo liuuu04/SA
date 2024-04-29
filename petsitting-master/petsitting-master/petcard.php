@@ -20,13 +20,13 @@
     <link rel="stylesheet" href="css/jquery.timepicker.css">
 
     <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/newcss.css">
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="newcss.css">
   </head>
   <body>
   <?php
     $pet_id=$_GET['pet_id'];
-    $link=mysqli_connect('localhost','root','han20000914','sa');
+    $link=mysqli_connect('localhost','root','12345678','sa');
     $sql="select * from pet where pet_id='$pet_id'";
     $result=mysqli_query($link,$sql);
     if($row=mysqli_fetch_assoc($result))
@@ -181,11 +181,6 @@
   </div>
 </section>
 
-
-
-
-
-
     <section class="ftco-section bg-light">
     	<div class="container">
     		<div class="row mb-5 pb-5">
@@ -227,7 +222,7 @@
           </div>
         </div>
         <?php 
-        $link=mysqli_connect('localhost','root','han20000914','sa');
+        $link=mysqli_connect('localhost','root','12345678','sa');
         $sql1 = "SELECT * FROM account WHERE account.identify = $identify";
         $result= mysqli_query($link,$sql1);
         if($row=mysqli_fetch_assoc($result)){
@@ -239,7 +234,7 @@
           <span><img src="images/chat (1).png"> 聯絡送養人</span><br><br><br>
           <p><img src="images/owner.png"> 送養人: <a href="#" style="color: #5579c6;"><?php echo $name; ?></a></p>
           <p><img src="images/call.png"> 撥打電話: <a style="color:#5579c6;"><?php echo $identify_phone; ?></a></p>
-          <p><img src="images/send.png"> 傳送訊息: <a href="#" style="color: #5579c6;"><?php echo $name; ?></a></p>
+          <p><img src="images/send.png"> 傳送訊息: <a href="#" id="sendMessageLink" style="color: #5579c6;"><?php echo $name; ?></a></p>
         </div> 
     </section>
 
@@ -267,6 +262,32 @@
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
   <script src="js/myscript.js"></script>
+  <!-- HTML 部分 -->
+
+  <script>
+  document.getElementById("sendMessageLink").addEventListener("click", function(event) {
+      event.preventDefault(); 
+      var receiverName = "<?php echo $name; ?>";
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "send_message.php", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+       
+                  alert(xhr.responseText);
+              } else {
+          
+                  alert("Error: " + xhr.statusText);
+              }
+          }
+      };
+      xhr.send("receiver_name=" + encodeURIComponent(receiverName)); 
+  });
+  </script>
+
+
 
     
   </body>
