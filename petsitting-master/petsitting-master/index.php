@@ -277,7 +277,7 @@
 			 <p><img src="images/comment.png"> <?php echo $row['pet_explain'];?></p>
 			 
 			 <a href="petcard.php?pet_id=<?php echo $row['pet_id']; ?>"> 詳細資訊</a>
-			 <a href="#" onclick="openChatRoom('<?php echo $receiver_identify; ?>')">聯絡送養人</a>
+			
 
 		  </div>
 		</div>
