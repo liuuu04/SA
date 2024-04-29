@@ -21,7 +21,7 @@
 
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/style1.css">
-    <link rel="stylesheet" href="newcss.css">
+    <link rel="stylesheet" href="new2.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="chat1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -29,40 +29,29 @@
     
   </head>
   <body>
-		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	    	<a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>寵物領養平台</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="fa fa-bars"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	        	<li class="nav-item active"><a href="index.html" class="nav-link">首頁</a></li>
-	        	<li class="nav-item"><a href="vet.html" class="nav-link">寵物知識專區</a></li>
-	        	<li class="nav-item"><a href="services.html" class="nav-link">討論區</a></li>
-	          <li class="nav-item"><a href="gallery.html" class="nav-link">寵物展</a></li>
-	        </ul>
-	      </div>
-	    </div>
-      <div class="bells">
-      <a href="#"><img src="images/bell.png" style="width: 30px;height: 30px;margin-right:20px;"></a>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>寵物領養平台</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-bars"></span> Menu
+          </button>
+          <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active"><a href="index.html" class="nav-link">首頁</a></li>
+              <li class="nav-item"><a href="vet.html" class="nav-link">寵物知識專區</a></li>
+              <li class="nav-item"><a href="services.html" class="nav-link">討論區</a></li>
+              <li class="nav-item"><a href="gallery.html" class="nav-link">寵物展</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="bells">
+        <a href="#"><img src="images/bell.png" style="width: 30px;height: 30px;margin-right:20px;"></a>
+        </div>
+          <button class="intromy"><a href="#"><img src="images/owner.png"><span><?php  session_start();  echo $_SESSION['name'];?></span></a></button>
       </div>
-       <?php
-      session_start();
+      
+      </nav>
 
-      if(isset($_SESSION['name']) && !empty($_SESSION['name'])) {
-    
-    $buttonText = $_SESSION['name'];}
-    
-    else {
-    
-    $buttonText = "登入/註冊";}
-    ?>
-
-<button class="intromy"><a href="#"><img src="images/owner.png"><span><?php echo $buttonText; ?></span></a></button>
-    </div>
-		
-	  </nav>
     <!-- END nav -->
     <section class="ftco-section testimony-section" style="background-image: url('images/bg_2.jpg');">
     	<div class="overlay"></div>
@@ -158,10 +147,10 @@
 
     
     <div class="search1">
-		<form action="search.php" method="GET">
-			<input type="text" id="searchinput" placeholder="關鍵字搜尋...">
-      <button type="submit" id="searchsubmit"><i class="fas fa-search"></i></button>
-		</form>
+    <form id="searchForm">
+        <input type="text" id="searchinput" placeholder="關鍵字搜尋..." name="keyword">
+        <button type="submit" id="searchsubmit"><i class="fas fa-search"></i></button>
+    </form>
     </div>
 
 
@@ -277,7 +266,7 @@
 			 <p><img src="images/comment.png"> <?php echo $row['pet_explain'];?></p>
 			 
 			 <a href="petcard.php?pet_id=<?php echo $row['pet_id']; ?>"> 詳細資訊</a>
-			
+		
 
 		  </div>
 		</div>
@@ -523,3 +512,4 @@ mysqli_close($link);
 
   </body>
 </html>
+
