@@ -29,29 +29,40 @@
     
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-        <div class="container">
-          <a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>寵物領養平台</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="fa fa-bars"></span> Menu
-          </button>
-          <div class="collapse navbar-collapse" id="ftco-nav">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active"><a href="index.html" class="nav-link">首頁</a></li>
-              <li class="nav-item"><a href="vet.html" class="nav-link">寵物知識專區</a></li>
-              <li class="nav-item"><a href="services.html" class="nav-link">討論區</a></li>
-              <li class="nav-item"><a href="gallery.html" class="nav-link">寵物展</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="bells">
-        <a href="#"><img src="images/bell.png" style="width: 30px;height: 30px;margin-right:20px;"></a>
-        </div>
-          <button class="intromy"><a href="#"><img src="images/owner.png"><span><?php  session_start();  echo $_SESSION['name'];?></span></a></button>
+		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	    	<a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>寵物領養平台</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="fa fa-bars"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	        	<li class="nav-item active"><a href="index.html" class="nav-link">首頁</a></li>
+	        	<li class="nav-item"><a href="vet.html" class="nav-link">寵物知識專區</a></li>
+	        	<li class="nav-item"><a href="services.html" class="nav-link">討論區</a></li>
+	          <li class="nav-item"><a href="gallery.html" class="nav-link">寵物展</a></li>
+	        </ul>
+	      </div>
+	    </div>
+      <div class="bells">
+      <a href="#"><img src="images/bell.png" style="width: 30px;height: 30px;margin-right:20px;"></a>
       </div>
-      
-      </nav>
+       <?php
+      session_start();
 
+      if(isset($_SESSION['name']) && !empty($_SESSION['name'])) {
+    
+    $buttonText = $_SESSION['name'];}
+    
+    else {
+    
+    $buttonText = "登入/註冊";}
+    ?>
+
+<button class="intromy"><a href="#"><img src="images/owner.png"><span><?php echo $buttonText; ?></span></a></button>
+    </div>
+		
+	  </nav>
     <!-- END nav -->
     <section class="ftco-section testimony-section" style="background-image: url('images/bg_2.jpg');">
     	<div class="overlay"></div>
@@ -147,10 +158,10 @@
 
     
     <div class="search1">
-    <form id="searchForm">
-        <input type="text" id="searchinput" placeholder="關鍵字搜尋..." name="keyword">
-        <button type="submit" id="searchsubmit"><i class="fas fa-search"></i></button>
-    </form>
+		<form action="search.php" method="GET">
+			<input type="text" id="searchinput" placeholder="關鍵字搜尋...">
+      <button type="submit" id="searchsubmit"><i class="fas fa-search"></i></button>
+		</form>
     </div>
 
 
