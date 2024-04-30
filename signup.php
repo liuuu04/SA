@@ -92,7 +92,7 @@ else{
     <br><br>
 
 <input type="submit" id="btn" name="submit" value="註冊" />
-<p class="mt-3">已注册? <a href="login.php">請註冊</a></p>
+<p class="mt-3">已註冊？ <a href="login.php">請登入</a></p>
 </form>
 </div>
 
