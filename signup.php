@@ -9,7 +9,7 @@
 
 <div id="form">
 <h1 id="heading"><i class="fas fa-paw mr-2"></i> 註冊</h1>
-<form action="signupfix.php" method="POST" enctype="multipart/form-data" name="form" accept-charset="UTF-8">
+<form action="signupfix.php" method="POST" enctype="multipart/form-data" name="form">
 <label>帳號名稱:</label><br>
 <input type="text" name="identify" placeholder="請輸入帳戶名稱" required/><br><br>
 <label>輸入姓名:</label><br>
