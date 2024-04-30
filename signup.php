@@ -1,57 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="stylesignup.css" />
 
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-<?php
-require('connection.php');
-if (isset($_POST['identify']))
-{
-    $var = 0;
-    if(isset($_POST['email']))
-    {
-    $identify = ($_POST['identify']);
-    $email = ($_POST['email']);
-    $password = ($_POST['password']);
-    $cpassword = ($_POST['cpassword']);
-    $name = $_POST['name'];
-    $gender = $_POST['gender'];
-    $birth = $_POST['birth'];
-    $identify_photo = $_POST['identify_photo'];
-    $identify_phone = $_POST['identify_phone'];
-    $identify_level = $_POST['identify_level'];
-    
 
-    
-    
-    if(!filter_var($email, FILTER_VALIDATE_EMAIL))
-    {
-        $msg = 'The Email you have entered is invalid, please try again.';
-        echo $msg;
-    }else{
-
-        $query = "INSERT INTO `account` (`identify`, `password`, `email`, `name`, `gender`, `birth`, `identify_photo`, `identify_phone`, `identify_level`) VALUES ('$identify', '$password', '$email', '$name', '$gender', '$birth', '$identify_photo', '$identify_phone', '$identify_level')";
-        $result1 = mysqli_query($conn,$query);
-
-        if($result1)
-        {
-            echo "<div class='form'>
-            <h3>You are registered successfully.</h3>
-            <br/>Click here to start <a href='view.php'>Login</a></div>";
-        }
-  }  
-  $conn->close();
-    }
-        }
-else{
-?>
 <div id="form">
-<h1 id="heading">註冊</h1>
-<form name="form" action="" method="post">
-<label>帳戶名稱:</label><br>
+<h1 id="heading"><i class="fas fa-paw mr-2"></i> 註冊</h1>
+<form action="signupfix.php" method="POST" enctype="multipart/form-data" name="form">
+<label>帳號名稱:</label><br>
 <input type="text" name="identify" placeholder="請輸入帳戶名稱" required/><br><br>
 <label>輸入姓名:</label><br>
 <input type="text" name="name" placeholder="請輸入姓名" required/><br><br>
@@ -63,21 +22,19 @@ else{
 <input type="text" name="identify_phone" placeholder="請輸入電話號碼" required/><br><br>
 <label>輸入密碼: </label><br>
 <input type="password" name="password" placeholder="請輸入密碼" required /><br><br>
-<label>輸入確認密碼:</label><br>
-<input type="password" id="cpassword" name="cpassword" placeholder="請輸入確認密碼"required><br><br>
 
 <label>輸入性別:</label><br><br>
 <input type="radio" id="male" name="gender" value="male" required>
 <label for="male">男</label><br>
 <input type="radio" id="female" name="gender" value="female" required>
 <label for="female">女 </label><br><br>
-<label>請上傳身分證正面照片**(jpg/jpeg): </label>
-<input type="file" name="identify_photo" id="identify_photo" accept="image/jpeg, image/jpg">
+<label>請上傳身分證正面照片: </label>
+<input type="file" name="identify_photo" id="identify_photo">
 <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 400px; max-height: 400px;"><br><br>
  
 <div class="container">
     
-    <h2>條款及條件</h2>
+    <h2>說明與條款</h2>
     <div class="scroll-box">
        
         <p>1. 透過註冊我們的平台，您確認您至少年滿10歲並且具有法律能力進入本協議。</p>
@@ -88,11 +45,11 @@ else{
         
         </div>
     <br>
-    <label><input type="checkbox" id="identify_level" name="identify_level" value="member" required>我同意申請成為會員
+    <p><input type="checkbox" id="identify_level" name="identify_level" value="member" required>我同意上述條款</p>
     <br><br>
 
 <input type="submit" id="btn" name="submit" value="註冊" />
-<p class="mt-3">已註冊？ <a href="login.php">請登入</a></p>
+<p class="mt-3">已註冊帳號? <a href="login.php" style="color:#5579c6;font-weight:800;">請登入</a></p>
 </form>
 </div>
 
@@ -113,7 +70,7 @@ else{
 
 
 </div>
-<?php } ?>
+
 
 <script>
         // Function to validate password confirmation
@@ -161,18 +118,153 @@ else{
   width: 50%;
   padding: 5px;
   margin-bottom: 20px;
-  border-radius: 6px;
+  border-radius: 30px;
   border: 1.5px solid;
+  font-size: 16px;
 }
 
 #form input[type="Email"] {
   width: 70%;
   padding: 10px;
   margin-bottom: 20px;
-  border-radius: 6px;
-  border: 1.5px solid;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
 }
 
+#form input[type="Email"]:focus {
+  outline: none;
+  border: none;
+}
+
+#form label{
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+
+
+
+
+body {
+    background: url("images/bgpet.png") no-repeat -30px -60px fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+     
+    }   
+  
+  #form {
+    background-color: #f5f5dc;
+    width: 50%; /* Adjusted width */
+    border-radius: 30px;
+    margin: 80px auto; 
+    padding: 40px; 
+    
+    margin-top: 300px;
+    
+  }
+  
+  #btn {
+    color: #000;
+    background-color: #DBD2C9;
+    padding: 10px 18px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 800;
+  }
+  
+  #btn:hover {
+    color: #fff;
+    background-color: #b8a692; /* Darken the background on hover */
+  }
+  
+  .pet-photo {
+    display: flex;
+    justify-content: space-around; /* Arrange pet photos evenly */
+    margin-bottom: 30px; /* Add some space between the pet photos */
+  }
+  
+  .pet-photo img {
+    border-radius: 50%; /* Make the pet photos circular */
+    border: 4px solid #fff; /* Add a white border around the pet photos */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: transform 0.3s ease; /* Smooth transition */
+  }
+  
+  .pet-photo img:hover {
+    transform: scale(1.1); /* Zoom in on hover */
+  }
+  .h1{
+    font-size: 25px;
+    font-family: "cursive", sans-serif;
+  }
+
+  #form input[type="text"],
+  #form textarea{
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+  }
+
+  #form input[type="text"],
+  #form textarea:focus{
+    outline: none;
+    border: none;
+    font-size: 16px;
+  }
+  #form select{
+    width: 35%;
+    padding: 5px;
+    margin-bottom: 8px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+  }
+
+  #form select:focus{
+    outline:none;
+    border: none;
+  }
+
+  #form input[type="date"],
+  #form input[type="email"] 
+  #form input[type="tel"]{
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+  }
+
+  #form input[type="date"],
+  #form input[type="email"] 
+  #form input[type="tel"]:focus{
+    outline: none;
+    border: none;
+  }
+
+
+#form input[type="password"] {
+  width: 70%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+}
+
+#form input[type="password"]:focus {
+ outline: none;
+  border: none;
+}
 
 </style>
 
