@@ -10,7 +10,7 @@ body{
   }
   .petframe {
     width: 350px;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     margin: 15px;
     background-color: #fff;
@@ -21,8 +21,8 @@ body{
     width: 350px;
     height: 250px;
     background-color: #fff;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .petphoto img{
@@ -36,8 +36,8 @@ body{
     padding: 25px;
     height: 350px;
     background-color: #fff;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     overflow-wrap: break-word;
    
 }
@@ -75,7 +75,7 @@ body{
     color: #070504;
     padding: 6px 10px 6px 10px;
     background-color: beige;
-    border-radius: 10px;
+    border-radius: 0px;
     
 }
 
