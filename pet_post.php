@@ -34,17 +34,12 @@
         <div class="container">
             <div class="row d-md-flex justify-content-end">
                 <div class="col-md-12 col-lg-6 half p-3 py-5 pl-lg-5 ftco-animate">
-                    <h2 class="mb-4">刊登寵物資訊</h2>
-                    <form action="pet_upload.php" method="post" class="appointment">
+                    <h2 class="mb-4" style="color: black;">刊登寵物資訊</h2>
+                    <form action="" method="post" class="appointment" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="寵物名字" name="pet_name" required>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="年齡" name="pet_age" required>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -174,8 +169,9 @@
                                             <select name="pet_ligation" id="pet_ligation_select" class="form-control" required
                                                 onchange="toggleMedicalField()">
                                                 <option disabled selected hidden>病史</option>
-                                                <option value="有，">有</option>
-                                                <option value="無">無</option>
+                                                <option value="有病史">有病史</option>
+                                                <option value="無病史">無病史</option>
+                                                <option value="不確定">不確定</option>
                                             </select>
                                         </div>
                                     </div>
@@ -183,7 +179,7 @@
                             </div>
                             <div class="col-md-6" id="pet_ligation_text" style="display: none;">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="病史" name="pet_medical"
+                                    <input type="text" class="form-control" placeholder="請輸入相關病史" name="pet_medical"
                                         required>
                                 </div>
                             </div>
@@ -192,7 +188,7 @@
                                     var petLigation = document.getElementById("pet_ligation_select").value;
                                     var medicalField = document.getElementById("pet_ligation_text");
 
-                                    if (petLigation === "yes") {
+                                    if (petLigation === "有病史") {
                                         medicalField.style.display = "block";
                                         document.querySelector('input[name="pet_medical"]').setAttribute("required", "true");
                                     } else {
@@ -204,13 +200,7 @@
                             </script>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="與小孩相處是否融洽" name="pet_withkid"
-                                        required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="與其他寵物相處是否融洽" name="pet_withpet"
+                                    <input type="text" class="form-control" placeholder="與小孩、寵物相處是否融洽" name="pet_withkidpet"
                                         required>
                                 </div>
                             </div>
@@ -233,7 +223,8 @@
                                     <div class="input-wrap">
                                         <div class="icon"><span class="fa fa-calendar"></span></div>
                                         <input type="text" class="form-control appointment_date" placeholder="刊登日期"
-                                            name="pet_publish" disabled>
+                                            disabled>
+                                            <input type="hidden" name="pet_publish" value="<?php echo date("Y-m-d"); ?>">
                                     </div>
                                 </div>
                             </div>
@@ -248,8 +239,8 @@
                             </script>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="photo" style="color: white;">上傳寵物照片：</label>
-                                    <input type="file" id="photo" name="pet_photo" style="color: white;">
+                                    <label for="photo" style="color: black;">上傳寵物照片：</label>
+                                    <input type="file" id="photo" name="pet_photo" style="color: black;">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -260,8 +251,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <a href=""><input type="submit" value="發布" class="btn btn-primary py-3 px-4"
-                                            style="font-size:16px;"></a>
+                                    <input type="submit" value="發布" class="btn btn-primary py-3 px-4" style="font-size:16px;">
                                 </div>
                             </div>
                         </div>
@@ -271,10 +261,83 @@
         </div>
     </section>
 
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $pet_name = $_POST['pet_name'];
+    $pet_age = $_POST['pet_age'];
+    $pet_gender=$_POST['pet_gender'];
+    $pet_type=$_POST['pet_type'];
+    $pet_variety=$_POST['pet_variety'];
+    $pet_color=$_POST['pet_color'];
+    $pet_size=$_POST['pet_size'];
+    $pet_address=$_POST['pet_address'];
+    $pet_character = $_POST['pet_character'];
+    $pet_ligation=$_POST['pet_ligation'];
+    $pet_medical=$_POST['pet_medical'];
+    $pet_withkidpet=$_POST['pet_withkidpet'];
+    $pet_heart=$_POST['pet_heart'];
+    $pet_explain=$_POST['pet_explain'];
+    $pet_publish = date("Y-m-d");
+    
+    $link = mysqli_connect('localhost', 'root', '', 'sa');
+    if ($link->connect_error) {
+        die("連接失敗：" . $link->connect_error);
+    }
+    $sql = "INSERT INTO pet (pet_name,pet_age,pet_character,pet_medical,
+    pet_type,pet_variety,pet_color,pet_gender,pet_size,pet_address,pet_ligation,
+    pet_publish,pet_withkidpet,pet_heart,pet_explain) 
+    VALUES ('$pet_name','$pet_age','$pet_character','$pet_medical',
+    '$pet_type','$pet_variety','$pet_color','$pet_gender','$pet_size','$pet_address',
+    '$pet_ligation','$pet_publish','$pet_withkidpet','$pet_heart','$pet_explain')";
+
+    if (mysqli_query($link, $sql)) {
+        $last_insert_id = mysqli_insert_id($link);//流水號
+    } else {
+        echo "錯誤：" . $sql . "<br>" . mysqli_error($link);
+    }
+
+    if(isset($_FILES['pet_photo']) && $_FILES['pet_photo']['error'] === UPLOAD_ERR_OK) {
+        if (!file_exists('pet')) {
+            mkdir('pet');
+        }
+
+        $file_destination = 'pet/' . $last_insert_id;
+        $file_name = $_FILES['pet_photo']['name'];
+        $file_tmp = $_FILES['pet_photo']['tmp_name'];
+        if(move_uploaded_file($file_tmp, $file_destination))// 將上傳的檔案移動到目標位置
+        {  
+            $sql_update = "UPDATE pet SET pet_photo = '$file_destination' WHERE pet_id = $last_insert_id";
+            if (mysqli_query($link, $sql_update)) {
+                // echo "寵物資料及圖片上傳成功";
+                echo "<script>Swal.fire({
+                    icon: 'success',
+                    title: '上傳成功',
+                    text: '寵物資料及圖片已成功上傳！',
+                });</script>";
+            } else {
+                // echo "更新 pet_photo 欄位失敗：" . $sql . "<br>" . mysqli_error($link);
+                echo "<script>Swal.fire({
+                        icon: 'error',
+                        title: '錯誤',
+                        text: '更新 pet_photo 欄位失敗',
+                    });</script>";
+            }
+        }
+    } else {
+        // echo "檔案上傳失敗";
+        echo "<script>Swal.fire({
+            icon: 'error',
+            title: '錯誤',
+            text: '寵物資料上傳失敗',
+            });</script>";
+    }
+    }
+?>
+
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
             <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" />
+                stroke="#DBD2C9" />
         </svg></div>
 
 
