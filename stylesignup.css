@@ -1,30 +1,36 @@
 body {
-    background: url("bg_1.jpg") no-repeat center center fixed; /* Replace with your pet-themed background image */
-    background-size: cover;
-  }
+    background: url("images/bgpet.png") no-repeat -30px -60px fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+     
+    }   
   
   #form {
-    background-color: rgba(255, 253, 208,0.9);
+    background-color: #f5f5dc;
     width: 50%; /* Adjusted width */
-    border-radius: 8px;
+    border-radius: 30px;
     margin: 80px auto; 
     padding: 40px; 
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    margin-top: 300px;
+    
   }
   
   #btn {
-    color: #fff;
-    background-color: rgb(17, 115, 41);
+    color: #000;
+    background-color: #DBD2C9;
     padding: 10px 18px;
     font-size: 14px;
     border-radius: 5px;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-weight: 800;
   }
   
   #btn:hover {
-    background-color: rgb(19, 133, 47); /* Darken the background on hover */
+    color: #fff;
+    background-color: #b8a692; /* Darken the background on hover */
   }
   
   .pet-photo {
@@ -50,37 +56,63 @@ body {
 
   #form input[type="text"],
   #form textarea{
-    width: 80%;
+    width: 70%;
     padding: 10px;
     margin-bottom: 20px;
-    border-radius: 6px;
-    border: 1.5px solid;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+  }
+
+  #form input[type="text"],
+  #form textarea:focus{
+    outline: none;
+    border: none;
+    font-size: 16px;
   }
   #form select{
     width: 35%;
     padding: 5px;
     margin-bottom: 8px;
-    border-radius: 6px;
-    border: 1.5px solid;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+  }
+
+  #form select:focus{
+    outline:none;
+    border: none;
   }
 
   #form input[type="date"],
   #form input[type="email"] 
   #form input[type="tel"]{
-    width: 75%;
+    width: 70%;
     padding: 10px;
     margin-bottom: 20px;
-    border-radius: 6px;
-    border: 1.5px solid;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+  }
+
+  #form input[type="date"],
+  #form input[type="email"] 
+  #form input[type="tel"]:focus{
+    outline: none;
+    border: none;
   }
 
 
 #form input[type="password"] {
-  width: 75%;
+  width: 70%;
   padding: 10px;
   margin-bottom: 20px;
-  border-radius: 6px;
-  border: 1.5px solid;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
 }
 
-
+#form input[type="password"]:focus {
+ outline: none;
+  border: none;
+}
