@@ -80,10 +80,10 @@ if (isset($_POST['identify'], $_POST['motivation'], $_POST['job'], $_POST['econo
 <label>財務狀況: 月收入狀況約</label><br>
 <select  id="family_kid" name="economic">
     <option value="0"></option>
-    <option value="1">0~一萬元區間</option>
-    <option value="2">一萬~三萬區間</option>
-    <option value="3">三萬~五萬(含)</option>
-    <option value="4">五萬元以上</option>
+    <option value="0~一萬元區間">0~一萬元區間</option>
+    <option value="一萬~三萬元之間">一萬~三萬區間</option>
+    <option value="三萬~五萬(含)">三萬~五萬(含)</option>
+    <option value="五萬元以上">五萬元以上</option>
     </select> <br> <br>
 
 
