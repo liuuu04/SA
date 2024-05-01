@@ -19,22 +19,23 @@ if (!isset($_SESSION['identify'])) {
        <body>
    
        <div class='profile'>
-       <div id="logoutContainer">
-        <a href="logout.php">Hi, <?php echo ucwords($_SESSION['name']); ?> Log out</a>
-        </div>
+       
         <?php if ($_SESSION['identify_level'] == 'member' || $_SESSION['identify_level'] == 'adopter') { ?>
         
-        <p>個人資料</p>
+        <p>一般個人資料</p>
         <label>姓名: </label>
         <span><?php echo ucwords($_SESSION['name']); ?></span><br>
-        <label>輸入電子郵件:</label>
+        <label>電子郵件:</label>
         <span><?php echo ucwords($_SESSION['email']); ?></span><br>
-        <label>輸入出生日期: </label>
+        <label>出生日期: </label>
         <span><?php echo ucwords($_SESSION['birth']); ?></span><br>
-        <label>輸入性別:</label>
+        <label>性別:</label>
         <span><?php echo ucwords($_SESSION['gender']); ?></span><br>
-       <label >輸入電話號碼:</label>
+       <label>電話號碼:</label>
         <span><?php echo ucwords($_SESSION['identify_phone']); ?></span><br>
+
+
+        
 
   <?php } ?>
   
@@ -49,28 +50,43 @@ if (!isset($_SESSION['identify'])) {
         while ($row = mysqli_fetch_assoc($result)) {
            
             echo "<p>領養人個人資料</p>";
-            echo "<label>帳戶名稱：</label><span>" .  ucwords($row['identify']) . "</span><br>";
+            echo "<label>帳號名稱：</label><span>" .  ucwords($row['identify']) . "</span><br>";
             echo "<label>領養動機：</label><span>" . $row['motivation'] . "</span><br>";
             echo "<label>使用者職業：</label><span>" . $row['job'] . "</span><br>";
-            echo "<label>財務狀況：</label><span>" . $row['economic'] . "</span><br>";
-            echo "<label>家庭中的孩子數量：</label><span>" . $row['family_kid'] . "</span><br>";
-            echo "<label>家庭成員數量（小孩）：</label><span>" . $row['family_roommate'] . "</span><br>";
-            echo "<label>狗的數量：</label><span>" . $row['family_dog'] . "</span><br>";
-            echo "<label>貓的數量：</label><span>" . $row['family_cat'] . "</span><br>";
-            echo "<label>其他動物的數量：</label><span>" . $row['family_other'] . "</span><br>";
-            echo "<label>收養經驗：</label><span>" . $row['experience'] . "</span><br>";
+            echo "<label>財務狀況：月收入狀況約</label><span>" . $row['economic'] . "</span><br>";
+            echo "<label>家庭成員-(同住者)：</label><span>" . $row['family_roommate'] . "位</span><br>";
+            echo "<label>家庭成員數量（小孩）：</label><span>" . $row['family_kid'] . "位</span><br>";
+            echo "<label>狗的數量：</label><span>" . $row['family_dog'] . "隻</span><br>";
+            echo "<label>貓的數量：</label><span>" . $row['family_cat'] . "隻</span><br>";
+            echo "<label>其他動物的數量：</label><span>" . $row['family_other'] . "隻</span><br>";
+            echo "<label>收養經驗：</label><span>" . $row['experience'] . "次</span><br>";
            
         }
     }
     ?> 
-    <br><a href="index.php">go back to index</a>
+    <div id="logoutContainer">
+        <?php if ($_SESSION['identify_level'] == 'member') { ?>
+            <br>
+            <a href="profile.php" id="buttonya">前往填寫領養人表單</a><br><br>
+
+            <?php } ?>
+            <a href="index.php" id="buttonya">返回到首頁</a>
+            <a href="logout.php" id="buttonya">登出</a>
+        </div>
   
   </div>
 </body>
 <h2></h2>
 
     <style>
+        body {
+        background: url("images/bgpet.png") no-repeat center center fixed;
+          background-size: cover;
+          font-family: Arial, sans-serif;
+        
+        }
         #logoutContainer {
+        
         text-align: right;
         display: flex;
         justify-content: flex-end;
@@ -80,17 +96,24 @@ if (!isset($_SESSION['identify'])) {
             border-collapse: collapse;
         }
             label {
-        display: inline-block; /* Ensure label and span appear side by side */
-        width: 200px; /* Adjust width as needed for question */
-        text-align: left; /* Align label text to the right for question-like appearance */
-        padding-right: 30px; /* Add some spacing between label and span */
-        font-weight: 500;
+        color: #000;
+        font-weight: 600;
+        display: inline-block;
+        width: 150px; 
+        text-align: center; 
+        padding-right: 50px; 
         line-height: 34px;
+        background-color: #DBD2C9;
+          padding: 5px;
+         margin-bottom: 10px;
+          border-radius: 30px;
+          transition: background-color 0.3s ease;
+          
+
     }
         span {
             padding: 8px;
-
-            border-radius: 4px; /* Rounded corners for an elegant look */
+            margin-left: 50px;
         }
         
         p{
@@ -98,11 +121,12 @@ if (!isset($_SESSION['identify'])) {
             text-align: left;
             border-bottom: 1px solid #ddd;
             font-size: 19px;
-            font-weight: 500;
+            font-weight: 600;
         }
         
         .profile {
-        border: 1px solid #ccc;
+        margin-top: 300px;
+        border: none;
         border-radius: 5px;
         padding: 10px;
         margin-bottom: 10px;
@@ -112,6 +136,36 @@ if (!isset($_SESSION['identify'])) {
         padding: 40px; 
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Soft shadow */
         }
+
+
+        #buttonya{
+            color: #000;
+          font-weight: 600;
+          background-color: #f5f5dc;
+          padding: 10px 20px 10px 20px;
+          font-size: 16px;
+          border-radius: 30px;
+          border: none;
+          transition: background-color 0.3s ease;
+          border: none;
+          text-decoration: none;
+          margin-right: 5px;
+        }
+
+
+       
+
+
+
+
+
+
+
+
+
+
+
+        
 
     </style>
 
