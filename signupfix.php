@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         if ($identify_photo["error"] == UPLOAD_ERR_OK) {
            
-            $uploadDir = "identify/";
+            $uploadDir = "img/";
 
             $fileName = basename($identify_photo["name"]);
 
