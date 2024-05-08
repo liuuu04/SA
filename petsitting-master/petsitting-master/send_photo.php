@@ -19,10 +19,10 @@ if (isset($_FILES['photo']['name'], $_POST['receiver_id'])) {
     $photo_destination = "img/" . $photo_name;
 
     if (move_uploaded_file($photo_tmp_name, $photo_destination)) {
- 
-        $sql = "INSERT INTO message (sender_id, receiver_id, content, timestamp, identify) 
-                VALUES ('$current_identify', '$receiver_id', '$photo_destination', '$timestamp', '$current_identify')";
-    
+        
+        $sql = "INSERT INTO message (sender_id, receiver_id, content, timestamp, identify, is_read) 
+        VALUES ('$current_identify', '$receiver_id', '$photo_destination', '$timestamp', '$current_identify', 0)";
+
         if (mysqli_query($link, $sql)) {
             echo "Photo sent successfully.";
         } else {

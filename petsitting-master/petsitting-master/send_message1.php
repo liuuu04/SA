@@ -11,24 +11,24 @@ if ($link === false) {
 
 $current_identify = $_SESSION['identify'];
 
-if (isset($_POST['receiver_id'], $_POST['content'], $_POST['timestamp'])) {
- 
+if (isset($_POST['receiver_id'], $_POST['content'])) {
     $receiver_id = $_POST['receiver_id'];
     $content = $_POST['content']; 
     $timestamp = date("Y-m-d H:i:s");
     
-    $sql = "INSERT INTO message (sender_id, receiver_id, content, timestamp, identify) 
-            VALUES ('$current_identify', '$receiver_id', '$content', '$timestamp', '$current_identify')";
-    
+    $sql = "INSERT INTO message (sender_id, receiver_id, content, timestamp, identify, is_read) 
+        VALUES ('$current_identify', '$receiver_id', '$content', '$timestamp', '$current_identify', 0)";
+
+  
     if (mysqli_query($link, $sql)) {
-      
+
         echo "Message sent successfully.";
-    } else {
-     
+    } else 
+    {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
     }
-} else {
-   
+} else 
+{
     echo "ERROR: Missing required information.";
 }
 
