@@ -22,11 +22,88 @@
     <link rel="stylesheet" href="css/jquery.timepicker.css">
 
     <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="new2.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="chat1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        border-radius: 15px;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+        border-radius: 15px;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .intromy{
+    border-radius: 30px;
+    padding: 13px 25px 13px 25px;
+    background-color: #f8f9fd;
+    margin-right: 20px;
+    border: #fff;
+   }
+   </style>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>寵物領養平台</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-bars"></span> Menu
+          </button>
+          <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active"><a href="index.html" class="nav-link">首頁</a></li>
+              <li class="nav-item"><a href="vet.html" class="nav-link">寵物知識專區</a></li>
+              <li class="nav-item"><a href="services.html" class="nav-link">討論區</a></li>
+              <li class="nav-item"><a href="gallery.html" class="nav-link">寵物展</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="bells">
+        <a href="#"><img src="images/bell.png" style="width: 30px;height: 30px;margin-right:20px;"></a>
+        </div>
+        <div class="dropdown">
+        <?php  session_start(); ?>
+          <button class="intromy"><a href="#"><img src="<?php echo $_SESSION['identify_photo']; ?>" style="border-radius: 50%;"><span><?php echo $_SESSION['name'];?></span></a></button>
+            <div class="dropdown-content" id="intromyDropdown">
+                <a href="view.php">查看個人檔案</a>
+                <a href="pet_post.php">刊登寵物</a>
+                <a href="#">查看已刊登的寵物</a>
+                <a href="logout.php">登出</a>
+            </div>
+        </div>
+        
+      </div>
+      
+      </nav>
+
+    <!-- END nav -->
 
     <section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb img"
         style="background-image: url(images/pet-1.jpg);">
@@ -35,7 +112,7 @@
             <div class="row d-md-flex justify-content-end">
                 <div class="col-md-12 col-lg-6 half p-3 py-5 pl-lg-5 ftco-animate">
                     <h2 class="mb-4" style="color: black;">刊登寵物資訊</h2>
-                    <form action="" method="post" class="appointment" enctype="multipart/form-data">
+                    <form action="pet_upload.php" method="post" class="appointment" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -44,18 +121,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <div class="form-field">
-                                        <div class="select-wrap">
-                                            <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                            <select name="pet_age" id="pet_age" class="form-control" required>
-                                                <option disabled selected hidden>年齡</option>
-                                                <option value="幼年0~1">幼年0~1</option>
-                                                <option value="青少年2~3">青少年2~3</option>
-                                                <option value="成年4~8">成年4~8</option>
-                                                <option value="老年8+">老年8+</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    <input type="number" class="form-control" placeholder="年齡" name="pet_age" required>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -88,9 +154,64 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="品種" name="pet_variety">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                                            <select name="pet_variety" id="pet_variety" class="form-control" required>
+                                                <option disabled selected hidden>品種</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="col-md-3" id="other_breed" style="display: none;"> <!-- Hidden text input -->
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <input type="text" name="other_breed_text" id="other_breed_text" class="form-control" placeholder="請輸入品種">
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                document.getElementById('pet_type').addEventListener('change', function() {
+                                    var petType = this.value;
+                                    var breedSelect = document.getElementById('pet_variety');
+                                    breedSelect.innerHTML = ''; // Clear previous options
+
+                                    if (petType === '狗') {
+                                        var dogBreeds = ['台灣犬','吉娃娃','博美','約克夏','馬爾濟斯','雪納瑞','米格魯','臘腸犬','貴賓犬','鬥牛犬','比熊','柴犬','柯基','秋田犬','拉布拉多','黃金獵犬', '柯基', '哈士奇','杜賓','古代牧羊犬'];
+                                        showBreeds(dogBreeds);
+                                    } else if (petType === '貓') {
+                                        var catBreeds = ['米克斯貓', '曼赤肯', '蘇格蘭摺耳貓','暹羅貓','英國短毛貓', '美國短毛貓','布偶貓'];
+                                        showBreeds(catBreeds);
+                                    }
+                                });
+
+                                function showBreeds(breeds) {
+                                    var breedSelect = document.getElementById('pet_variety');
+                                    breeds.forEach(function(breed) {
+                                        var option = document.createElement('option');
+                                        option.value = breed;
+                                        option.textContent = breed;
+                                        breedSelect.appendChild(option);
+                                    });
+
+                                    var otherOption = document.createElement('option');
+                                    otherOption.value = '其他';
+                                    otherOption.textContent = '其他';
+                                    breedSelect.appendChild(otherOption);
+
+                                    document.getElementById('breed_select').style.display = 'block';
+                                }
+
+                                document.getElementById('pet_variety').addEventListener('change', function() {
+                                    var breed = this.value;
+                                    if (breed === '其他') {
+                                        document.getElementById('other_breed').style.display = 'block'; // Show text input
+                                    } else {
+                                        document.getElementById('other_breed').style.display = 'none'; // Hide text input
+                                    }
+                                });
+                            </script>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="毛色" name="pet_color" required>
@@ -147,57 +268,6 @@
                                         required>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <div class="form-field">
-                                        <div class="select-wrap">
-                                            <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                            <select name="pet_ligation" id="pet_ligation" class="form-control" required>
-                                                <option disabled selected hidden>結紮與否</option>
-                                                <option value="已結紮">已結紮</option>
-                                                <option value="尚未結紮">未結紮</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <div class="form-field">
-                                        <div class="select-wrap">
-                                            <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                            <select name="pet_ligation" id="pet_ligation_select" class="form-control" required
-                                                onchange="toggleMedicalField()">
-                                                <option disabled selected hidden>病史</option>
-                                                <option value="有病史">有病史</option>
-                                                <option value="無病史">無病史</option>
-                                                <option value="不確定">不確定</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6" id="pet_ligation_text" style="display: none;">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="請輸入相關病史" name="pet_medical"
-                                        required>
-                                </div>
-                            </div>
-                            <script>
-                                function toggleMedicalField() {
-                                    var petLigation = document.getElementById("pet_ligation_select").value;
-                                    var medicalField = document.getElementById("pet_ligation_text");
-
-                                    if (petLigation === "有病史") {
-                                        medicalField.style.display = "block";
-                                        document.querySelector('input[name="pet_medical"]').setAttribute("required", "true");
-                                    } else {
-                                        medicalField.style.display = "none";
-                                        document.querySelector('input[name="pet_medical"]').removeAttribute("required");
-                                    }
-                                }
-
-                            </script>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="與小孩、寵物相處是否融洽" name="pet_withkidpet"
@@ -218,29 +288,106 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <div class="input-wrap">
-                                        <div class="icon"><span class="fa fa-calendar"></span></div>
-                                        <input type="text" class="form-control appointment_date" placeholder="刊登日期"
-                                            disabled>
-                                            <input type="hidden" name="pet_publish" value="<?php echo date("Y-m-d"); ?>">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                                            <select name="pet_ligation" id="pet_ligation" class="form-control" required>
+                                                <option disabled selected hidden>結紮與否</option>
+                                                <option value="已結紮">已結紮</option>
+                                                <option value="尚未結紮">未結紮</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                                            <select name="pet_medical_select" id="pet_medical_select" class="form-control" required
+                                                onchange="toggleMedicalField()">
+                                                <option disabled selected hidden>病史</option>
+                                                <option value="有">有病史</option>
+                                                <option value="無">無病史</option>
+                                                <option value="不確定">不確定</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="medical_history" style="display: none;">
+                                <div class="form-group" style="display: flex; align-items: left;">
+                                    <div class="form-field">
+                                        <input type="text" name="pet_medical[]" class="form-control" placeholder="病史" style="margin-left: 15px;width:230px;">
+                                    </div>
+                                    <div class="form-field">
+                                        <input type="date" name="pet_medical_date[]" class="form-control" placeholder="病史" style="margin-left: 30px;">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" onclick="addMedicalHistoryField()" class="btn btn-primary" style="width:50px;margin-top:5px;margin-left:60px;">＋</button>
                                     </div>
                                 </div>
                             </div>
                             <script>
-                                var today = new Date();
-                                var dd = String(today.getDate()).padStart(2, '0');
-                                var mm = String(today.getMonth() + 1).padStart(2, '0'); // 一月是 0
-                                var yyyy = today.getFullYear();
+                                function toggleMedicalField() {
+                                    var petmedical = document.getElementById("pet_medical_select").value;
+                                    var medicalField = document.getElementById("medical_history");
 
-                                today = yyyy + '-' + mm + '-' + dd;
-                                document.querySelector('.appointment_date').value = today;
+                                    if (petmedical === "有") {
+                                        medicalField.style.display = "block";
+                                    } else {
+                                        medicalField.style.display = "none";
+                                    }
+                                }
+
+                                function addMedicalHistoryField() {
+                                    var medicalHistoryContainer = document.getElementById("medical_history");
+                                    var newInputContainer = document.createElement("div");
+                                    newInputContainer.className = "form-group";
+                                    newInputContainer.style = "display: flex; align-items: left;";
+
+                                    var newInput = document.createElement("input");
+                                    newInput.type = "text";
+                                    newInput.name = "pet_medical[]";
+                                    newInput.className = "form-control";
+                                    newInput.placeholder = "病史";
+                                    newInput.style = "margin-left: 15px;width:231px;margin-top:-5px";
+
+                                    var newDateInput = document.createElement("input");
+                                    newDateInput.type = "date";
+                                    newDateInput.name = "pet_medical_date[]";
+                                    newDateInput.className = "form-control";
+                                    newDateInput.placeholder = "病史";
+                                    newDateInput.style = "margin-left: 30px;margin-top:-5px;width:165px;";
+
+                                    var addButton = document.createElement("button");
+                                    addButton.type = "button";
+                                    addButton.className = "btn btn-primary";
+                                    addButton.textContent = "＋";
+
+                                    var deleteButton = document.createElement("button");
+                                    deleteButton.type = "button";
+                                    deleteButton.className = "btn btn-primary";
+                                    deleteButton.textContent = "─";
+                                    deleteButton.style = "margin-left:30px;width:50px;height:45px;";
+                                    deleteButton.addEventListener("click", function() {
+                                        medicalHistoryContainer.removeChild(newInputContainer);
+                                    });
+
+                                    newInputContainer.appendChild(newInput);
+                                    newInputContainer.appendChild(newDateInput);
+                                    newInputContainer.appendChild(deleteButton);
+
+                                    medicalHistoryContainer.appendChild(newInputContainer);
+                                }
                             </script>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="photo" style="color: black;">上傳寵物照片：</label>
-                                    <input type="file" id="photo" name="pet_photo" style="color: black;">
+                                    <input type="file" id="photo" name="pet_photo" style="color: black;" accept="image/*">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -260,79 +407,6 @@
             </div>
         </div>
     </section>
-
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $pet_name = $_POST['pet_name'];
-    $pet_age = $_POST['pet_age'];
-    $pet_gender=$_POST['pet_gender'];
-    $pet_type=$_POST['pet_type'];
-    $pet_variety=$_POST['pet_variety'];
-    $pet_color=$_POST['pet_color'];
-    $pet_size=$_POST['pet_size'];
-    $pet_address=$_POST['pet_address'];
-    $pet_character = $_POST['pet_character'];
-    $pet_ligation=$_POST['pet_ligation'];
-    $pet_medical=$_POST['pet_medical'];
-    $pet_withkidpet=$_POST['pet_withkidpet'];
-    $pet_heart=$_POST['pet_heart'];
-    $pet_explain=$_POST['pet_explain'];
-    $pet_publish = date("Y-m-d");
-    
-    $link = mysqli_connect('localhost', 'root', '', 'sa');
-    if ($link->connect_error) {
-        die("連接失敗：" . $link->connect_error);
-    }
-    $sql = "INSERT INTO pet (pet_name,pet_age,pet_character,pet_medical,
-    pet_type,pet_variety,pet_color,pet_gender,pet_size,pet_address,pet_ligation,
-    pet_publish,pet_withkidpet,pet_heart,pet_explain) 
-    VALUES ('$pet_name','$pet_age','$pet_character','$pet_medical',
-    '$pet_type','$pet_variety','$pet_color','$pet_gender','$pet_size','$pet_address',
-    '$pet_ligation','$pet_publish','$pet_withkidpet','$pet_heart','$pet_explain')";
-
-    if (mysqli_query($link, $sql)) {
-        $last_insert_id = mysqli_insert_id($link);//流水號
-    } else {
-        echo "錯誤：" . $sql . "<br>" . mysqli_error($link);
-    }
-
-    if(isset($_FILES['pet_photo']) && $_FILES['pet_photo']['error'] === UPLOAD_ERR_OK) {
-        if (!file_exists('pet')) {
-            mkdir('pet');
-        }
-
-        $file_destination = 'pet/' . $last_insert_id;
-        $file_name = $_FILES['pet_photo']['name'];
-        $file_tmp = $_FILES['pet_photo']['tmp_name'];
-        if(move_uploaded_file($file_tmp, $file_destination))// 將上傳的檔案移動到目標位置
-        {  
-            $sql_update = "UPDATE pet SET pet_photo = '$file_destination' WHERE pet_id = $last_insert_id";
-            if (mysqli_query($link, $sql_update)) {
-                // echo "寵物資料及圖片上傳成功";
-                echo "<script>Swal.fire({
-                    icon: 'success',
-                    title: '上傳成功',
-                    text: '寵物資料及圖片已成功上傳！',
-                });</script>";
-            } else {
-                // echo "更新 pet_photo 欄位失敗：" . $sql . "<br>" . mysqli_error($link);
-                echo "<script>Swal.fire({
-                        icon: 'error',
-                        title: '錯誤',
-                        text: '更新 pet_photo 欄位失敗',
-                    });</script>";
-            }
-        }
-    } else {
-        // echo "檔案上傳失敗";
-        echo "<script>Swal.fire({
-            icon: 'error',
-            title: '錯誤',
-            text: '寵物資料上傳失敗',
-            });</script>";
-    }
-    }
-?>
 
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
