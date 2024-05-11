@@ -149,8 +149,12 @@
           </div>
 
       <?php
-                  }
-              }
+        }
+              }else{
+                echo "您沒有收藏的寵物";
+
+            }
+          
       mysqli_close($link);
       ?>
     
