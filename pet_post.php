@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="css/jquery.timepicker.css">
 
     <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/stylepost.css">
+    <link rel="stylesheet" href="css/style1.css">
     <link rel="stylesheet" href="new2.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="chat1.css">
