@@ -238,21 +238,25 @@
 
     $current_identify = $_SESSION['identify'];
 
-    $sql = "SELECT DISTINCT Account.identify, Account.name AS receiver_name, 
-                COALESCE(SUM(CASE WHEN message.is_read = 0 AND message.receiver_id = '$current_identify' THEN 1 ELSE 0 END), 0) AS unread_count,
-                Account.identify_level
-        FROM Account
-        LEFT JOIN message ON Account.identify = message.sender_id
-        WHERE Account.identify != '$current_identify' AND (message.receiver_id = '$current_identify' OR message.sender_id = '$current_identify')
-        GROUP BY Account.identify, Account.name, Account.identify_level
+    $sql = "SELECT DISTINCT identify, receiver_name, identify_level, SUM(unread_count) AS unread_count
+    FROM (
+        SELECT Account.identify, Account.name AS receiver_name, Account.identify_level,
+                COALESCE(SUM(CASE WHEN message.is_read = 0 AND message.receiver_id = '$current_identify' THEN 1 ELSE 0 END), 0) AS unread_count
+                FROM Account
+                LEFT JOIN message ON Account.identify = message.sender_id
+                WHERE Account.identify != '$current_identify' AND message.receiver_id = '$current_identify'
+                GROUP BY Account.identify, Account.name, Account.identify_level
         UNION
-        SELECT DISTINCT Account.identify, Account.name AS receiver_name, 
-                COALESCE(SUM(CASE WHEN message.is_read = 0 AND message.receiver_id = '$current_identify' THEN 1 ELSE 0 END), 0) AS unread_count,
-                Account.identify_level
-        FROM Account
-        LEFT JOIN message ON Account.identify = message.receiver_id
-        WHERE Account.identify != '$current_identify' AND (message.sender_id = '$current_identify' OR message.receiver_id = '$current_identify')
-        GROUP BY Account.identify, Account.name, Account.identify_level";
+        SELECT Account.identify, Account.name AS receiver_name, Account.identify_level,
+                COALESCE(SUM(CASE WHEN message.is_read = 0 AND message.receiver_id = '$current_identify' THEN 1 ELSE 0 END), 0) AS unread_count
+                FROM Account
+                LEFT JOIN message ON Account.identify = message.receiver_id
+                WHERE Account.identify != '$current_identify' AND message.sender_id = '$current_identify'
+                GROUP BY Account.identify, Account.name, Account.identify_level
+    ) AS combined_results
+    GROUP BY identify, receiver_name, identify_level
+    
+    ";
 
 
 
