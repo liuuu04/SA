@@ -1,0 +1,183 @@
+.select .myaccordion {
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.select .myaccordion .card,
+.select .myaccordion .card:last-child .card-header {
+  border: none;
+  background: transparent;
+}
+
+.select .myaccordion .card-header {
+  border: none;
+  background: transparent;
+}
+
+.select .myaccordion .card-header p {
+  position: relative;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: left;
+}
+
+.select .myaccordion .fa {
+  font-size: 16px;
+  color: #0000004d;
+}
+
+.select .myaccordion .btn {
+  width: 80;
+  font-weight: 600;
+  color: black;
+  padding: 0;
+  text-transform: capitalize;
+  letter-spacing: 0;
+  border-radius: 0 !important;
+  margin-bottom: 10px;
+  border-radius: 40px !important;
+}
+
+.select .myaccordion .btn-link:hover,
+.select .myaccordion .btn-link:focus {
+  text-decoration: none;
+}
+
+
+.select button[aria-expanded="true"] {
+  background-color: #f5f5dc;
+  color: black !important;
+}
+
+.select button[aria-expanded="true"] .fa {
+  color: #f5f5dc !important;
+}
+
+.select button[aria-expanded="false"] {
+  background-color: #f5f5dc;
+}
+
+
+.select .card-body {
+  background: #f5f5dc;
+  margin-bottom: 10px;
+  border-radius: 30px;
+ 
+}
+
+.select .card-body ol li {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.select .card-body ol li:last-child {
+  margin-bottom: 0;
+}
+
+
+.selectbtn {
+  padding: 12px 16px;
+  cursor: pointer;
+  border-radius: 30px;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700; }
+  .btn:hover, .btn:active, .btn:focus {
+    outline: none; }
+  .selectbtn.btn-primary {
+    background: 	#DBD2C9;
+    border: 1px solid #DBD2C9;
+    color: #000000; }
+    .selectbtn.btn-primary:hover {
+      border: 1px solid #DBD2C9;
+      background: transparent;
+      color: #000000; }
+    .selectbtn.btn-primary.btn-outline-primary {
+      border: 1px solid #DBD2C9;
+      background: transparent;
+      color: #DBD2C9; }
+      .selectbtn.btn-primary.btn-outline-primary:hover {
+        border: 1px solid transparent;
+        background: #DBD2C9;
+        color: #fff; }
+  .selectbtn.btn-white {
+    background: #fff;
+    border: 1px solid #fff;
+    color: #000000; }
+    .selectbtn.btn-white:hover {
+      border: 1px solid #fff;
+      background: transparent;
+      color: #fff; }
+    .selectbtn.btn-white.btn-outline-white {
+      border: 1px solid #fff;
+      background: transparent;
+      color: #fff; }
+      .selectbtn.btn-white.btn-outline-white:hover {
+        border: 1px solid transparent;
+        background: #fff;
+        color: #000000; }
+
+        .appointment .form-group {
+          position: relative;
+          width: 100%;
+          display: block; }
+          .appointment .form-group .icon {
+            position: absolute;
+            top: 50% !important;
+            right: 15px;
+            font-size: 16px;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%); }
+            .appointment .form-group .icon span {
+              font-size: 14px;
+              color: rgba(0, 0, 0, 0.5) !important; }
+          .appointment .form-group .select-wrap, .appointment .form-group .input-wrap {
+            position: relative; }
+            .appointment .form-group .select-wrap select, .appointment .form-group .input-wrap select {
+              -webkit-appearance: none;
+              -moz-appearance: none;
+              appearance: none; }
+          .appointment .form-group .btn {
+            width: 100%;
+            display: block !important; }
+        .appointment .form-control {
+          border: transparent;
+          background: white !important;
+          color: rgba(0, 0, 0, 0.8) !important;
+          font-size: 14px;
+          font-weight: 600;
+          border-radius:40px;
+          -webkit-box-shadow: none !important;
+          box-shadow: none !important; }
+          .appointment .form-control::-webkit-input-placeholder {
+            /* Chrome/Opera/Safari */
+            color: rgba(0, 0, 0, 0.5); }
+          .appointment .form-control::-moz-placeholder {
+            /* Firefox 19+ */
+            color: rgba(0, 0, 0, 0.5); }
+          .appointment .form-control:-ms-input-placeholder {
+            /* IE 10+ */
+            color: rgba(0, 0, 0, 0.5); }
+          .appointment .form-control:-moz-placeholder {
+            /* Firefox 18- */
+            color: rgba(0, 0, 0, 0.5); }
+        
+        .appointment textarea.form-control {
+          height: inherit !important; }
+
+
+    .all{
+      padding: 12px 16px;
+      cursor: pointer;
+      border-radius: 30px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      font-weight: 700; 
+      background:beige;
+
+    }
