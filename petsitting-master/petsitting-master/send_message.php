@@ -21,14 +21,11 @@ if (isset($_POST['receiver_name'])) {
     if ($result_receiver_id) {
         $row = mysqli_fetch_assoc($result_receiver_id);
         $receiver_id = $row['identify'];
-
         
         $content = "已成為聯絡人"; 
 
-        
         $timestamp = date("Y-m-d H:i:s");
-        
-        
+    
         $sql_insert_message = "INSERT INTO message (sender_id, receiver_id, content, timestamp, identify, is_read) 
                                VALUES ('$current_identify', '$receiver_id', '$content', '$timestamp', '$current_identify', 0)";
         
@@ -36,11 +33,11 @@ if (isset($_POST['receiver_name'])) {
             echo "已成功連繫送養者，請回到首頁與對方傳送私訊";
            
         } else {
-            
+   
             echo "ERROR: Could not able to execute $sql_insert_message. " . mysqli_error($link);
         }
     } else {
-        
+    
         echo "ERROR: Could not retrieve receiver ID for '$receiver_name'.";
     }
 } else {
