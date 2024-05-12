@@ -20,11 +20,68 @@
     <link rel="stylesheet" href="css/jquery.timepicker.css">
 
     <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="newcss.css">
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="new2.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="chat1.css">
+    <link rel="stylesheet" href="chat3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+  
+    .unread-count {
+    color: white;
+    font-size: 12px;
+    margin-left: auto;
+    margin-right: 10px; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center;
+    width: 15px; 
+    height: 15px; 
+    border-radius: 50%; 
+    }
+
+
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        right:20px;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        border-radius: 15px;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+        border-radius: 15px;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .intromy{
+    border-radius: 30px;
+    padding: 13px 25px 13px 25px;
+    background-color: #f8f9fd;
+    margin-right: 20px;
+    border: #fff;
+   }
+   </style>
     
     
   </head>
@@ -45,10 +102,21 @@
           </div>
         </div>
         <div class="bells">
-        <a href="#"><img src="images/bell.png" style="width: 30px;height: 30px;margin-right:20px;"></a>
+          <a href="#"><img src="images/bell.png" style="width: 30px;height: 30px;margin-right:20px;"></a>
+          
         </div>
+
+        <div class="dropdown">
         <?php  session_start(); ?>
           <button class="intromy"><a href="#"><img src="<?php echo $_SESSION['identify_photo']; ?>" style="border-radius: 50%;"><span><?php echo $_SESSION['name'];?></span></a></button>
+            <div class="dropdown-content" id="intromyDropdown">
+                <a href="view.php">查看個人檔案</a>
+                <a href="pet_post.php">刊登寵物</a>
+                <a href="#">查看已刊登的寵物</a>
+                <a href="logout.php">登出</a>
+            </div>
+        </div>
+        
       </div>
       
       </nav>
@@ -69,18 +137,49 @@
                 <div class="testimony-wrap py-4">
                 	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                   <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="mb-4">在「毛家庭」當道的趨勢下，養寵物的親子家庭越來越多，有了毛孩的陪伴，也可以培養孩子們的責任感和愛心。不過也有不少家長會思考「家中同時有小孩和毛孩，該怎麼照顧？」原因不外乎擔心孩子會因此過敏、寵物與孩子相處時不懂得拿捏而互相受傷，又或是家中保持清潔衛生不易等等。</p>
                     <div class="d-flex align-items-center">
                     	<div class="user-img"><img src="images/loudspeaker.png"></div>
                     	<div class="pl-3">
-		                    <p class="name">2024-04-28</p>
-		                    <span class="position">Marketing Manager</span>
+		                    <p class="name">【2024台北寵物節】毛家庭OneHealth健康週記</p>
+		                    <span class="position">寵博健康動物醫院（台北市松山區三民路108-30號1樓）</span>
 		                  </div>
 	                  </div>
                   </div>
                 </div>
               </div>
               <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">每種動物都有其與生俱來的個性和生活習慣，寵物是一個生命、也是我們的家人，千萬不能因為一時興起覺得可愛就衝動飼養，了解寵物的特質及正確的飼養方式，並且慎重評估自家的環境情況是否適合飼養，這是最重要的！</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img"><img src="images/loudspeaker.png"></div>
+                    	<div class="pl-3">
+		                    <p class="name">成長空間萌寵動物派對｜與獸醫師一起教給孩子的生命教育課程</p>
+		                    <span class="position">成長空間診所（台北市敦化南路一段236巷29號1樓）</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">去年的九九重陽節，國寶集團在東華高爾夫球場首開台灣球場業界之先例，舉辦 一場別開生面的「健走18洞，健康動一動」的重陽健走活動，獲得熱烈迴響，當天湧入多達六百位民眾， 漫步在綠草如茵的球道上，感受東華球場的迷人風光。
+                                今年五月，國寶集團又在旗下的黃金海岸球場舉辦 「手牽手、來健走」。</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img"><img src="images/loudspeaker.png"></div>
+                    	<div class="pl-3">
+		                    <p class="name">【手牽寵來健走】九九重陽節公益健走！「攜帶寵物同行者」免費參加喔！</p>
+		                    <span class="position">253新北市石門區草埔尾5號（黃金海岸高爾夫球場）</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="item">
                 <div class="testimony-wrap py-4">
                 	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                   <div class="text">
@@ -109,37 +208,7 @@
 	                  </div>
                   </div>
                 </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img"><img src="images/loudspeaker.png"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img"><img src="images/loudspeaker.png"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -169,15 +238,23 @@
 
     $current_identify = $_SESSION['identify'];
 
-    $sql = "SELECT DISTINCT Account.identify, Account.name AS receiver_name
-            FROM message
-            JOIN Account ON message.receiver_id = Account.identify
-            WHERE message.sender_id = '$current_identify'
-            UNION
-            SELECT DISTINCT Account.identify, Account.name AS receiver_name
-            FROM message
-            JOIN Account ON message.sender_id = Account.identify
-            WHERE message.receiver_id = '$current_identify'";
+    $sql = "SELECT DISTINCT Account.identify, Account.name AS receiver_name, 
+                COALESCE(SUM(CASE WHEN message.is_read = 0 AND message.receiver_id = '$current_identify' THEN 1 ELSE 0 END), 0) AS unread_count,
+                Account.identify_level
+        FROM Account
+        LEFT JOIN message ON Account.identify = message.sender_id
+        WHERE Account.identify != '$current_identify' AND (message.receiver_id = '$current_identify' OR message.sender_id = '$current_identify')
+        GROUP BY Account.identify, Account.name, Account.identify_level
+        UNION
+        SELECT DISTINCT Account.identify, Account.name AS receiver_name, 
+                COALESCE(SUM(CASE WHEN message.is_read = 0 AND message.receiver_id = '$current_identify' THEN 1 ELSE 0 END), 0) AS unread_count,
+                Account.identify_level
+        FROM Account
+        LEFT JOIN message ON Account.identify = message.receiver_id
+        WHERE Account.identify != '$current_identify' AND (message.sender_id = '$current_identify' OR message.receiver_id = '$current_identify')
+        GROUP BY Account.identify, Account.name, Account.identify_level";
+
+
 
     $result = mysqli_query($link, $sql);
 
@@ -191,7 +268,10 @@
         $contacts[] = $row;
     }
     ?>
+    
+    
     <div class="chat-icon" onclick="toggleContactsList()">💬</div>
+   
 
     <div id="chatPopup" class="chat-popup">
       <div class="chat-header">
@@ -223,7 +303,6 @@
 
       <?php
       foreach ($contacts as $contact) {
-
           $identify_photo = ""; 
           $receiver_identify = $contact['identify'];
           $query_photo = "SELECT identify_photo FROM account WHERE identify = '$receiver_identify'";
@@ -232,13 +311,23 @@
               $row_photo = mysqli_fetch_assoc($result_photo);
               $identify_photo = $row_photo['identify_photo'];
           }
-          
           echo '<div class="contact" onclick="openChat(\'' . $contact['identify'] . '\', \'' . $contact['receiver_name'] . '\')">';
           echo '<img src="' . $identify_photo . '" alt="' . $contact['receiver_name'] . '">';
           echo '<span>' . $contact['receiver_name'] . '</span>';
+          if ($contact['identify_level'] == 'member') {
+            echo '<a href="viewuser2.php?identify=' . $contact['identify'] . '"><span class="flaticon-pawprint-1 mr-2" style="margin-left: 5px; color: black;"></span></a>';
+          }
+        
+          if ($contact['identify_level'] == 'adopter') {
+          echo '<a href="viewuser.php?identify=' . $contact['identify'] . '"><span class="flaticon-pawprint-1 mr-2" style="margin-left: 5px;"></a>';
+          }
+          if ($contact['unread_count'] > 0) {
+            echo '<span class="unread-count" data-identify="' . $contact['identify'] . '">' . $contact['unread_count'] . '</span>';
+          }
           echo '</div>';
       }
       ?>
+
     </div>
 
     <div class="contain">
@@ -335,10 +424,12 @@ mysqli_close($link);
         if (chatPopup.style.display === "block") {
           chatPopup.style.display = "none";
           chatIcon.style.display = "flex"; 
+          
         } else {
           chatPopup.style.display = "block";
-          chatIcon.style.display = "none"; // 隱藏小圖標
+          chatIcon.style.display = "none"; 
           hideContactsList(); 
+          
         }
       }
 
@@ -369,63 +460,133 @@ mysqli_close($link);
         chatUserName.setAttribute("data-receiver-name", accountName);
         
         loadChatMessages(identify);
+        
+        updateUnreadCounts();
+        updateTotalUnreadCounts();
+       
       }
 
       function loadChatMessages(receiverIdentify) {
-        var chatMessages = document.getElementById("chatMessages");
-        var currentIdentify = "<?php echo $current_identify; ?>";
-        var firstMessageTimestamp = null; 
+            var chatMessages = document.getElementById("chatMessages");
+            var currentIdentify = "<?php echo $current_identify; ?>";
+            var firstMessageTimestamp = null; 
 
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-              var messages = JSON.parse(xhr.responseText);
-              chatMessages.innerHTML = "";
-              messages.forEach(function(message) {
-                var alignmentClass = (message.sender_id == currentIdentify) ? 'text-right' : 'text-left';
-                var messageDiv = document.createElement("div");
-                messageDiv.className = "message " + alignmentClass;
-                if (message.content.startsWith('img/')) {
-                  var img = document.createElement("img");
-                  img.src = message.content;
-                  img.style.maxWidth = "100%";
-                  messageDiv.appendChild(img);
-                } else {
-                  messageDiv.textContent = message.content;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var messages = JSON.parse(xhr.responseText);
+                        chatMessages.innerHTML = "";
+                        messages.forEach(function(message) {
+                            var alignmentClass = (message.sender_id == currentIdentify) ? 'text-right' : 'text-left';
+                            var messageDiv = document.createElement("div");
+                            messageDiv.className = "message " + alignmentClass;
+                            if (message.content.startsWith('img/')) {
+                                var img = document.createElement("img");
+                                img.src = message.content;
+                                img.style.maxWidth = "100%";
+                                messageDiv.appendChild(img);
+                            } else {
+                                messageDiv.textContent = message.content;
+                            }
+
+                            var messageDate = new Date(message.timestamp).toLocaleDateString();
+                            if (messageDate !== firstMessageTimestamp) {
+                                var dateDiv = document.createElement("div");
+                                dateDiv.className = "timestamp";
+                                dateDiv.textContent = messageDate;
+                                dateDiv.style.textAlign = "center"; 
+                                chatMessages.appendChild(dateDiv); 
+                                firstMessageTimestamp = messageDate;
+                            }
+
+                            var timestamp = new Date(message.timestamp).toLocaleTimeString('default', {
+                                hour: '2-digit',
+                                minute: '2-digit',
+                            });
+                            var timestampDiv = document.createElement("div");
+                            timestampDiv.className = "timestamp";
+                            timestampDiv.textContent = timestamp;
+                            messageDiv.appendChild(timestampDiv);
+                            chatMessages.appendChild(messageDiv);
+                            
+                            if (currentIdentify === receiverIdentify && message.is_read === '0') {
+                                markMessageAsRead(message.id);
+                            }
+                        });
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    } else {
+                        console.error("Failed to load chat messages");
+                    }
                 }
+            };
 
-                var messageDate = new Date(message.timestamp).toLocaleDateString();
-                if (messageDate !== firstMessageTimestamp) {
-                  var dateDiv = document.createElement("div");
-                  dateDiv.className = "timestamp";
-                  dateDiv.textContent = messageDate;
-                  dateDiv.style.textAlign = "center"; 
-                  chatMessages.appendChild(dateDiv); 
-                  firstMessageTimestamp = messageDate;
-                }
+            xhr.open("GET", "get_message.php?receiver_id=" + receiverIdentify, true);
+            xhr.send();
+        }
+        
+        function updateTotalUnreadCounts() {
+          var xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function() {
+              if (xhr.readyState === XMLHttpRequest.DONE) {
+                  if (xhr.status === 200) {
+                      var totalUnreadCount = parseInt(xhr.responseText);
+                      var chatIcon = document.querySelector('.chat-icon');
+                      
+                      var existingUnreadCountBadge = document.querySelector('.unread-count');
+                      
 
-                var timestamp = new Date(message.timestamp).toLocaleTimeString('default', {
-                  hour: '2-digit',
-                  minute: '2-digit',
-                });
-                var timestampDiv = document.createElement("div");
-                timestampDiv.className = "timestamp";
-                timestampDiv.textContent = timestamp;
-                messageDiv.appendChild(timestampDiv);
-                chatMessages.appendChild(messageDiv);
-              });
-              chatMessages.scrollTop = chatMessages.scrollHeight;
-            } else {
-              console.error("Failed to load chat messages");
-            }
+                      if (totalUnreadCount > 0) {
+                          var unreadCountBadge = document.createElement('span');
+                          unreadCountBadge.classList.add('total-unread-count');
+                          unreadCountBadge.textContent = totalUnreadCount;
+                          chatIcon.appendChild(unreadCountBadge);
+                      }
+                      if (totalUnreadCount === 0) {
+                        hideTotalUnreadCount();
+                      }
+                   } 
+                  else {
+                      console.error("Failed to update total unread counts");
+                  }
+              }
+          };
+
+          xhr.open("GET", "update_totalunread_counts.php", true);
+          xhr.send();
+      }
+      function hideTotalUnreadCount() {
+          var totalUnreadCountElement = document.querySelector('.total-unread-count');
+          if (totalUnreadCountElement) {
+              totalUnreadCountElement.style.display = 'none';
           }
-        };
-
-        xhr.open("GET", "get_message.php?receiver_id=" + receiverIdentify, true);
-        xhr.send();
       }
 
+
+
+
+      window.addEventListener('load', function() {
+          updateTotalUnreadCounts();
+      });
+
+        
+        function markMessageAsRead(messageId) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        console.log("Message marked as read.");
+                    } else {
+                        console.error("Failed to mark message as read");
+                    }
+                }
+            };
+
+            xhr.open("GET", "mark_message_as_read.php?message_id=" + messageId, true);
+            xhr.send();
+        }
+
+        
       function sendMessage() {
         var chatInput = document.getElementById("chatInput");
         var chatMessages = document.getElementById("chatMessages");
@@ -477,15 +638,55 @@ mysqli_close($link);
         xhr.send(formData);
       }
 
-      function hideChatPopup() {
+     function hideChatPopup() {
         var chatPopup = document.getElementById("chatPopup");
         var chatIcon = document.querySelector(".chat-icon");
         chatPopup.style.display = "none";
         chatIcon.style.display = "flex";
-        
+
         var contactsList = document.getElementById("contactsList");
         contactsList.style.display = "block";
-      }
+        updateUnreadCounts();
+        updateTotalUnreadCounts();
+        var chatIconReload = document.querySelector('.chat-icon');
+        chatIconReload.innerHTML = "💬"; 
+        
+        
+     }
+
+     function updateUnreadCounts() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var contacts = JSON.parse(xhr.responseText);
+                var unreadCounts = document.querySelectorAll('.unread-count');
+                for (var i = 0; i < unreadCounts.length; i++) {
+                    var identify = unreadCounts[i].getAttribute('data-identify');
+                    for (var j = 0; j < contacts.length; j++) {
+                        if (contacts[j].identify === identify) {
+                            var unreadCount = contacts[j].unread_count;
+                            unreadCounts[i].textContent = unreadCount;
+                              if (unreadCount > 0) {
+                                  unreadCounts[i].style.opacity = 1;
+                              } else {
+                                  unreadCounts[i].style.opacity = 0;
+                              }
+                            break;
+                        }
+                    }
+                }
+            } else {
+                console.error("Failed to update unread counts");
+            }
+        }
+    };
+
+    xhr.open("GET", "update_unread_counts.php", true);
+    xhr.send();
+}
+
+
       
   </script>
   
@@ -513,4 +714,3 @@ mysqli_close($link);
 
   </body>
 </html>
-
