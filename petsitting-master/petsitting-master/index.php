@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="css/style1.css">
     <link rel="stylesheet" href="new2.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="chat3.css">
+    <link rel="stylesheet" href="chat1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
   
