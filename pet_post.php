@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="css/jquery.timepicker.css">
 
     <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/stylepost.css">
     <link rel="stylesheet" href="new2.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="chat1.css">
@@ -98,15 +98,15 @@
                 <a href="logout.php">登出</a>
             </div>
         </div>
-        
+
       </div>
-      
+
       </nav>
 
     <!-- END nav -->
 
     <section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb img"
-        style="background-image: url(images/pet-1.jpg);">
+        style="background-image: url(images/back.jpg);">
         <div class="overlay"></div>
         <div class="container">
             <div class="row d-md-flex justify-content-end">
@@ -323,9 +323,9 @@
                                     <div class="form-field">
                                         <input type="text" name="pet_medical[]" class="form-control" placeholder="病史" style="margin-left: 15px;width:230px;">
                                     </div>
-                                    <div class="form-field">
+                                    <!-- <div class="form-field">
                                         <input type="date" name="pet_medical_date[]" class="form-control" placeholder="病史" style="margin-left: 30px;">
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
                                         <button type="button" onclick="addMedicalHistoryField()" class="btn btn-primary" style="width:50px;margin-top:5px;margin-left:60px;">＋</button>
                                     </div>
@@ -358,7 +358,7 @@
 
                                     var newDateInput = document.createElement("input");
                                     newDateInput.type = "date";
-                                    newDateInput.name = "pet_medical_date[]";
+                                    // newDateInput.name = "pet_medical_date[]";
                                     newDateInput.className = "form-control";
                                     newDateInput.placeholder = "病史";
                                     newDateInput.style = "margin-left: 30px;margin-top:-5px;width:165px;";
@@ -378,12 +378,12 @@
                                     });
 
                                     newInputContainer.appendChild(newInput);
-                                    newInputContainer.appendChild(newDateInput);
                                     newInputContainer.appendChild(deleteButton);
 
                                     medicalHistoryContainer.appendChild(newInputContainer);
                                 }
                             </script>
+                            
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="photo" style="color: black;">上傳寵物照片：</label>
@@ -392,8 +392,8 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="寵物說明欄位"
-                                        name="pet_explain"></textarea>
+                                    <textarea name="pet_explain" id="pet_explain" cols="30" rows="7" class="form-control" placeholder="寵物說明欄位"
+                                        ></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12">

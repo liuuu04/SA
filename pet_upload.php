@@ -17,70 +17,65 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pet_publish = date("Y-m-d");
     $pet_withkidpet = $_POST['pet_withkidpet'];
     $pet_heart = $_POST['pet_heart'];
-    $pet_medical= $_POST['pet_medical_select'];
-
+    $pet_explain = $_POST['pet_explain'];
+    $pet_medical = $_POST['pet_medical_select'];
 
     if (isset($_FILES['pet_photo'])) {
-        $upload_dir = 'img/';
+        $upload_dir = 'img/'; 
 
         $photo_name = basename($_FILES['pet_photo']['name']);
         $photo_tmp_name = $_FILES['pet_photo']['tmp_name'];
         $photo_destination = $upload_dir . $photo_name;
 
         if (move_uploaded_file($photo_tmp_name, $photo_destination)) {
-            echo "照片上傳成功。<br>";
+            echo "照片上传成功。<br>";
             $pet_photo = $photo_destination;
-        } else {
-            echo "照片上傳失敗。<br>";
-        }
-    }
-    $pet_explain = $_POST['pet_explain'];
-    $identify = $_SESSION['identify'];
 
-    $link = mysqli_connect('localhost', 'root', '', 'sa');
-    if ($link->connect_error) {
-        die("連接失敗：" . $link->connect_error);
-    }
-    $sql = "INSERT INTO pet (pet_name,pet_age,pet_character,pet_medical,
-    pet_type,pet_variety,pet_color,pet_gender,pet_size,pet_address,pet_ligation,
-    pet_publish,pet_withkidpet,pet_heart,pet_explain,pet_photo,identify) 
-    VALUES ('$pet_name','$pet_age','$pet_character','$pet_medical',
-    '$pet_type','$pet_variety','$pet_color','$pet_gender','$pet_size','$pet_address',
-    '$pet_ligation','$pet_publish','$pet_withkidpet','$pet_heart','$pet_explain','$pet_photo','$identify')";
+            $identify = $_SESSION['identify'];
 
-    if(mysqli_query($link,$sql)){
-        echo "寵物新增成功";
-        header("Loacation:index.php");
-        exit();
-    }else{
-        echo "新增失敗：".$sql."<br>".mysqli_error($link);
-    }
-    
-    if (isset($_POST['pet_medical'])) {
-        $medicalHistories = $_POST["pet_medical"];
-        $stmt = $link->prepare("INSERT INTO pet_medical (medical_content, medical_date) VALUES (?, ?)");
-    
-        if ($stmt === false) {
-            die('無法準備 SQL 語句: ' . htmlspecialchars($link->error));
-        }
-    
-        $stmt->bind_param("ss", $medical_content, $medical_date);
-    
-        foreach ($_POST['pet_medical'] as $key => $pet_medical_history) {
-            $medical_content = $pet_medical_history;
-            $medical_date = $_POST['pet_medical_date'][$key];
-            if ($stmt->execute() === TRUE) {
-                echo "新紀錄插入成功。";
-            } else {
-                echo "插入失敗: " . $stmt->error;
+            $link = mysqli_connect('localhost', 'root', '12345678', 'sa');
+            mysqli_select_db($link, 'sa');
+
+            if (!$link) {
+                die("连接数据库失败: " . mysqli_connect_error());
             }
-        }
+
+            $sql = "INSERT INTO pet (pet_name,pet_age,pet_character,pet_medical,
+            pet_type,pet_variety,pet_color,pet_gender,pet_size,pet_address,pet_ligation,
+            pet_publish,pet_withkidpet,pet_heart,pet_explain,pet_photo,identify) 
+            VALUES ('$pet_name','$pet_age','$pet_character','$pet_medical',
+            '$pet_type','$pet_variety','$pet_color','$pet_gender','$pet_size','$pet_address',
+            '$pet_ligation','$pet_publish','$pet_withkidpet','$pet_heart','$pet_explain','$pet_photo','$identify')";
+
+            if (mysqli_query($link, $sql)) {
+                echo "宠物信息插入成功";
+                $last_inserted_pet_id = mysqli_insert_id($link);
+
+                $pet_medical_records = $_POST['pet_medical'];
+
+                foreach ($pet_medical_records as $medical_record) {
         
-        $stmt->close();
-        mysqli_close($link);
-    } else {
-        echo "未收到 pet_medical 數據。";
+                    $insert_medical_sql = "INSERT INTO pet_medical (pet_id, medical_content) 
+                                    VALUES ('$last_inserted_pet_id', '$medical_record')";
+
+                    if (mysqli_query($link, $insert_medical_sql)) {
+                        echo "病史插入成功";
+                        
+                    } else {
+                        echo "病史插入失敗: " . mysqli_error($link);
+                    }
+                }
+
+                header("Location: index.php");
+                exit(); 
+            } else {
+                echo "發生錯誤: " . $sql . "<br>" . mysqli_error($link);
+            }
+
+            mysqli_close($link);
+        } else {
+            echo "照片上传失败。<br>";
+        }
     }
-    
-    }
+}
 ?>
