@@ -135,11 +135,11 @@
       <div class="accordion" id="accordionPanelsStayOpenExample">
         <div class="accordion-item">
           <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#dog1" aria-expanded="false" >
               如果狗狗沒有足夠的活動空間會怎麼樣？
             </button>
           </h2>
-          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+          <div id="dog1" class="accordion-collapse collapse show">
             <div class="accordion-body">
               <ol>
                 <li>運動不足：如果狗狗沒有足夠的空間運動，就會變得懶散，運動量不足，這可能會導致肥胖、心血管疾病等健康問題。</li>
@@ -151,11 +151,11 @@
         </div>
         <div class="accordion-item">
           <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dog2" aria-expanded="false">
               狗狗需要注射的疫苗有哪些？
             </button>
           </h2>
-          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+          <div id="dog2" class="accordion-collapse collapse">
             <div class="accordion-body">
               <b>狗狗疫苗種類非常多，區分為「核心疫苗」與「非核心疫苗」兩大類</b>
               <ol>
@@ -174,11 +174,11 @@
         </div>
         <div class="accordion-item">
           <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dog3" aria-expanded="false">
               狗狗需要多少運動量呢？
             </button>
           </h2>
-          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+          <div id="dog3" class="accordion-collapse collapse">
             <div class="accordion-body">
               <b>不同體型與體重的狗狗，需要的運動量也不盡相同。</b> 
               <br><br>
@@ -196,11 +196,11 @@
       <div class="accordion" id="accordionPanelsStayOpenExample">
         <div class="accordion-item">
           <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#cat1" aria-expanded="false" >
             養貓前需要準備哪些日用品？
             </button>
           </h2>
-          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+          <div id="cat1" class="accordion-collapse collapse show">
             <div class="accordion-body">
               <ol>
                 <b><li>貓飼料、罐罐：</li></b>
@@ -226,11 +226,11 @@
         </div>
         <div class="accordion-item">
           <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cat2" aria-expanded="false" >
             養貓一個月花費，新手應該準備多少錢？
             </button>
           </h2>
-          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+          <div id="cat2" class="accordion-collapse collapse">
             <div class="accordion-body">
               養貓除了日常的固定開銷，像是：貓砂、貓飼料或鮮食之外，還有植入晶片、健康檢查、日常除蟲、疫苗、貓咪結紮 …… 等花費。<br>
               簡單來說，除了日常食品和用品，還要準備醫療備用金，應付日常的健康檢查以及貓咪突然生病的花費。<br><br>
@@ -253,11 +253,11 @@
         </div>
         <div class="accordion-item">
           <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cat3" aria-expanded="false" >
               適合的養貓環境&居家空間布置
             </button>
           </h2>
-          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+          <div id="cat3" class="accordion-collapse collapse">
             <div class="accordion-body">
               貓咪是很重視環境的動物，好的生活空間可以讓貓咪更快適應。<br><br>
 
@@ -292,16 +292,18 @@
         button.addEventListener('click', () => {
             if (!button.classList.contains('collapsed')) {
                 // 非折疊狀態下
-                btttun.stlye.backgroundColor= '#DBD2C9';
+                button.style.backgroundColor = '#DBD2C9';
                 button.style.borderColor = '#DBD2C9';
                 button.style.boxShadow = '0 0 10px #DBD2C9';
             } else {
                 // 折疊狀態下
-                button.style.borderColor = 'DBD2C9'; 
-                button.style.boxShadow = '0 0 10px #DBD2C9';
+                // button.style.borderColor = 'DBD2C9'; 
+                button.style.backgroundColor = 'white';
+                // button.style.boxShadow = '0 0 10px #DBD2C9';
             }
         });
     });
+
 
     </script>
 
