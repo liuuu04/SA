@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pet_heart = $_POST['pet_heart'];
     $pet_explain=$_POST['pet_explain'];
 
-    $link=mysqli_connect('localhost', 'root', 'han20000914','sa');
+    $link=mysqli_connect('localhost', 'root', '12345678','sa');
 
     
     $sql = "UPDATE pet SET pet_name='$pet_name', pet_variety='$pet_variety',pet_age='$pet_age', pet_color='$pet_color', pet_gender='$pet_gender',
