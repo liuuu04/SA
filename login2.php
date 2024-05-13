@@ -91,7 +91,7 @@
 <?php
  $identify=$_POST['identify'];
  $password=$_POST['password'];
- $link = mysqli_connect('localhost','root','han20000914','sa');
+ $link = mysqli_connect('localhost','root','12345678','sa');
  $sql="select distinct * from account where identify='$identify' and password='$password'";
  $result= mysqli_query($link,$sql);
  if($row=mysqli_fetch_assoc($result))
