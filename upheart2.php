@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $uploadTime = date('Y-m-d H:i:s');
 
-                $link = mysqli_connect('localhost', 'root', 'han20000914', 'sa');
+                $link = mysqli_connect('localhost', 'root', '12345678', 'sa');
                 if (!$link) {
                     die('Could not connect: ' . mysqli_connect_error());
                 }
