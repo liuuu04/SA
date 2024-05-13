@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>看已刊登的寵物</title>
-    <link rel="stylesheet" href="new2.css">
+    <link rel="stylesheet" href="new3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
@@ -85,7 +85,7 @@
        
     <?php
   
-      $link=mysqli_connect('localhost','root','han20000914','sa');
+      $link=mysqli_connect('localhost','root','12345678','sa');
      
       $sql = "SELECT pet_id, pet_name, pet_type, pet_publish, pet_variety, pet_gender, pet_age, pet_address, pet_explain, pet_photo ,pet_level From pet where
       pet.identify='{$_SESSION['identify']}'";
