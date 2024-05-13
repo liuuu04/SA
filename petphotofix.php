@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     move_uploaded_file($_FILES["new_pet_photo"]["tmp_name"], $target_file);
     
     
-    $link = mysqli_connect('localhost', 'root', 'han20000914', 'sa');
+    $link = mysqli_connect('localhost', 'root', '12345678', 'sa');
     $new_photo_path = mysqli_real_escape_string($link, $target_file);
     
     $update_sql = "UPDATE pet SET pet_photo='$new_photo_path' WHERE pet_id='$pet_id'";
