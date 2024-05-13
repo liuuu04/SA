@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>看已刊登的寵物</title>
-    <link rel="stylesheet" href="new2.css">
+    <link rel="stylesheet" href="test.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
@@ -79,7 +79,7 @@
        </nav>
 <?php
    $pet_id=$_GET['pet_id'];
-   $link=mysqli_connect('localhost','root','han20000914','sa');
+   $link=mysqli_connect('localhost','root','12345678','sa');
 
    $sql="select * from pet where pet_id='$pet_id'";
    $result=mysqli_query($link,$sql);
@@ -290,7 +290,7 @@
         
 
         <?php
-$link=mysqli_connect('localhost','root','han20000914','sa');
+$link=mysqli_connect('localhost','root','12345678','sa');
 $sql2="select * from pet_medical where pet_id='$pet_id' ORDER BY medical_id";
 $result=mysqli_query($link,$sql2);
 ?>
