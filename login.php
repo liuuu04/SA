@@ -1,39 +1,15 @@
-    <?php
+<?php
       session_start();
       if (isset($_SESSION['identify'])) {
+        if($_SESSION['identify_level']=='member'||$_SESSION['identify_level']=='adopter'){
           header("Location:index.php");
           exit();
-      }
-     
-        
-      include_once('connection.php');
-      
-      if (isset($_POST['submit'])) {
-          $errorMsg = "";
-          $identify = $conn->real_escape_string($_POST['identify']);
-          $password = $conn->real_escape_string(md5($_POST['password']));
-          
-      if (!empty($identify) || !empty($password)) {
-            $query  = "SELECT * FROM account WHERE identify = '$identify'";
-            $result = $conn->query($query);
-            if($result->num_rows > 0){
-                $row = $result->fetch_assoc();
-                $_SESSION['identify'] = $row['identify'];
-                $_SESSION['email'] = $row['email'];
-                $_SESSION['name'] = $row['name'];
-                $_SESSION['identify_level'] = $row['identify_level'];
-                $_SESSION['birth'] = $row['birth'];
-                $_SESSION['gender'] = $row['gender'];
-                $_SESSION['identify_phone'] = $row['identify_phone'];
-                header("Location:index.php");
-                exit();                              
-            }else{
-              $errorMsg = "No user found on this username";
-            } 
-        }else{
-          $errorMsg = "Username and Password is required";
+        }
+        else{
+          header("Location: manager.php");
         }
       }
+      
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -43,6 +19,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
       <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <title>登入</title>
       <style>
       body {
         background: url("images/bgpet.png") no-repeat center center fixed;
@@ -129,7 +106,7 @@
     
 
 
-            <form action="" method="POST">
+            <form action="login2.php" method="POST">
               <div id="form">
                 <h1><i class="fas fa-paw mr-2"></i> 登入</h1>
                 <form name="form" action="" onsubmit="return isvalid()" method="POST">
@@ -142,8 +119,8 @@
                 <p class="mt-3">還沒有帳號嗎? <a href="signup.php" style="color:#5579c6;font-weight: 600;">請註冊</a></p>
           
 
-            </form> </div>
-            <script>
+            </form> 
+            <!-- <script>
                 function isvalid(){
                     var identify = document.form.identify.value;
                     var password = document.form.password.value;
@@ -161,7 +138,7 @@
                     }
                     
                 }
-            </script>
+            </script> -->
           
     </body>
 
