@@ -426,72 +426,73 @@ if (isset($_SESSION['message'])) {
 ?>
 
 <div class="contain">
-    <?php
+<?php
     session_start();
     $link = mysqli_connect('localhost', 'root', '', 'sa');
-
-    if ($link === false) {
-        die("ERROR: Could not connect. " . mysqli_connect_error());
-    }
-    
-    $identify = $_SESSION['identify'];
 
     $sql = "SELECT * FROM pet WHERE 1";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // 表單條件
-        $pet_type = isset($_POST['pet_type']) ? $_POST['pet_type'] : '';
-        $pet_ligation = isset($_POST['pet_ligation']) ? $_POST['pet_ligation'] : '';
-        $pet_age = isset($_POST['pet_age']) ? $_POST['pet_age'] : '';
-        $pet_gender = isset($_POST['pet_gender']) ? $_POST['pet_gender'] : '';
-        $pet_address = isset($_POST['pet_address']) ? $_POST['pet_address'] : '';
-        $pet_size = isset($_POST['pet_size']) ? $_POST['pet_size'] : '';
-        $pet_medical = isset($_POST['pet_medical']) ? $_POST['pet_medical'] : '';
 
-        // 建立表單條件
-        $form_conditions = array();
+    $pet_type = isset($_POST['pet_type']) ? $_POST['pet_type'] : '';
+    $pet_ligation = isset($_POST['pet_ligation']) ? $_POST['pet_ligation'] : '';
+    $pet_age = isset($_POST['pet_age']) ? $_POST['pet_age'] : '';
+    $pet_gender = isset($_POST['pet_gender']) ? $_POST['pet_gender'] : '';
+    $pet_address = isset($_POST['pet_address']) ? $_POST['pet_address'] : '';
+    $pet_medical = isset($_POST['pet_medical']) ? $_POST['pet_medical'] : '';
+    $pet_medical_input = isset($_POST['pet_medical_input']) ? $_POST['pet_medical_input'] : '';
+    $pet_size = isset($_POST['pet_size']) ? $_POST['pet_size'] : '';
 
-        if (!empty($pet_type)) {
-            $form_conditions[] = "`pet_type` = '$pet_type'";
+    $conditions = array();
+    if (!empty($pet_type)) {
+        $conditions[] = "`pet_type` = '$pet_type'";
+    }
+    if (!empty($pet_ligation)) {
+        $conditions[] = "`pet_ligation` = '$pet_ligation'";
+    }
+    if (!empty($pet_age)) {
+        switch ($pet_age) {
+            case "0-1":
+                $conditions[] = "`pet_age` >= 0 AND `pet_age` <= 1";
+                break;
+            case "2-3":
+                $conditions[] = "`pet_age` >= 2 AND `pet_age` <= 3";
+                break;
+            case "4-8":
+                $conditions[] = "`pet_age` >= 4 AND `pet_age` <= 8";
+                break;
+            case "8+":
+                $conditions[] = "`pet_age` >= 8";
+                break;
+            default:
+                break;
         }
-        if (!empty($pet_ligation)) {
-            $form_conditions[] = "`pet_ligation` = '$pet_ligation'";
-        }
-        if (!empty($pet_age)) {
-            switch ($pet_age) {
-                case "0-1":
-                    $form_conditions[] = "`pet_age` >= 0 AND `pet_age` <= 1";
-                    break;
-                case "2-3":
-                    $form_conditions[] = "`pet_age` >= 2 AND `pet_age` <= 3";
-                    break;
-                case "4-8":
-                    $form_conditions[] = "`pet_age` >= 4 AND `pet_age` <= 8";
-                    break;
-                case "8+":
-                    $form_conditions[] = "`pet_age` >= 8";
-                    break;
-                default:
-                    break;
-            }
-        }
-        
-        if (!empty($pet_gender)) {
-            $form_conditions[] = "`pet_gender` = '$pet_gender'";
-        }
-        if (!empty($pet_address)) {
-            $form_conditions[] = "`pet_address` = '$pet_address'";
-        }
-        if (!empty($pet_size)) {
-            $form_conditions[] = "`pet_size` = '$pet_size'";
-        }
+    }
+    
+    if (!empty($pet_gender)) {
+        $conditions[] = "`pet_gender` = '$pet_gender'";
+    }
+    if (!empty($pet_address)) {
+        $conditions[] = "`pet_address` = '$pet_address'";
+    }
 
-        if (!empty($pet_medical)) {
-            $form_conditions[] = "`pet_medical` = '$pet_medical'";
+    if (!empty($pet_medical)) {
+        $conditions[] = "`pet_medical` = '$pet_medical'";
+    }
+
+    if (!empty($pet_size)) {
+        $conditions[] = "`pet_size` = '$pet_size'";
+    }
+
+    if (!empty($conditions)) {
+        if (empty($pet_medical_input)) {
+            $sql .= " AND " . implode(" AND ", $conditions);
+        } else {
+            $sql = "SELECT * FROM pet JOIN pet_medical ON pet.pet_id = pet_medical.pet_id WHERE " . implode(" AND ", $conditions);
         }
+    }
 
-
-        $result = mysqli_query($link, $sql);
+    $result = mysqli_query($link, $sql);
 
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
@@ -575,7 +576,7 @@ if (isset($_SESSION['message'])) {
             <div style="margin-bottom:100px;"></div>
             <?php
         }
-    } else {
+    } else {  
         $sql = "SELECT pet_id, pet_name, pet_type, pet_publish, pet_variety, pet_gender, pet_age, pet_address, pet_explain, pet_photo, pet_level FROM pet";
         $result = mysqli_query($link, $sql);
         if (mysqli_num_rows($result) > 0) {
