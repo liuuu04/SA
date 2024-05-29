@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>查看愛心申請書</title>
     <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="css/style1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
     .dropdown {
         position: relative;
         display: inline-block;
-        
-        
     }
 
     .dropdown-content {
@@ -24,7 +23,6 @@
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         z-index: 1;
         border-radius: 15px;
-        
     }
 
     .dropdown-content a {
@@ -35,7 +33,7 @@
     }
 
     .dropdown-content a:hover {
-        background-color: #000;
+        background-color: #f1f1f1;
         border-radius: 15px;
     }
 
@@ -53,31 +51,51 @@
    </style>
 </head>
 <body>
-<nav class="navbar">
-        <div class="topp">
-        <p><i class="fas fa-paw mr-2"></i> 寵物領養平台</p>
-    
-         <div id="aaa">
-         <a href="index.php">首頁</a>
-         <a href="mg_active.html">寵物知識</a>
-         <a href="#">討論區</a>
-         <a href="logout.php"><i class="fas fa-sign-out-alt"></i></a>
-         <div class="dropdown">
-        <?php  session_start(); ?>
-          <button class="intromy"><img src="<?php echo $_SESSION['identify_photo']; ?>" style="border-radius: 50%;"><span><?php echo $_SESSION['name'];?></span></button>
-            <div class="dropdown-content" id="intromyDropdown">
-                <a href="view.php">查看個人檔案</a>
-                <a href="pet_post.php">刊登寵物</a>
-                <a href="viewpet.php">查看已刊登的寵物</a>
-                <a href="viewheart.php">查看誰申請了愛心切結書</a>
-                <a href="heart.pdf" target="_blank">下載愛心認養切結書</a>
-                
-            </div>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>寵物領養平台</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-bars"></span> Menu
+          </button>
+          <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><a href="index.php" class="nav-link">首頁</a></li>
+              <li class="nav-item"><a href="pet_knowledge.php" class="nav-link">寵物知識專區</a></li>
+              
+            </ul>
+          </div>
         </div>
-         </div>
         
-        </div>
-       </nav>
+
+        <?php session_start(); ?>
+        <?php if(isset($_SESSION['identify_photo']) && isset($_SESSION['name'])): ?>
+            <div class="bells">
+                <a href="logout.php"><img src="images/logout.png" style="width: 25px;height: 25px;margin-right:20px;"></a>
+            </div>
+        <?php endif; ?>
+
+            <div class="dropdown">
+                <?php if(isset($_SESSION['identify_photo']) && isset($_SESSION['name'])): ?>
+                    <button class="intromy"><a href="#"><img src="<?php echo $_SESSION['identify_photo']; ?>" style="border-radius: 50%;"><span><?php echo $_SESSION['name'];?></span></a></button>
+                    <div class="dropdown-content" id="intromyDropdown">
+                        <a href="view.php">查看個人檔案</a>
+                        <a href="collect.php">已收藏寵物</a>
+                        <a href="pet_post.php">刊登寵物</a>
+                        <a href="viewpet.php">已刊登寵物</a>
+                        <a href="viewheart.php">愛心切結書審核</a>
+                        <a href="heart.docx">下載愛心認養切結書</a>
+                    </div>
+                <?php else: ?>
+                    <button class="intromy"><a href="login.php"  style="color: black;">登入/註冊</a></button>
+                    <div class="dropdown-content" id="intromyDropdown">
+                    </div>
+                <?php endif; ?>
+            </div>
+        
+      </div>
+      
+      </nav>
+
 
   <div class="undertwo">
        <table class="table">
@@ -92,47 +110,42 @@
 </thead>
 <tbody>
 <?php
-    $identify=$_SESSION['identify'];
+    $identify = $_SESSION['identify'];
     include 'connection.php';
-    $sql="select * from pet join heart_file on pet.pet_id=heart_file.pet_id where pet.identify='$identify'";
+    $sql = "SELECT * FROM pet JOIN heart_file ON pet.pet_id = heart_file.pet_id WHERE pet.identify = '$identify'";
 
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        $name=$row['name'];
-        $pet_name=$row['pet_name'];
-        $file=$row['file'];
-        $uploadtime=$row['uploadtime'];
-        $pet_id=$row['pet_id'];
-    
-
-        while($row = $result->fetch_assoc()) {
+        while ($row = $result->fetch_assoc()) {
             echo "<tr>";
-            echo "<td><a href='" . $row['name'] . "'>" . $row['name'] . "</a></td>";
+            echo "<td><a href='#'>" . $row['name'] . "</a></td>";
             echo "<td>" . $row['pet_name'] . "</td>";
             echo "<td><a href='" . $row['file'] . "'>申請書文件</a></td>";
             echo "<td>" . $row['uploadtime'] . "</td>";
-            echo "<td><a href='confirm.php?pet_id=" . $row['pet_id'] . "'>確認</a></td>";
+            if ($row['is_heart'] == 1) {
+                echo "<td>已確認</td>";
+            } else {
+                echo "<td><a href='confirm.php?pet_id=" . $row['pet_id'] . "'>確認</a></td>";
+            }
             echo "</tr>";
-
-        
         }
-    }else {
+    } else {
         echo "目前還沒有任何申請!";
     }
-    ?>
-
+?>
 </tbody>
+
        </table>
 
        <br>
-       <h2>說明</h2>
+       <h3>說明</h3>
 
-       <h4>審視切結書申請時，建議您先透過私訊功能確認領養者的背景、經濟狀況、工作等。進行私下與寵物面對面的交流。<br>
+       <h5>審視切結書申請時，建議您先透過私訊功能確認領養者的背景、經濟狀況、工作等。進行私下與寵物面對面的交流。<br>
        確認完畢後進行領養者的身分確認，可點選領養人名字連結至領養人的完整檔案。<br><br>
     
        請注意，一但確認寵物送養，寵物狀態將改為「已送養」，平台將不再顯示此寵物資訊，或推播此寵物資訊給其他使用者，您也無法再對寵物進行編輯。<br><br>
-       您可以隨時回來確認愛心切結書內容，平台將幫您保留。</h4>
+       您可以隨時回來確認愛心切結書內容，平台將幫您保留。</h5>
 </div>
 
 
@@ -141,14 +154,14 @@
     .table{
         padding: 20px;
         background-color: #dbd2c9;
-        
+        border-collapse: collapse;
     }
 
     .table th{
         font-size: 18px;
         color: #000;
         font-weight: 550;
-        width: 110px;
+        width: 60px;
         text-align: center;
         border: 1px solid gray;
         padding: 20px;
@@ -158,7 +171,7 @@
         font-size: 18px;
         color: #000;
         font-weight: 550;
-        width: 110px;
+        width: 60px;
         text-align: center;
         border: 1px solid gray;
         padding: 20px;
@@ -168,7 +181,7 @@
     .undertwo {
     position: absolute;
     top: 150px;
-    left: 350px;
+    left: 20px;
 }
 
   .undertwo a{
