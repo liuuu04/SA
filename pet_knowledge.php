@@ -24,11 +24,13 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/style1.css">
     <link rel="stylesheet" href="new2.css">
+    <link rel="stylesheet" href="css/select.css">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="chat1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-    .dropdown {
+     .dropdown {
         position: relative;
         display: inline-block;
     }
@@ -41,6 +43,7 @@
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         z-index: 1;
         border-radius: 15px;
+        right: 20px;
     }
 
     .dropdown-content a {
@@ -144,11 +147,32 @@
       background-color: #DBD2C9;
       border: 1px solid black;
     }
+
+    .suggest {
+            border-radius: 5px;
+            border: 3px solid;
+            border-color: #dbd2c9;
+            padding: 15px;
+        }
+
+        .modal-content {
+            background-color: #dbd2c9;
+            margin: auto;
+            padding: 15px;
+            border: 1.5px solid black;
+            width: 80%;
+            border-radius: 15px; /* 圓角邊框 */
+            text-align: center; /* 文字居中 */
+            color:black;
+            font-size: 18px;
+        }
+
    </style>
     
     
   </head>
   <body>
+  <?php  session_start(); ?>
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
           <a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>寵物領養平台</a>
@@ -157,28 +181,34 @@
           </button>
           <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item active"><a href="index.php" class="nav-link">首頁</a></li>
-              <li class="nav-item"><a href="pet_knowledge.php" class="nav-link">寵物知識專區</a></li>
+              <li class="nav-item "><a href="index.php" class="nav-link">首頁</a></li>
+              <li class="nav-item active"><a href="pet_knowledge.php" class="nav-link">寵物知識專區</a></li>
               <li class="nav-item"><a href="services.html" class="nav-link">討論區</a></li>
-              <li class="nav-item"><a href="gallery.html" class="nav-link">寵物展</a></li>
+              
             </ul>
           </div>
         </div>
         <div class="bells">
-        <a href="#"><img src="images/bell.png" style="width: 30px;height: 30px;margin-right:20px;"></a>
+          <a href="logout.php"><img src="images/logout.png" style="width: 25px;height: 25px;margin-right:20px;"></a>
+          
         </div>
+
         <div class="dropdown">
-        <?php  session_start(); ?>
+     
           <button class="intromy"><a href="#"><img src="<?php echo $_SESSION['identify_photo']; ?>" style="border-radius: 50%;"><span><?php echo $_SESSION['name'];?></span></a></button>
             <div class="dropdown-content" id="intromyDropdown">
                 <a href="view.php">查看個人檔案</a>
-                <a href="pet_post_test.php">刊登寵物</a>
-                <a href="#">查看已刊登的寵物</a>
-                <a href="logout.php">登出</a>
+                <a href="collect.php">已收藏寵物</a>
+                <a href="pet_post.php">刊登寵物</a>
+                <a href="viewpet.php">已刊登寵物</a>
+                <a href="viewheart.php">愛心切結書審核</a>
+                <a href="heart.docx">下載愛心認養切結書</a>
+              
             </div>
         </div>
         
       </div>
+      
       </nav>
     <!-- END nav -->
 
@@ -214,6 +244,9 @@
           </li>
           <li class="nav-item">
             <button class="pet-btn" onclick="scrollToElement('emergency')">緊急應變</button>
+          </li>
+          <li class="nav-item">
+            <button class="pet-btn" onclick="scrollToElement('suggest')">內容建議</button>
           </li>
         </ul>
       </div>
@@ -478,7 +511,70 @@
           </ul>
         </div>
       </div>
-
+      <div id="suggest">
+        
+      <p style="margin-top:30px;font-size:22px;color:black;">寵物資訊建議</p>
+    <div class="suggest col-md-12">
+        <form action="" method="post" class="appointment">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="form-field">
+                                <div class="select-wrap">
+                                    <header style="margin-left: 10px;">建議類別</header>
+                                    <div class="icon"><span class="fa fa-chevron-down" style="margin-top: 33px;"></span></div>
+                                    <select name="categories" id="categories" class="form-control">
+                                        <option disabled selected hidden>&nbsp&nbsp--請選擇--</option>
+                                        <option value="常見品種">常見品種</option>
+                                        <option value="健康護理">健康護理</option>
+                                        <option value="行為訓練">行為訓練</option>
+                                        <option value="飲食建議">飲食建議</option>
+                                        <option value="緊急應變">緊急應變</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="form-field">
+                                <div class="select-wrap">
+                                    <header style="margin-left: 10px;">種類</header>
+                                    <div class="icon"><span class="fa fa-chevron-down" style="margin-top: 33px;"></span></div>
+                                    <select name="type" id="type" class="form-control" style="border: 1px; border-color:#dbd2c9;">
+                                        <option disabled selected hidden>&nbsp&nbsp--請選擇--</option>
+                                        <option value="狗">狗</option>
+                                        <option value="貓">貓</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <header style="margin-left: 10px;">建議內容</header>
+                            <textarea name="content" id="content" cols="30" rows="7" class="form-control" placeholder="&nbsp&nbsp請輸入..."></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-2 offset-md-5" style="margin-top: 20px;">
+                        <div class="form-group" text-align: center;>
+                            <input type="submit" value="提交" class="selectbtn btn-primary py-2 px-3" style="font-size:16px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div align="center">
+        <div id="myModal" class="modal">
+            <div class="modal-content" style="width: 200px;height: 100p;margin:30px;">
+                <span class="close">&times;</span>
+                <p id="modalMessage" style="text-align:center;line-height:50px;"></p>
+            </div>
+        </div>
+    </div>
+      </div>
 
 
 
@@ -691,11 +787,46 @@
         </div>
       </div>
 
+
       <button onclick="scrollToTop('section2')" id="back-to-top-section2" title="回到頂部"><span>&#8593;</span></button>
 
   </div>
 
-  
+  <script>
+        function showModal(message) {
+            var modal = document.getElementById('myModal');
+            var modalMessage = document.getElementById('modalMessage');
+            modalMessage.textContent = message;
+            modal.style.display = 'block';
+            setTimeout(function() {
+                modal.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+    <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $categories = $_POST['categories'];
+            $type = $_POST['type'];
+            $content = $_POST['content'];
+            $time = date('Y-m-d H:i:s');
+            $link = mysqli_connect('localhost', 'root', '', 'sa');
+
+            if (!$link) {
+                echo "<script>showModal('数据库连接失败');</script>";
+                exit();
+            }
+
+            $sql = "INSERT INTO suggest (categories, type, content, time) VALUES ('$categories', '$type', '$content', NOW())";
+
+            if (mysqli_query($link, $sql)) {
+                echo "<script>showModal('提交成功');</script>";
+            } else {
+                echo "<script>showModal('提交失败');</script>";
+            }
+
+            mysqli_close($link);
+        }
+    ?>
 
     <script>
     function showTab(tabId) {
