@@ -84,6 +84,18 @@
     margin-right: 20px;
     border: #fff;
    }
+
+   .modal-content {
+            background-color: #f5f5dc;
+            margin: auto;
+            padding: 15px;
+            border: 1.5px solid black;
+            width: 80%;
+            border-radius: 15px; /* 圓角邊框 */
+            text-align: center; /* 文字居中 */
+            color:black;
+            font-size: 18px;
+        }
    </style>
     
     
@@ -592,8 +604,8 @@ if (isset($_SESSION['message'])) {
                     <div class="petintro">
                         <span><?php echo $row['pet_name']; ?></span><p style="display: inline;"><?php echo $row['pet_publish']; ?></p>
                         <a href="#" class="bookmarkLink" style="float:right;" data-pet-id="<?php echo $row['pet_id']; ?>" data-identify="<?php echo $row['identify']; ?>">
-                                <i class="bookmarkIcon far <?php echo $is_bookmarked ? 'fa-bookmark' : 'fa-bookmark-o'; ?>" style="font-size:22px;color:black;float:right;"></i>
-                            </a>
+                            <i class="bookmarkIcon far <?php echo $is_bookmarked ? 'fa-bookmark' : 'fa-bookmark-o'; ?>" style="font-size:22px;color:black;float:right;"></i>
+                        </a>
                         <p><img src="images/pets (2).png"> <img src="images/pets.png"><?php echo $row['pet_type'];?>/<?php echo $row['pet_variety'];?></p>
                         <p><img src="images/genders.png"> <?php echo $row['pet_gender'];?></p>
                         <p><img src="images/age.png"> <?php echo $row['pet_age'];?>歲</p>
@@ -1065,7 +1077,6 @@ if (isset($_SESSION['message'])) {
             };
             xhr.send();
         });
-      
     });
 
 
@@ -1080,7 +1091,7 @@ if (isset($_SESSION['message'])) {
     }
 </script>
   
-<script>
+<!-- <script>
     document.querySelectorAll('.bookmarkLink').forEach(link => {
         link.addEventListener('click', function(event) {
             event.preventDefault();
@@ -1106,7 +1117,7 @@ if (isset($_SESSION['message'])) {
             });
         });
     });
-</script>
+</script> -->
 
 
 
