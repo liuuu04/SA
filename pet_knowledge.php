@@ -246,7 +246,7 @@
             <button class="pet-btn" onclick="scrollToElement('emergency')">緊急應變</button>
           </li>
           <li class="nav-item">
-            <button class="pet-btn" onclick="scrollToElement('suggest')">內容建議</button>
+            <button class="pet-btn" onclick="scrollToElement('suggest')">寵物知識建議</button>
           </li>
         </ul>
       </div>
@@ -513,7 +513,7 @@
       </div>
       <div id="suggest">
         
-      <p style="margin-top:30px;font-size:22px;color:black;">寵物資訊建議</p>
+      <p style="margin-top:30px;font-size:22px;color:black;">寵物知識建議</p>
     <div class="suggest col-md-12">
         <form action="" method="post" class="appointment">
             <div class="container">
