@@ -514,6 +514,8 @@
       <div id="suggest">
         
       <p style="margin-top:30px;font-size:22px;color:black;">寵物知識建議</p>
+      <p style="font-size:15px;">歡迎在這裡提供您對寵物知識專區的建議</p>
+
     <div class="suggest col-md-12">
         <form action="" method="post" class="appointment">
             <div class="container">
