@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect('localhost', 'root', 'han20000914', 'sa');
+$link = mysqli_connect('localhost', 'root', '12345678', 'sa');
 
 if (isset($_POST['pet_id'])) {
     $pet_id = $_POST['pet_id'];
