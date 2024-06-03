@@ -4,14 +4,14 @@
     <title>Pet Sitting - Free Bootstrap 4 Template by Colorlib</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
- 
+
     <link rel="stylesheet" href="css/animate.css">
-    
+
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
@@ -68,19 +68,72 @@
    }
 
    #upheart{
-    padding: 8px 10px;
+    font-size: 18px;
+    font-weight: 600;
     color: #fff;
+    padding: 12px 20px 12px 20px;
     background-color: #db0000;
+    border-radius: 10px;
     margin-left: 10px;
-    font-size: 15px;
-    font-weight: 550;
-    border-radius: 2px;
-    
    }
 
    .upheart:hover{
     color: #000;
    }
+
+   #container1 {
+            display: flex;
+            max-width: 600px;
+            width: auto;
+            height: auto;
+            padding: 10px;
+        }
+        #thumbnails {
+            display: flex;
+            flex-direction: column;
+            margin-right: 10px;
+        }
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(50%);
+            transition: filter 0.3s ease;
+            border-radius: 10px;
+            /* border: 5px solid #dbd2c9; */
+            /* 先註解 */
+        }
+        .thumbnail.selected img {
+            filter: none; 
+        }
+        #main-photo {
+            width: 500px;
+            height: 520px;
+            
+        }
+        #main-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* border: 7px solid #dbd2c9; */
+            border-radius: 10px;
+            transition: opacity 0.5s ease; /* 使用淡入淡出的動畫效果 */
+        }
+
+        #main-photo img.fade-in {
+             opacity: 1;
+}
+
+        #main-photo img.fade-out {
+             opacity: 0;
+}
+
    </style>
   </head>
   <body>
@@ -112,6 +165,9 @@
     }
     mysqli_close($link);
     ?>
+
+
+    
 		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	    	<a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>寵物領養平台</a>
@@ -121,48 +177,102 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item"><a href="index.php" class="nav-link">首頁</a></li>
-	        	<li class="nav-item"><a href="about.html" class="nav-link">寵物知識專區</a></li>
+	        	<li class="nav-item"><a href="pet_knowledge.php" class="nav-link">寵物知識專區</a></li>
 	        	<li class="nav-item"><a href="vet.html" class="nav-link">討論區</a></li>
-	        	
+
 	        </ul>
 	      </div>
 	    </div>
+
+      <div class="bells">
+          <a href="logout.php"><img src="images/logout.png" style="width: 25px;height: 25px;margin-right:20px;"></a>
+          
+        </div>
       <div class="dropdown">
         <?php  session_start(); ?>
           <button class="intromy"><a href="#"><img src="<?php echo $_SESSION['identify_photo']; ?>" style="border-radius: 50%;"><span><?php echo $_SESSION['name'];?></span></a></button>
             <div class="dropdown-content" id="intromyDropdown">
-                <a href="view.php">查看個人檔案</a>
-                <a href="pet_post.php">刊登寵物</a>
-                <a href="viewpet.php">查看已刊登的寵物</a>
-                <a href="viewheart.php">查看誰申請了愛心切結書</a>
-                <a href="heart.pdf" target="_blank">下載愛心認養切結書</a>
-                <a href="logout.php">登出</a>
+            <a href="view.php">查看個人檔案</a>
+                        <a href="collect.php">已收藏寵物</a>
+                        <a href="pet_post.php">刊登寵物</a>
+                        <a href="viewpet.php">已刊登寵物</a>
+                        <a href="viewheart.php">愛心切結書審核</a>
+                        <a href="heart.docx">下載愛心認養切結書</a>
             </div>
         </div>
 	  </nav>
     <!-- END nav -->
-    
-   
+    <?php
+include 'connection.php';
+
+// 從第一個資料表中抓取一張照片
+$sql_first_photo = "SELECT pet_photo FROM pet where pet_id='$pet_id'";
+$result_first_photo = $conn->query($sql_first_photo);
+$first_photo = $result_first_photo->fetch_assoc();
+
+// 從第二個資料表中抓取多張照片
+$sql_second_photos = "SELECT pet_photo1 FROM pet_photo where pet_id='$pet_id'";
+$result_second_photos = $conn->query($sql_second_photos);
+$second_photos = [];
+
+if ($result_second_photos->num_rows > 0) {
+    while($row = $result_second_photos->fetch_assoc()) {
+        $second_photos[] = $row;
+    }
+} else {
+    echo " ";
+}
+
+$conn->close();
+?>
+
+
     <section class="ftco-section ftco-no-pt ftco-no-pb">
   <div class="container">
     <div class="row d-flex no-gutters">
-      <div class="col-md-5 d-flex">
+      <div class="col-md-6 d-flex">
         <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0">
-          <div class="carouselmy2">
-            <ul>
-        <?php echo "<img src='{$pet_photo}' alt='{$introduce}'><br>" ?>
-            </ul>
-          </div>
           
+            <div id="container1">
+        <div id="thumbnails">
+            <div class="thumbnail selected" onclick="changePhoto(this, '<?php echo $first_photo['pet_photo']; ?>')">
+                <img src="<?php echo $first_photo['pet_photo']; ?>" alt="<?php echo $first_photo['alt_text']; ?>">
+            </div>
+            <?php foreach ($second_photos as $photo): ?>
+                <div class="thumbnail" onclick="changePhoto(this, '<?php echo $photo['pet_photo1']; ?>')">
+                    <img src="<?php echo $photo['pet_photo1']; ?>" alt="<?php echo $photo['alt_text']; ?>">
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div id="main-photo">
+            <img src="<?php echo $first_photo['pet_photo']; ?>" id="current-photo" alt="<?php echo $first_photo['alt_text']; ?>">
+        </div>
+    </div>
+
+    <script>
+        function changePhoto(thumbnail, src) {
+            var thumbnails = document.querySelectorAll('.thumbnail');
+            thumbnails.forEach(function(thumbnail) {
+                thumbnail.classList.remove('selected');
+            });
+            
+            
+            thumbnail.classList.add('selected');
+            
+            document.getElementById('current-photo').src = src;
+        }
+    </script>
+           
+
         </div>
       </div>
 
-      <div class="col-md-7 pl-md-5 py-md-5">
+      <div class="col-md-6 pl-md-5 py-md-5">
         <div class="heading-section pt-md-5">
           <h2 class="mb-4"><?php echo $pet_name; ?></h2>
         </div>
         <div class="row">
-         
+
           <div class="col-md-6 services-2 w-100 d-flex">
             <div class="icon d-flex align-items-center justify-content-center"><img src="images/pets (1).png"></div>
             <div class="text pl-3">
@@ -235,7 +345,14 @@
             <div class="icon d-flex align-items-center justify-content-center"><img src="images/heart.png"></span></div>
             <div class="text pl-3">
               <h4>是否需要愛心切結書</h4>
-              <p><?php echo $pet_heart; ?></p>
+              <p><?php 
+                if ($pet_heart == 0) {
+                    echo "是";
+                } elseif ($pet_heart == 1) {
+                    echo "否";
+                } 
+                ?>
+                </p>
             </div>
           </div>
         </div>
@@ -253,7 +370,7 @@
             		<img src="images/owner.png">
               </div>
               <div class="media-body p-4">
-                <h3 class="heading">小花的個性是?</h3>
+                <h3 class="heading">寵物的個性是?</h3>
                 <p><?php echo $pet_character; ?></p>
                 <!-- <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a> -->
               </div>
@@ -267,7 +384,7 @@
               <div class="media-body p-4">
                 <h3 class="heading">和家庭成員的相處狀況?</h3>
                 <p><?php echo $pet_withkidpet; ?></p>
-                
+
               </div>
             </div>    
           </div>
@@ -279,12 +396,12 @@
               <div class="media-body p-4">
                 <h3 class="heading">送養人的一些敘述</h3>
                 <p><?php echo $pet_explain; ?></p>
-                
+
               </div>
             </div>      
           </div>
         </div>
-       
+
         <div class="col-md-8 d-flex align-self-stretch px-4 ftco-animate" style="margin-left: 190px;">
             <div class="d-block services text-center">
               <div class="icon d-flex align-items-center justify-content-center">
@@ -303,16 +420,16 @@
                   } else {
                       echo "這隻寵物目前還沒有病史";
                   }
-                  
+
                   mysqli_close($link);
                   ?>
-                
+
               </div>
             </div>      
           </div>
         </div>
         <br><br>
-        
+
         <?php 
         if($_SESSION['identify_level']=='adopter'){
         $link=mysqli_connect('localhost','root','han20000914','sa');
@@ -325,22 +442,22 @@
             ?>
         <div class="chatuser" style="margin-left: 190px">
           <span><img src="images/chat (1).png"> 聯絡送養人</span> 
-          <?php if($pet_heart=='是'){ ?>
+          <?php if($pet_heart=='0'){ ?>
           <a href="upheart.php?pet_id=<?php echo $pet_id; ?>" id="upheart"><i class="fas fa-heart mr-2"></i> 上傳領養此寵物的愛心切結書</a>
           <?php }?>
           <br><br><br>
           <p><img src="images/owner.png"> 送養人: <a href="#" style="color: #5579c6;"><?php echo $name; ?></a></p>
-          
+
           <p><img src="images/send.png"> 傳送訊息: <a href="#" id="sendMessageLink" style="color: #5579c6;"><?php echo $name; ?></a></p>
 
           <br><br>愛心切結書可至導覽列下載使用!如果送養者未設定切結書需求，則無須填寫、上傳。
         </div> 
-        
+
 
 <?php } ?>
 
 <?php if($_SESSION['identify_level']=='member'){?>
-         
+
          <div class="chatnotify">
            有心儀的寵物嗎?填寫完領養人資料表單後，可以與送養者進行聯絡喔!<br><br>
            <a href="profile.php">前往填寫</a>
@@ -349,8 +466,8 @@
    <?php } ?>
 </section>
 
-    
-  
+
+
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
@@ -386,10 +503,10 @@
       xhr.onreadystatechange = function() {
           if (xhr.readyState === XMLHttpRequest.DONE) {
               if (xhr.status === 200) {
-       
+
                   alert(xhr.responseText);
               } else {
-          
+
                   alert("Error: " + xhr.statusText);
               }
           }
@@ -417,6 +534,6 @@
     margin-left: 220px;
   }
 </style>
-    
+
   </body>
 </html>
