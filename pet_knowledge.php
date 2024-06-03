@@ -515,7 +515,6 @@
         
       <p style="margin-top:30px;font-size:22px;color:black;">寵物知識建議</p>
       <p style="font-size:15px;">歡迎在這裡提供您對寵物知識專區的建議</p>
-
     <div class="suggest col-md-12">
         <form action="" method="post" class="appointment">
             <div class="container">
@@ -526,7 +525,7 @@
                                 <div class="select-wrap">
                                     <header style="margin-left: 10px;">建議類別</header>
                                     <div class="icon"><span class="fa fa-chevron-down" style="margin-top: 33px;"></span></div>
-                                    <select name="categories" id="categories" class="form-control">
+                                    <select name="categories" id="categories" class="form-control" required>
                                         <option disabled selected hidden>&nbsp&nbsp--請選擇--</option>
                                         <option value="常見品種">常見品種</option>
                                         <option value="健康護理">健康護理</option>
@@ -556,7 +555,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <header style="margin-left: 10px;">建議內容</header>
-                            <textarea name="content" id="content" cols="30" rows="7" class="form-control" placeholder="&nbsp&nbsp請輸入..."></textarea>
+                            <textarea name="content" id="content" cols="30" rows="7" class="form-control" placeholder="&nbsp&nbsp請輸入..." required></textarea>
                         </div>
                     </div>
                     <div class="col-md-2 offset-md-5" style="margin-top: 20px;">
