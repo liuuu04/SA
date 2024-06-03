@@ -24,6 +24,9 @@
     <link rel="stylesheet" href="css/style1.css">
     <link rel="stylesheet" href="new1.css">
 
+    
+</head>
+
     <style>
     .dropdown {
         position: relative;
@@ -68,72 +71,19 @@
    }
 
    #upheart{
-    font-size: 18px;
-    font-weight: 600;
+    padding: 8px 10px;
     color: #fff;
-    padding: 12px 20px 12px 20px;
     background-color: #db0000;
-    border-radius: 10px;
     margin-left: 10px;
+    font-size: 15px;
+    font-weight: 550;
+    border-radius: 2px;
+
    }
 
    .upheart:hover{
     color: #000;
    }
-
-   #container1 {
-            display: flex;
-            max-width: 600px;
-            width: auto;
-            height: auto;
-            padding: 10px;
-        }
-        #thumbnails {
-            display: flex;
-            flex-direction: column;
-            margin-right: 10px;
-        }
-        .thumbnail {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
-        .thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(50%);
-            transition: filter 0.3s ease;
-            border-radius: 10px;
-            /* border: 5px solid #dbd2c9; */
-            /* 先註解 */
-        }
-        .thumbnail.selected img {
-            filter: none; 
-        }
-        #main-photo {
-            width: 500px;
-            height: 520px;
-            
-        }
-        #main-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            /* border: 7px solid #dbd2c9; */
-            border-radius: 10px;
-            transition: opacity 0.5s ease; /* 使用淡入淡出的動畫效果 */
-        }
-
-        #main-photo img.fade-in {
-             opacity: 1;
-}
-
-        #main-photo img.fade-out {
-             opacity: 0;
-}
-
    </style>
   </head>
   <body>
@@ -165,9 +115,6 @@
     }
     mysqli_close($link);
     ?>
-
-
-    
 		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	    	<a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>寵物領養平台</a>
@@ -192,82 +139,33 @@
         <?php  session_start(); ?>
           <button class="intromy"><a href="#"><img src="<?php echo $_SESSION['identify_photo']; ?>" style="border-radius: 50%;"><span><?php echo $_SESSION['name'];?></span></a></button>
             <div class="dropdown-content" id="intromyDropdown">
-            <a href="view.php">查看個人檔案</a>
-                        <a href="collect.php">已收藏寵物</a>
-                        <a href="pet_post.php">刊登寵物</a>
-                        <a href="viewpet.php">已刊登寵物</a>
-                        <a href="viewheart.php">愛心切結書審核</a>
-                        <a href="heart.docx">下載愛心認養切結書</a>
+                <a href="view.php">查看個人檔案</a>
+                <a href="pet_post.php">刊登寵物</a>
+                <a href="viewpet.php">查看已刊登的寵物</a>
+                <a href="viewheart.php">查看誰申請了愛心切結書</a>
+                <a href="heart.pdf" target="_blank">下載愛心認養切結書</a>
+                <a href="logout.php">登出</a>
             </div>
         </div>
 	  </nav>
     <!-- END nav -->
-    <?php
-include 'connection.php';
-
-// 從第一個資料表中抓取一張照片
-$sql_first_photo = "SELECT pet_photo FROM pet where pet_id='$pet_id'";
-$result_first_photo = $conn->query($sql_first_photo);
-$first_photo = $result_first_photo->fetch_assoc();
-
-// 從第二個資料表中抓取多張照片
-$sql_second_photos = "SELECT pet_photo1 FROM pet_photo where pet_id='$pet_id'";
-$result_second_photos = $conn->query($sql_second_photos);
-$second_photos = [];
-
-if ($result_second_photos->num_rows > 0) {
-    while($row = $result_second_photos->fetch_assoc()) {
-        $second_photos[] = $row;
-    }
-} else {
-    echo " ";
-}
-
-$conn->close();
-?>
 
 
     <section class="ftco-section ftco-no-pt ftco-no-pb">
   <div class="container">
     <div class="row d-flex no-gutters">
-      <div class="col-md-6 d-flex">
+      <div class="col-md-5 d-flex">
         <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0">
-          
-            <div id="container1">
-        <div id="thumbnails">
-            <div class="thumbnail selected" onclick="changePhoto(this, '<?php echo $first_photo['pet_photo']; ?>')">
-                <img src="<?php echo $first_photo['pet_photo']; ?>" alt="<?php echo $first_photo['alt_text']; ?>">
-            </div>
-            <?php foreach ($second_photos as $photo): ?>
-                <div class="thumbnail" onclick="changePhoto(this, '<?php echo $photo['pet_photo1']; ?>')">
-                    <img src="<?php echo $photo['pet_photo1']; ?>" alt="<?php echo $photo['alt_text']; ?>">
-                </div>
-            <?php endforeach; ?>
-        </div>
-        <div id="main-photo">
-            <img src="<?php echo $first_photo['pet_photo']; ?>" id="current-photo" alt="<?php echo $first_photo['alt_text']; ?>">
-        </div>
-    </div>
-
-    <script>
-        function changePhoto(thumbnail, src) {
-            var thumbnails = document.querySelectorAll('.thumbnail');
-            thumbnails.forEach(function(thumbnail) {
-                thumbnail.classList.remove('selected');
-            });
-            
-            
-            thumbnail.classList.add('selected');
-            
-            document.getElementById('current-photo').src = src;
-        }
-    </script>
-           
+          <div class="carouselmy2">
+            <ul>
+        <?php echo "<img src='{$pet_photo}' '><br>" ?>
+            </ul>
+          </div>
 
         </div>
       </div>
 
-      <div class="col-md-6 pl-md-5 py-md-5">
+      <div class="col-md-7 pl-md-5 py-md-5">
         <div class="heading-section pt-md-5">
           <h2 class="mb-4"><?php echo $pet_name; ?></h2>
         </div>
@@ -370,7 +268,7 @@ $conn->close();
             		<img src="images/owner.png">
               </div>
               <div class="media-body p-4">
-                <h3 class="heading">寵物的個性是?</h3>
+                <h3 class="heading">小花的個性是?</h3>
                 <p><?php echo $pet_character; ?></p>
                 <!-- <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a> -->
               </div>
@@ -433,7 +331,7 @@ $conn->close();
         <?php 
         if($_SESSION['identify_level']=='adopter'){
         $link=mysqli_connect('localhost','root','12345678','sa');
-        mysqli_set_charset($link,"utf8");
+        // mysqli_set_charset($link,"utf8");
         $sql1 = "SELECT * FROM account WHERE identify = '$identify'";
         $result= mysqli_query($link,$sql1);
         if($row=mysqli_fetch_assoc($result)){
@@ -445,6 +343,20 @@ $conn->close();
           <?php if($pet_heart=='0'){ ?>
           <a href="upheart.php?pet_id=<?php echo $pet_id; ?>" id="upheart"><i class="fas fa-heart mr-2"></i> 上傳領養此寵物的愛心切結書</a>
           <?php }?>
+
+          
+          <button id="reportButton" class="styled-button" onclick="confirmReport(<?php echo $pet_id; ?>)">
+          <i class="fas fa-flag mr-2"></i> Report this content
+        </button>
+        <script>
+        function confirmReport(petId) {
+            if (confirm("Are you sure you want to report this content?")) {
+                window.location.href = 'report.php?pet_id=' + petId;
+            }
+        }
+    </script>
+       
+
           <br><br><br>
           <p><img src="images/owner.png"> 送養人: <a href="#" style="color: #5579c6;"><?php echo $name; ?></a></p>
 
@@ -490,6 +402,9 @@ $conn->close();
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
   <script src="js/myscript.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <!-- HTML 部分 -->
 
   <script>
@@ -533,7 +448,28 @@ $conn->close();
     background-color: #f5f5dc;
     margin-left: 220px;
   }
-</style>
+ 
+        .styled-button {
+            display: inline-block;
+            padding: 1px 10px;
+            color: #5579c6;
+             font-weight: bold;
+            background-color: #FFFF00;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 15px;
+            transition: background-color 0.3s ease;
+            
+        }
+        .styled-button:hover {
+            background-color: #cc0000;
+        }
+        .styled-button i {
+            margin-right: 8px;
+        }
+
+    </style>
 
   </body>
 </html>
