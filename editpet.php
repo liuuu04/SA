@@ -217,7 +217,7 @@
 
 <?php
    $pet_id=$_GET['pet_id'];
-   $link=mysqli_connect('localhost','root','han20000914','sa');
+   $link=mysqli_connect('localhost','root','12345678','sa');
 
    $sql="select * from pet where pet_id='$pet_id'";
    $result=mysqli_query($link,$sql);
@@ -287,7 +287,7 @@
 
 <div class="imgg">
     <?php
-    $link = mysqli_connect('localhost', 'root', 'han20000914', 'sa');
+    $link = mysqli_connect('localhost', 'root', '12345678', 'sa');
     $pet_id = $_GET['pet_id']; // 確保這裡有 $pet_id 的值
    
 
@@ -672,7 +672,7 @@ window.onclick = function(event) {
         
 
         <?php
-$link=mysqli_connect('localhost','root','han20000914','sa');
+$link=mysqli_connect('localhost','root','12345678','sa');
 $sql2="select * from pet_medical where pet_id='$pet_id' ORDER BY medical_id";
 $result=mysqli_query($link,$sql2);
 ?>
