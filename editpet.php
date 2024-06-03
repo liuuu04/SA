@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>看已刊登的寵物</title>
     <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="css/style1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
     <style>
     .dropdown {
         position: relative;
         display: inline-block;
-        
-        
     }
 
     .dropdown-content {
@@ -24,7 +22,6 @@
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         z-index: 1;
         border-radius: 15px;
-        
     }
 
     .dropdown-content a {
@@ -35,7 +32,7 @@
     }
 
     .dropdown-content a:hover {
-        background-color: #000;
+        background-color: #f1f1f1;
         border-radius: 15px;
     }
 
@@ -50,36 +47,177 @@
     margin-right: 20px;
     border: #fff;
    }
+
+
+        .editimg{
+            max-width: 500px;
+            width: auto;
+            height: auto;
+            margin-left: 80px;
+        }
+
+        .imgg {
+            margin-left: 60px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+            margin: 10px;
+            vertical-align: middle;
+        }
+
+        .image-container img {
+            display: block;
+            max-width: 140px;
+            max-height: 140px;
+            min-height: 140px;
+            transition: transform 0.3s ease;
+            object-fit: cover;
+            margin: 10px;
+
+        }
+
+        .buttons {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .image-container:hover .buttons {
+            display: block;
+        }
+
+        .buttons button {
+            background-color: #deb887;
+            color: white;
+            border: none;
+            padding: 10px 10px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 0px;
+            transition: background-color 0.3s;
+            width: 50px;
+            
+        }
+
+        
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+            animation-name: fadeIn;
+            animation-duration: 0.5s;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: none;
+            max-width: 592px; /* Could be more or less, depending on screen size */
+            width: auto;
+            height: auto;
+            top: 50%; /* Position at the center */
+            transform: translateY(-50%);
+            animation-name: slideIn;
+            animation-duration: 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { top: 60%; opacity: 0; }
+            to { top: 50%; opacity: 1; }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+       
+
+
+       
    </style>
 </head>
 <body>
-<nav class="navbar">
-        <div class="topp">
-        <p><i class="fas fa-paw mr-2"></i> 寵物領養平台</p>
-    
-         <div id="aaa">
-         <a href="index.php">首頁</a>
-         <a href="mg_active.html">寵物知識</a>
-         <a href="#">討論區</a>
-         <a href="logout.php"><i class="fas fa-sign-out-alt"></i></a>
-         <div class="dropdown">
-        <?php  session_start(); ?>
-          <button class="intromy"><img src="<?php echo $_SESSION['identify_photo']; ?>" style="border-radius: 50%;"><span><?php echo $_SESSION['name'];?></span></button>
-            <div class="dropdown-content" id="intromyDropdown">
-                <a href="view.php">查看個人檔案</a>
-                <a href="pet_post.php">刊登寵物</a>
-                <a href="viewpet.php">查看已刊登的寵物</a>
-                <a href="viewheart.php">查看誰申請了愛心切結書</a>
-                <a href="heart.pdf" target="_blank">下載愛心認養切結書</a>
-            </div>
+
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>寵物領養平台</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-bars"></span> Menu
+          </button>
+          <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><a href="index.php" class="nav-link">首頁</a></li>
+              <li class="nav-item"><a href="pet_knowledge.php" class="nav-link">寵物知識專區</a></li>
+              <li class="nav-item"><a href="services.html" class="nav-link">討論區</a></li>
+              
+            </ul>
+          </div>
         </div>
-         </div>
         
-        </div>
-       </nav>
+
+        <?php session_start(); ?>
+        <?php if(isset($_SESSION['identify_photo']) && isset($_SESSION['name'])): ?>
+            <div class="bells">
+                <a href="logout.php"><img src="images/logout.png" style="width: 25px;height: 25px;margin-right:20px;"></a>
+            </div>
+        <?php endif; ?>
+
+            <div class="dropdown">
+                <?php if(isset($_SESSION['identify_photo']) && isset($_SESSION['name'])): ?>
+                    <button class="intromy"><a href="#"><img src="<?php echo $_SESSION['identify_photo']; ?>" style="border-radius: 50%;"><span><?php echo $_SESSION['name'];?></span></a></button>
+                    <div class="dropdown-content" id="intromyDropdown">
+                        <a href="view.php">查看個人檔案</a>
+                        <a href="collect.php">已收藏寵物</a>
+                        <a href="pet_post.php">刊登寵物</a>
+                        <a href="viewpet.php">已刊登寵物</a>
+                        <a href="viewheart.php">愛心切結書審核</a>
+                        <a href="heart.docx">下載愛心認養切結書</a>
+                    </div>
+                <?php else: ?>
+                    <button class="intromy"><a href="login.php"  style="color: black;">登入/註冊</a></button>
+                    <div class="dropdown-content" id="intromyDropdown">
+                    </div>
+                <?php endif; ?>
+            </div>
+        
+      </div>
+      
+      </nav>
+
 <?php
    $pet_id=$_GET['pet_id'];
-   $link=mysqli_connect('localhost','root','12345678','sa');
+   $link=mysqli_connect('localhost','root','han20000914','sa');
 
    $sql="select * from pet where pet_id='$pet_id'";
    $result=mysqli_query($link,$sql);
@@ -115,11 +253,11 @@
     $mid_checked = ($pet_size == '中') ? 'checked' : '';
     $small_checked = ($pet_size == '小') ? 'checked' : '';
     
-    $yes_checked = ($pet_ligation == '是') ? 'checked' : '';
-    $no_checked = ($pet_ligation == '否') ? 'checked' : '';
+    $yes_checked = ($pet_ligation == '已結紮') ? 'checked' : '';
+    $no_checked = ($pet_ligation == '尚未結紮') ? 'checked' : '';
 
-    $hyes_checked = ($pet_heart == '是') ? 'checked' : '';
-    $hno_checked = ($pet_heart == '否') ? 'checked' : '';
+    $hyes_checked = ($pet_heart == '0') ? 'checked' : '';
+    $hno_checked = ($pet_heart == '1') ? 'checked' : '';
 
 
     $myes_checked = ($pet_medical == '有') ? 'checked' : '';
@@ -135,18 +273,234 @@
 
     <div id="left">
     <h1 style="margin-left:80px;">修改寵物資訊</h1>
-    <?php echo "<img src='{$pet_photo}' alt=' '><br>" ?>
-    <h2 style="margin-left: 80px;">更改寵物照片</h2>
+    <?php echo "<img src='{$pet_photo}' alt=' ' class='editimg'><br>" ?><br>
+    <h4 style="margin-left: 80px;">更改首頁圖</h4>
     <form action="petphotofix.php" method="post" enctype="multipart/form-data">
     <input type="hidden" name="pet_id" value="<?php echo $pet_id; ?>">
      <input type="file" style="margin-left:80px;font-size: 15px;" name="new_pet_photo" id="new_pet_photo">
-     <input type="submit" value="更改" id="photobtn" style="background-color:gray;color:#fff;font-size: 15px;
-     font-weight: 550;border:none;padding:5px 10px;"><br><br>
-     <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 400px; max-height: 400px;">
-     
+     <input type="submit" value="更改" id="photobtn" style="background-color:#f0f0f0;color:#000;font-size: 15px;
+     font-weight: 550;border:none;padding:5px 10px;border-radius: 6px;"><br><br>
+     <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 400px; max-height: 400px;margin-left: 80px;">
 </form>
+<h6 style="margin-left: 80px;">寵物詳細圖片</h6>
 
+
+<div class="imgg">
+    <?php
+    $link = mysqli_connect('localhost', 'root', 'han20000914', 'sa');
+    $pet_id = $_GET['pet_id']; // 確保這裡有 $pet_id 的值
+   
+
+    $sql4 = "SELECT * FROM pet_photo WHERE pet_id='$pet_id' ORDER BY upload_time";
+    $result = mysqli_query($link, $sql4);
+
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $pet_photo1 = $row['pet_photo1'];
+            $upload_time = $row['upload_time'];
+            $petphoto_id = $row['petphoto_id'];
+            echo "<div class='image-container'>
+                    <img src='{$pet_photo1}' alt='上傳照片'>
+                    <input type='hidden' class='upload-time' value='{$upload_time}'>
+                    <div class='buttons'>
+                        <button class='view-btn'><i class='fas fa-search'></i></button>
+                        <button class='delete-btn' onclick='deletePhoto({$pet_id}, {$petphoto_id})'><i class='fas fa-trash-alt'></i></button>
+                    </div>
+                </div>";
+        }
+    } else {
+        echo '<p style="margin-left:20px;">尚未上傳詳細的寵物照片。</p>';
+    }
+    
+
+    mysqli_close($link);
+    ?>
     </div>
+    
+    <style>
+        #fileUploadForm{
+            margin-top: 10px;
+            margin-left: 80px;
+        }
+    </style>
+    <form id="fileUploadForm" action="editupload.php" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="pet_id" value="<?php echo $pet_id; ?>">
+    <label for="photo" style="color: black;">寵物詳細照片：</label>
+            <input type="file" name="files1[]" id="fileInput" multiple style="color: black;font-size: 16px;">
+            <div id="customImagePreview"></div>
+    <input type="submit" value="新增照片" id="photobtn" style="background-color: #f0f0f0;color:#000;font-size: 15px; font-weight: 550; border:none; padding:5px 10px;
+    border-radius: 6px;">
+    <div id="customImagePreview"></div>
+</form>
+    
+
+
+
+<div id="myModal" class="modal">
+
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="modalImage" src="" alt="Image" style="width: 100%;"><br>
+        <p>上傳時間: <span id="uploadTime"></span></p>
+    </div>
+</div>
+
+</div>
+<style>
+    .preview-image-container {
+        position: relative;
+        display: inline-block;
+        margin: 10px;
+    }
+
+    .preview-image {
+        max-width: 140px;
+        max-height: 140px;
+        min-height: 140px;
+        object-fit: contain;
+    }
+
+    .delete-button2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #f0f0f0;
+        color: black;
+        border: none;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+    
+</style>
+<script>
+     // Modal related code
+var modal = document.getElementById("myModal");
+var modalImage = document.getElementById("modalImage");
+var uploadTime = document.getElementById("uploadTime");
+var span = document.getElementsByClassName("close")[0];
+
+// View button functionality
+document.querySelectorAll(".view-btn").forEach(function(button) {
+    button.onclick = function() {
+        var container = this.closest(".image-container");
+        var imgSrc = container.querySelector("img").src;
+        var time = container.querySelector(".upload-time").value;
+        
+        modalImage.src = imgSrc;
+        uploadTime.textContent = time;
+        modal.style.display = "block";
+    }
+});
+
+// Close button functionality
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Close the modal when clicking outside of it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
+
+
+
+    function deletePhoto(petId, petphotoId) {
+    if (confirm("確定要刪除這張照片嗎？")) {
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'editdelete.php';
+        
+        var petIdField = document.createElement('input');
+        petIdField.type = 'hidden';
+        petIdField.name = 'pet_id';
+        petIdField.value = petId;
+        form.appendChild(petIdField);
+        
+        var petphotoIdField = document.createElement('input');
+        petphotoIdField.type = 'hidden';
+        petphotoIdField.name = 'petphoto_id';
+        petphotoIdField.value = petphotoId;
+        form.appendChild(petphotoIdField);
+        
+        document.body.appendChild(form);
+        form.submit();
+    }
+}
+
+</script>
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const fileInput = document.getElementById('fileInput');
+    const customImagePreview = document.getElementById('customImagePreview');
+    let selectedFiles = [];
+
+    fileInput.addEventListener('change', function(event) {
+        const files = event.target.files;
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            selectedFiles.push(file);
+            const reader = new FileReader();
+            reader.onload = (function(file) {
+                return function(e) {
+                    const previewContainer = document.createElement('div');
+                    previewContainer.className = 'preview-image-container';
+
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = 'preview-image';
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.className = 'delete-button2';
+                    deleteButton.innerHTML = '×';
+                    deleteButton.onclick = function() {
+                        const index = selectedFiles.indexOf(file);
+                        if (index > -1) {
+                            selectedFiles.splice(index, 1);
+                        }
+                        previewContainer.remove();
+                        updateFileInput();
+                    };
+
+                    previewContainer.appendChild(img);
+                    previewContainer.appendChild(deleteButton);
+                    customImagePreview.appendChild(previewContainer);
+                };
+            })(file);
+            reader.readAsDataURL(file);
+        }
+    });
+
+    function updateFileInput() {
+        const dataTransfer = new DataTransfer();
+        selectedFiles.forEach(file => dataTransfer.items.add(file));
+        fileInput.files = dataTransfer.files;
+    }
+
+    document.getElementById('new_pet_photo').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const imagePreview = document.getElementById('imagePreview');
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+    });
+});
+
+
+
+</script>
 
     <div id="right">
     
@@ -230,6 +584,34 @@
 </script>
 
 
+<script>
+    var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.querySelector(".imgupload");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+
 
        
 
@@ -271,14 +653,14 @@
 
         <div id="bbb">
         <p>寵物是否結紮:</p>
-        <input type="radio" value="是" name="pet_ligation" <?php echo $yes_checked; ?>>是
-        <input type="radio" value="否" name="pet_ligation" <?php echo $no_checked; ?>>否
+        <input type="radio" value="已結紮" name="pet_ligation" <?php echo $yes_checked; ?>>已結紮
+        <input type="radio" value="尚未結紮" name="pet_ligation" <?php echo $no_checked; ?>>尚未結紮
         </div>
 
         <div id="bbb">
         <p>愛心切結書要求(是否需要):</p>
-        <input type="radio" value="是" name="pet_heart" <?php echo $hyes_checked;?>>是
-        <input type="radio" value="否" name="pet_heart" <?php echo $hno_checked;?>>否
+        <input type="radio" value="0" name="pet_heart" <?php echo $hyes_checked;?>>是
+        <input type="radio" value="1" name="pet_heart" <?php echo $hno_checked;?>>否
         </div>
 
         <div id="bbb">
@@ -290,7 +672,7 @@
         
 
         <?php
-$link=mysqli_connect('localhost','root','12345678','sa');
+$link=mysqli_connect('localhost','root','han20000914','sa');
 $sql2="select * from pet_medical where pet_id='$pet_id' ORDER BY medical_id";
 $result=mysqli_query($link,$sql2);
 ?>
@@ -302,9 +684,7 @@ $result=mysqli_query($link,$sql2);
     <div id="medical_details">
    <?php while ($row=mysqli_fetch_assoc($result)) {
         $medical_content=$row['medical_content'];
-        echo '<input type="text" name="medical_content[]" value="' . $medical_content . '" readonly>';
-        
-     }
+        echo '<input type="text" name="medical_content[]" value="' . $medical_content . '" readonly>';}
      mysqli_close($link);?>
     </div>
 </div>
