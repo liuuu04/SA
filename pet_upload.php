@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $identify = $_SESSION['identify'];
 
-    $link = mysqli_connect('localhost', 'root', 'han20000914', 'sa');
+    $link = mysqli_connect('localhost', 'root', '12345678', 'sa');
     if (!$link) {
         die("連接資料庫失敗: " . mysqli_connect_error());
     }
