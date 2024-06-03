@@ -139,7 +139,7 @@
   <body>
   <?php
     $pet_id=$_GET['pet_id'];
-    $link=mysqli_connect('localhost','root','han20000914','sa');
+    $link=mysqli_connect('localhost','root','12345678','sa');
     $sql="select * from pet where pet_id='$pet_id'";
     $result=mysqli_query($link,$sql);
     if($row=mysqli_fetch_assoc($result))
@@ -409,7 +409,7 @@ $conn->close();
               </div>
               <div class="media-body p-4">
                 <h3 class="heading">詳細病史(依時間順序排列)</h3>
-               <?php $link=mysqli_connect('localhost','root','han20000914','sa');
+               <?php $link=mysqli_connect('localhost','root','12345678','sa');
                     $sql3="select * from pet_medical where pet_id='$pet_id' ORDER BY medical_id";
                     $result=mysqli_query($link,$sql3);
                     if(mysqli_num_rows($result) > 0) {
@@ -432,7 +432,7 @@ $conn->close();
 
         <?php 
         if($_SESSION['identify_level']=='adopter'){
-        $link=mysqli_connect('localhost','root','han20000914','sa');
+        $link=mysqli_connect('localhost','root','12345678','sa');
         mysqli_set_charset($link,"utf8");
         $sql1 = "SELECT * FROM account WHERE identify = '$identify'";
         $result= mysqli_query($link,$sql1);
