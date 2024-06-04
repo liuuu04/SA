@@ -1,3 +1,4 @@
+<?php  session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,7 +22,7 @@
 
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/style1.css">
-    <link rel="stylesheet" href="css/new2.css">
+    <link rel="stylesheet" href="new2.css">
     <link rel="stylesheet" href="css/select.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="chat1.css">
@@ -68,6 +69,31 @@
     border: #fff;
 
    }
+   .dropdown-menu .dropdown-item:hover {
+      background-color: #DBD2C9 !important;
+      color: #000 !important;
+    }
+
+    .navbar-nav .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .navbar-nav .dropdown-menu {
+      display: none;
+      transition: visibility 0.2s, opacity 0.2s linear;
+      color: #DBD2C9;
+    }
+    .modal-content {
+            background-color: #f5f5dc;
+            margin: auto;
+            padding: 15px;
+            border: 1.5px solid black;
+            width: 80%;
+            border-radius: 15px; 
+            text-align: center;
+            color:black;
+            font-size: 18px;
+        }
    </style>
     
   </head>
@@ -81,24 +107,35 @@
           </button>
           <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item"><a href="index.php" class="nav-link">首頁</a></li>
-              <li class="nav-item"><a href="vet.html" class="nav-link">寵物知識專區</a></li>
-              <li class="nav-item"><a href="services.html" class="nav-link">討論區</a></li>
-              <li class="nav-item"><a href="gallery.html" class="nav-link">寵物展</a></li>
+              <li class="nav-item active"><a href="index.php" class="nav-link">首頁</a></li>
+              <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="pet_knowledge.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    寵物知識專區
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="pet_knowledge_cat.php">貓</a>
+                    <a class="dropdown-item" href="pet_knowledge_dog.php">狗</a>
+                </div>
+              </li>
+              
             </ul>
           </div>
         </div>
+        </div>
         <div class="bells">
-        <a href="#"><img src="images/bell.png" style="width: 30px;height: 30px;margin-right:20px;"></a>
+          <a href="logout.php"><img src="images/logout.png" style="width: 25px;height: 25px;margin-right:20px;"></a>
+          
         </div>
         <div class="dropdown">
-        <?php  session_start(); ?>
+     
           <button class="intromy"><a href="#"><img src="<?php echo $_SESSION['identify_photo']; ?>" style="border-radius: 50%;"><span><?php echo $_SESSION['name'];?></span></a></button>
             <div class="dropdown-content" id="intromyDropdown">
-                <a href="view.php">查看個人檔案</a>
+            <a href="view.php">查看個人檔案</a>
+                <a href="collect.php">已收藏寵物</a>
                 <a href="pet_post.php">刊登寵物</a>
-                <a href="#">查看已刊登的寵物</a>
-                <a href="logout.php">登出</a>
+                <a href="viewpet.php">已刊登寵物</a>
+                <a href="viewheart.php">愛心切結書審核</a>
+                <a href="heart.docx">下載愛心認養切結書</a>
             </div>
         </div>
         
@@ -137,8 +174,8 @@
             <div class="petintro">
             <span><?php echo $row['pet_name']; ?></span><p style="display: inline;"><?php echo $row['pet_publish']; ?></p>
             <a href="#" class="bookmarkLink" style="float:right;" data-pet-id="<?php echo $row['pet_id']; ?>" data-identify="<?php echo $row['identify']; ?>">
-              <i class="bookmarkIcon fas fa-bookmark-o" style="font-size:22px;color:black;float:right;"></i>
-            </a>
+                            <i class="bookmarkIcon far <?php echo $is_bookmarked ? 'fa-bookmark' : 'fa-bookmark-o'; ?>" style="font-size:22px;color:black;float:right;"></i>
+                        </a>
             <p><img src="images/pets (2).png"> <img src="images/pets.png"><?php echo $row['pet_type'];?>/<?php echo $row['pet_variety'];?></p>
             <p><img src="images/genders.png"> <?php echo $row['pet_gender'];?></p>
             <p><img src="images/age.png"> <?php echo $row['pet_age'];?>歲</p>
@@ -161,7 +198,7 @@
   <!-- 寵物收藏彈跳視窗 -->
 <div align="center">
 <div id="myModal" class="modal">
-    <div class="modal-content" style="width: 200px;height: 100px;" >
+    <div class="modal-content" style="width: 200px;height: 100px;margin:30px;" >
         <span class="close">&times;</span>
         <p id="modalMessage" style="text-align:center;line-height:50px;"></p>
     </div>
@@ -220,6 +257,8 @@
         }, 2000);
     }
 </script>
+
+
 
 
 

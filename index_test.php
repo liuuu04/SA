@@ -1,3 +1,5 @@
+
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,22 +27,22 @@
     <link rel="stylesheet" href="css/select.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      
-    <link rel="stylesheet" href="chat3.css">
+    <link rel="stylesheet" href="5.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
   
     .unread-count {
     color: white;
     font-size: 12px;
-    margin-left: auto; /* 將未讀訊息數量移到最右邊 */
-    margin-right: 10px; /* 調整右邊的間距 */
-    display: inline-flex; /* 讓元素變成彈性盒子 */
-    align-items: center; /* 在彈性盒子中垂直居中 */
-    justify-content: center; /* 在彈性盒子中水平居中 */
-    width: 15px; /* 設置寬度 */
-    height: 15px; /* 設置高度 */
-    border-radius: 50%; /* 使元素變成圓形 */
-    background-color: #FF3B3B; /* 紅色背景 */
+    margin-left: auto;
+    margin-right: 10px;
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 15px; 
+    height: 15px; 
+    border-radius: 50%; 
+    background-color: #FF3B3B;
     }
 
 
@@ -84,15 +86,28 @@
     margin-right: 20px;
     border: #fff;
    }
+   .dropdown-menu .dropdown-item:hover {
+      background-color: #DBD2C9 !important;
+      color: #000 !important;
+    }
 
-   .modal-content {
+    .navbar-nav .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .navbar-nav .dropdown-menu {
+      display: none;
+      transition: visibility 0.2s, opacity 0.2s linear;
+      color: #DBD2C9;
+    }
+    .modal-content {
             background-color: #f5f5dc;
             margin: auto;
             padding: 15px;
             border: 1.5px solid black;
             width: 80%;
-            border-radius: 15px; /* 圓角邊框 */
-            text-align: center; /* 文字居中 */
+            border-radius: 15px; 
+            text-align: center; 
             color:black;
             font-size: 18px;
         }
@@ -103,22 +118,29 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-          <a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>寵物領養平台</a>
+          <a class="navbar-brand" href="index.php"><span class="flaticon-pawprint-1 mr-2"></span>寵物領養平台</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fa fa-bars"></span> Menu
           </button>
           <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active"><a href="index.php" class="nav-link">首頁</a></li>
-              <li class="nav-item"><a href="pet_knowledge.php" class="nav-link">寵物知識專區</a></li>
-              <li class="nav-item"><a href="services.html" class="nav-link">討論區</a></li>
+              <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="pet_knowledge.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    寵物知識專區
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="pet_knowledge_cat.php">貓</a>
+                    <a class="dropdown-item" href="pet_knowledge_dog.php">狗</a>
+                </div>
+              </li>
               
             </ul>
           </div>
         </div>
+        </div>
         
 
-        <?php session_start(); ?>
         <?php if(isset($_SESSION['identify_photo']) && isset($_SESSION['name'])): ?>
             <div class="bells">
                 <a href="logout.php"><img src="images/logout.png" style="width: 25px;height: 25px;margin-right:20px;"></a>
@@ -148,7 +170,6 @@
       </nav>
 
     <!-- END nav -->
-
     <section class="ftco-section testimony-section" style="background-image: url('images/bg_2.jpg');">
     	<div class="overlay"></div>
       <div class="container">
@@ -206,48 +227,19 @@
                   </div>
                 </div>
               </div>
-              <!-- <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img"><img src="images/loudspeaker.png"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img"><img src="images/loudspeaker.png"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div> -->
             </div>
           </div>
         </div>
       </div>
     </section>
    
+
     
     <section class="ftco-section bg-light select">
     <div class="container">
         <div class="row">
             <div class="col-lg-2">
-                <a href="index3.php"><button class="btn all py-2 px-3" style="font-size:16px;">列出全部</button></a>
+                <a href="index.php"><button class="btn all py-2 px-3" style="font-size:16px;">列出全部</button></a>
             </div>
             <div class="col-lg-10">
                 <div class="row">
@@ -621,113 +613,112 @@ if (isset($_SESSION['message'])) {
     mysqli_close($link);
     ?>
 </div>
-
     <?php
-   
 
-    $link = mysqli_connect('localhost', 'root', '', 'sa');
+        $link = mysqli_connect('localhost', 'root', '', 'sa');
 
-    if ($link === false) {
-        die("ERROR: Could not connect. " . mysqli_connect_error());
-    }
+        if ($link === false) {
+            die("ERROR: Could not connect. " . mysqli_connect_error());
+        }
 
-    $current_identify = $_SESSION['identify'];
+        $current_identify = $_SESSION['identify'];
 
-    $sql = "SELECT DISTINCT identify, receiver_name, identify_level, SUM(unread_count) AS unread_count
-    FROM (
-        SELECT Account.identify, Account.name AS receiver_name, Account.identify_level,
-                COALESCE(SUM(CASE WHEN message.is_read = 0 AND message.receiver_id = '$current_identify' THEN 1 ELSE 0 END), 0) AS unread_count
-                FROM Account
-                LEFT JOIN message ON Account.identify = message.sender_id
-                WHERE Account.identify != '$current_identify' AND message.receiver_id = '$current_identify'
-                GROUP BY Account.identify, Account.name, Account.identify_level
-        UNION
-        SELECT Account.identify, Account.name AS receiver_name, Account.identify_level,
-                COALESCE(SUM(CASE WHEN message.is_read = 0 AND message.receiver_id = '$current_identify' THEN 1 ELSE 0 END), 0) AS unread_count
-                FROM Account
-                LEFT JOIN message ON Account.identify = message.receiver_id
-                WHERE Account.identify != '$current_identify' AND message.sender_id = '$current_identify'
-                GROUP BY Account.identify, Account.name, Account.identify_level
-    ) AS combined_results
-    GROUP BY identify, receiver_name, identify_level
-    
-    ";
+        $sql = "SELECT DISTINCT identify, receiver_name, identify_level, SUM(unread_count) AS unread_count, MAX(timestamp) AS last_message_time
+        FROM (
+            SELECT Account.identify, Account.name AS receiver_name, Account.identify_level,
+                    COALESCE(SUM(CASE WHEN message.is_read = 0 AND message.receiver_id = '$current_identify' THEN 1 ELSE 0 END), 0) AS unread_count,
+                    MAX(message.timestamp) AS timestamp
+                    FROM Account
+                    LEFT JOIN message ON Account.identify = message.sender_id
+                    WHERE Account.identify != '$current_identify' AND message.receiver_id = '$current_identify'
+                    GROUP BY Account.identify, Account.name, Account.identify_level
+            UNION
+            SELECT Account.identify, Account.name AS receiver_name, Account.identify_level,
+                    COALESCE(SUM(CASE WHEN message.is_read = 0 AND message.receiver_id = '$current_identify' THEN 1 ELSE 0 END), 0) AS unread_count,
+                    MAX(message.timestamp) AS timestamp
+                    FROM Account
+                    LEFT JOIN message ON Account.identify = message.receiver_id
+                    WHERE Account.identify != '$current_identify' AND message.sender_id = '$current_identify'
+                    GROUP BY Account.identify, Account.name, Account.identify_level
+        ) AS combined_results
+        GROUP BY identify, receiver_name, identify_level
+        ORDER BY last_message_time DESC
+        ";
 
+        $result = mysqli_query($link, $sql);
 
+        if ($result === false) {
+            die("ERROR: Could not execute query. " . mysqli_error($link));
+        }
 
-    $result = mysqli_query($link, $sql);
+        $contacts = array();
 
-    if ($result === false) {
-        die("ERROR: Could not execute query. " . mysqli_error($link));
-    }
+        while ($row = mysqli_fetch_assoc($result)) {
+            $contacts[] = $row;
+        }
+        ?>
 
-    $contacts = array();
+        <div class="chat-icon" onclick="toggleContactsList()">💬</div>
 
-    while ($row = mysqli_fetch_assoc($result)) {
-        $contacts[] = $row;
-    }
-    ?>
-    
-    
-    <div class="chat-icon" onclick="toggleContactsList()">💬</div>
-    <!-- <span class="unread-count"></span> -->
-
-    <div id="chatPopup" class="chat-popup">
-      <div class="chat-header">
-        <div class="back-btn" onclick="hideChatPopup()">←</div> 
-        <div class="user-name" id="chatUserName"></div> 
-        <div class="close-btn" onclick="toggleChat()">×</div>
-      </div>
-      <div class="chat-messages" id="chatMessages">
-
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <input type="text" id="chatInput" class="chat-input" placeholder="寫下你想說的話...">
+        <div id="chatPopup" class="chat-popup">
+        <div class="chat-header">
+            <div class="back-btn" onclick="hideChatPopup()">←</div> 
+            <div class="user-name" id="chatUserName"></div> 
+            <div class="close-btn" onclick="toggleChat()">×</div>
         </div>
-      </div>
-      
-      <button class="icon-button" onclick="document.getElementById('photoInput').click()">
-        <i class="material-icons">&#xe413;</i>
-      </button>
-      
-      <input type="file" id="photoInput" style="display: none;" accept="image/*" onchange="handlePhotoUpload()">
+        <div class="chat-messages" id="chatMessages">
 
-      <button onclick="sendMessage()" class="send-btn"><i class="fas fa-paper-plane" style="font-size:18px"></i></button> 
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+            <input type="text" id="chatInput" class="chat-input" placeholder="寫下你想說的話...">
+            </div>
+        </div>
+        
+        <button class="icon-button" onclick="document.getElementById('photoInput').click()">
+            <i class="material-icons">&#xe413;</i>
+        </button>
+        
+        <input type="file" id="photoInput" style="display: none;" accept="image/*" onchange="handlePhotoUpload()">
+
+        <button onclick="sendMessage()" class="send-btn"><i class="fas fa-paper-plane" style="font-size:18px"></i></button> 
+        </div>
+
+        <div id="contactsList" class="contacts-list">
+        <div class="contacts-header">
+            聯絡人
+        <div class="close-btn" onclick="hideContactsList()">×</div>
     </div>
 
-    <div id="contactsList" class="contacts-list">
-    <div class="contacts-header">聯絡人</div>
-      <div class="close-btn" onclick="hideContactsList()">×</div>
-
-      <?php
-      foreach ($contacts as $contact) {
-          $identify_photo = ""; 
-          $receiver_identify = $contact['identify'];
-          $query_photo = "SELECT identify_photo FROM account WHERE identify = '$receiver_identify'";
-          $result_photo = mysqli_query($link, $query_photo);
-          if ($result_photo) {
-              $row_photo = mysqli_fetch_assoc($result_photo);
-              $identify_photo = $row_photo['identify_photo'];
-          }
-          echo '<div class="contact" onclick="openChat(\'' . $contact['identify'] . '\', \'' . $contact['receiver_name'] . '\')">';
-          echo '<img src="' . $identify_photo . '" alt="' . $contact['receiver_name'] . '">';
-          echo '<span>' . $contact['receiver_name'] . '</span>';
-       
-          if ($contact['identify_level'] == 'member') {
-            echo '<a href="viewuser2.php?identify=' . $contact['identify'] . '"><span class="flaticon-pawprint-1 mr-2" style="margin-left: 5px; color: black;"></span></a>';
-          }
+        <?php
+        foreach ($contacts as $contact) {
+            $identify_photo = ""; 
+            $receiver_identify = $contact['identify'];
+            $query_photo = "SELECT identify_photo FROM account WHERE identify = '$receiver_identify'";
+            $result_photo = mysqli_query($link, $query_photo);
+            if ($result_photo) {
+                $row_photo = mysqli_fetch_assoc($result_photo);
+                $identify_photo = $row_photo['identify_photo'];
+            }
+            echo '<div class="contact" onclick="openChat(\'' . $contact['identify'] . '\', \'' . $contact['receiver_name'] . '\')">';
+            echo '<img src="' . $identify_photo . '" alt="' . $contact['receiver_name'] . '">';
+            echo '<span>' . $contact['receiver_name'] . '</span>';
         
-          if ($contact['identify_level'] == 'adopter') {
-          echo '<a href="viewuser.php?identify=' . $contact['identify'] . '"><span class="flaticon-pawprint-1 mr-2" style="margin-left: 5px;"></a>';
-          }
-          // 在這裡添加未讀訊息數量的代碼，並添加 data-identify 屬性
-          if ($contact['unread_count'] > 0) {
-            echo '<span class="unread-count" data-identify="' . $contact['identify'] . '">' . $contact['unread_count'] . '</span>';
-          }
-          echo '</div>';
-      }
-      ?>
+            if ($contact['identify_level'] == 'member') {
+                echo '<a href="viewuser2.php?identify=' . $contact['identify'] . '"><span class="flaticon-pawprint-1 mr-2" style="margin-left: 5px; color: black;"></span></a>';
+            }
+            
+            if ($contact['identify_level'] == 'adopter') {
+            echo '<a href="viewuser.php?identify=' . $contact['identify'] . '"><span class="flaticon-pawprint-1 mr-2" style="margin-left: 5px;"></a>';
+            }
+            // 在這裡添加未讀訊息數量的代碼，並添加 data-identify 屬性
+            if ($contact['unread_count'] > 0) {
+                echo '<span class="unread-count" data-identify="' . $contact['identify'] . '">' . $contact['unread_count'] . '</span>';
+            }
+            echo '</div>';
+        }
+        ?>
+
 
     </div>
 <!-- 寵物收藏彈跳視窗 -->
@@ -741,7 +732,7 @@ if (isset($_SESSION['message'])) {
 </div>
     
           
-		</footer>
+</footer>
 
     
   
@@ -794,7 +785,9 @@ if (isset($_SESSION['message'])) {
 
       function hideContactsList() {
         var contactsList = document.getElementById("contactsList");
+       
         contactsList.style.display = "none";
+        
       }
 
       function openChat(identify, accountName) {
@@ -1041,14 +1034,15 @@ if (isset($_SESSION['message'])) {
 
     xhr.open("GET", "update_unread_counts.php", true);
     xhr.send();
-}   
+}
+
+
+      
   </script>
-  
 <script>
     document.querySelectorAll('.bookmarkLink').forEach(function(link) {
         link.addEventListener('click', function(event) {
             event.preventDefault(); 
-            
               var loggedIn = <?php echo isset($_SESSION['identify']) ? 'true' : 'false'; ?>;
             if (!loggedIn) {
                 showModal('請先登入');
@@ -1077,6 +1071,7 @@ if (isset($_SESSION['message'])) {
             };
             xhr.send();
         });
+      
     });
 
 
@@ -1091,37 +1086,6 @@ if (isset($_SESSION['message'])) {
     }
 </script>
   
-<!-- <script>
-    document.querySelectorAll('.bookmarkLink').forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            const petId = this.getAttribute('data-pet-id');
-            const icon = this.querySelector('.bookmarkIcon');
-            
-            fetch('bookmark.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'pet_id=' + petId,
-            })
-            .then(response => response.text())
-            .then(data => {
-                if (data === 'bookmarked') {
-                    icon.classList.remove('fa-bookmark-o');
-                    icon.classList.add('fa-bookmark');
-                } else if (data === 'unbookmarked') {
-                    icon.classList.remove('fa-bookmark');
-                    icon.classList.add('fa-bookmark-o');
-                }
-            });
-        });
-    });
-</script> -->
-
-
-
-
 
   </body>
 </html>
