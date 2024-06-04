@@ -123,6 +123,9 @@
                         <a href="viewpet.php">已刊登寵物</a>
                         <a href="viewheart.php">愛心切結書審核</a>
                         <a href="heart.docx">下載愛心認養切結書</a>
+			    <?php if ($_SESSION['identify_level'] == 'admin') { ?>
+		        <a href="vadmin.php">管理員面板</a>
+		        <?php } ?>
                     </div>
                 <?php else: ?>
                     <button class="intromy"><a href="login.php"  style="color: black;">登入/註冊</a></button>
