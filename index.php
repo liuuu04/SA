@@ -85,54 +85,53 @@
     border: #fff;
    }
    </style>
-    
+    <?php
+        session_start();
+        // Include database connection file
+        include_once('connection.php');
+        if (!isset($_SESSION['identify'])) {
+            header("Location:login.php");
+            exit();
+        }
+        ?>
     
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-          <a class="navbar-brand" href="index.php"><span class="flaticon-pawprint-1 mr-2"></span>寵物領養平台</a>
+          <a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>寵物領養平台</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fa fa-bars"></span> Menu
           </button>
           <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item active"><a href="index.php" class="nav-link">首頁</a></li>
+              <li class="nav-item active"><a href="index.html" class="nav-link">首頁</a></li>
               <li class="nav-item"><a href="pet_knowledge.php" class="nav-link">寵物知識專區</a></li>
               <li class="nav-item"><a href="services.html" class="nav-link">討論區</a></li>
-              
+              <?php if ($_SESSION['identify_level'] == 'admin') { ?>
+              <li class="nav-item"><a href="vadmin.php" class="nav-link">管理員面板</a></li>
+              <?php } ?>
             </ul>
           </div>
         </div>
+        <div class="bells">
+          <a href="logout.php"><img src="images/logout.png" style="width: 25px;height: 25px;margin-right:20px;"></a>
+          
+        </div>
+
+        <div class="dropdown">
         
-
-        <?php session_start(); ?>
-        <?php if(isset($_SESSION['identify_photo']) && isset($_SESSION['name'])): ?>
-            <div class="bells">
-                <a href="logout.php"><img src="images/logout.png" style="width: 25px;height: 25px;margin-right:20px;"></a>
+          <button class="intromy"><a href="#"><img src="<?php echo $_SESSION['identify_photo']; ?>" style="border-radius: 50%;"><span><?php echo $_SESSION['name'];?></span></a></button>
+            <div class="dropdown-content" id="intromyDropdown">
+                <a href="view.php">查看個人檔案</a>
+                <a href="collect.php">已收藏寵物</a>
+                <a href="pet_post.php">刊登寵物</a>
+                <a href="viewpet.php">已刊登寵物</a>
+                <a href="viewheart.php">愛心切結書審核</a>
+                <a href="heart.docx">下載愛心認養切結書</a>
+                
             </div>
-        <?php endif; ?>
-
-            <div class="dropdown">
-                <?php if(isset($_SESSION['identify_photo']) && isset($_SESSION['name'])): ?>
-                    <button class="intromy"><a href="#"><img src="<?php echo $_SESSION['identify_photo']; ?>" style="border-radius: 50%;"><span><?php echo $_SESSION['name'];?></span></a></button>
-                    <div class="dropdown-content" id="intromyDropdown">
-                        <a href="view.php">查看個人檔案</a>
-                        <a href="collect.php">已收藏寵物</a>
-                        <a href="pet_post.php">刊登寵物</a>
-                        <a href="viewpet.php">已刊登寵物</a>
-                        <a href="viewheart.php">愛心切結書審核</a>
-                        <a href="heart.docx">下載愛心認養切結書</a>
-			    <?php if ($_SESSION['identify_level'] == 'admin') { ?>
-		        <a href="vadmin.php">管理員面板</a>
-		        <?php } ?>
-                    </div>
-                <?php else: ?>
-                    <button class="intromy"><a href="login.php"  style="color: black;">登入/註冊</a></button>
-                    <div class="dropdown-content" id="intromyDropdown">
-                    </div>
-                <?php endif; ?>
-            </div>
+        </div>
         
       </div>
       
@@ -332,7 +331,7 @@
                                 <div class="form-group">
                                     <div class="form-field">
                                         <div class="select-wrap">
-                                        <header style="margin-left: 10px;">性別</header>
+                                        <header style="margin-left: 10px;">種類</header>
                                             <div class="icon"><span class="fa fa-chevron-down" style="margin-top: 33px;"></span></div>
                                             <select name="pet_gender" id="pet_gender" class="form-control">
                                                 <option disabled selected hidden>&nbsp&nbsp--請選擇--</option>
@@ -455,7 +454,7 @@
 
 <div class="contain">
     <?php
-    session_start();
+    // session_start();
     $link = mysqli_connect('localhost', 'root', '12345678', 'sa');
 
     // 构建基本的 SQL 查询语句
@@ -473,6 +472,7 @@
     $pet_medical = isset($_POST['pet_medical']) ? $_POST['pet_medical'] : '';
     $pet_medical_input = isset($_POST['pet_medical_input']) ? $_POST['pet_medical_input'] : '';
     $pet_size = isset($_POST['pet_size']) ? $_POST['pet_size'] : '';
+    // $introduce = $row['image_description'];
 
     // 构建查询条件
     $conditions = array();
@@ -545,7 +545,7 @@
         <?php if($pet_level=='in_progress'){?>
         <div class="petframe">
         <div class="petphoto">
-          <?php echo "<img src='{$pet_photo}' alt='{$introduce}'><br>" ?>
+          <?php echo "<img src='{$pet_photo}' '><br>" ?> 
         </div>
         <div class="petintro">
         <span><?php echo $row['pet_name']; ?></span><p style="display: inline;"><?php echo $row['pet_publish']; ?></p>
@@ -563,11 +563,6 @@
 
   <?php  }
               }
-            }else{
-                echo "查無結果";?>
-                <div style="margin-bottom:100px;"></div>
-                <?php 
-
             }
 
     } else {
@@ -582,13 +577,13 @@
               <?php if($pet_level=='in_progress'){?>
               <div class="petframe">
                   <div class="petphoto">
-                      <?php echo "<img src='{$pet_photo}' alt='{$introduce}'><br>" ?>
+                      <?php echo "<img src='{$pet_photo}'><br>" ?>
                   </div>
                   <div class="petintro">
                       <span><?php echo $row['pet_name']; ?></span><p style="display: inline;"><?php echo $row['pet_publish']; ?></p>
-                      <a href="#" class="bookmarkLink" style="float:right;" data-pet-id="<?php echo $row['pet_id']; ?>" data-identify="<?php echo $row['identify']; ?>">
+                      <!-- <a href="#" class="bookmarkLink" style="float:right;" data-pet-id="<?php echo $row['pet_id']; ?>" data-identify="<?php echo $row['identify']; ?>">
                           <i class="bookmarkIcon fas fa-bookmark-o" style="font-size:22px;color:black;float:right;"></i>
-                      </a>
+                      </a> -->
                       <p><img src="images/pets (2).png"> <img src="images/pets.png"><?php echo $row['pet_type'];?>/<?php echo $row['pet_variety'];?></p>
                       <p><img src="images/genders.png"> <?php echo $row['pet_gender'];?></p>
                       <p><img src="images/age.png"> <?php echo $row['pet_age'];?>歲</p>
@@ -701,7 +696,7 @@
           echo '<div class="contact" onclick="openChat(\'' . $contact['identify'] . '\', \'' . $contact['receiver_name'] . '\')">';
           echo '<img src="' . $identify_photo . '" alt="' . $contact['receiver_name'] . '">';
           echo '<span>' . $contact['receiver_name'] . '</span>';
-       
+          // 添加查看个人档案的按钮
           if ($contact['identify_level'] == 'member') {
             echo '<a href="viewuser2.php?identify=' . $contact['identify'] . '"><span class="flaticon-pawprint-1 mr-2" style="margin-left: 5px; color: black;"></span></a>';
           }
@@ -719,9 +714,9 @@
 
     </div>
 <!-- 寵物收藏彈跳視窗 -->
-<div align="center">
+<div align="center" >
 <div id="myModal" class="modal">
-    <div class="modal-content" style="width: 200px;height: 100p;margin:30px;">
+    <div class="modal-content" style="width: 200px;height: 100px;">
         <span class="close">&times;</span>
         <p id="modalMessage" style="text-align:center;line-height:50px;"></p>
     </div>
@@ -805,9 +800,7 @@
 
       function hideContactsList() {
         var contactsList = document.getElementById("contactsList");
-       
         contactsList.style.display = "none";
-        
       }
 
       function openChat(identify, accountName) {
